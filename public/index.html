@@ -24,7 +24,8 @@
                 <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
                     <i class="fi fi-br-moon"></i>
                 </button>
-                <a href="#resume" class="btn-primary resume-btn">Resume</a>
+                <button id="admin-mode-btn" class="btn-secondary" style="margin-left: 15px; padding: 0.5rem 1rem; font-size: 0.9rem; cursor: pointer;">Admin Mode</button>
+                <a href="#resume" class="btn-primary resume-btn" style="margin-left: 10px;">Resume</a>
             </nav>
         </div>
     </header>
@@ -33,7 +34,7 @@
         <section id="home" class="hero reveal">
             <div class="hero-content">
                 <span class="badge">Available for new opportunities</span>
-                <h1>Hi, I'm Hamza.<br><span class="highlight">I build for the web.</span></h1>
+                <h1 id="dyn-hero-name">Hi, I'm Hamza.<br><span class="highlight">I build for the web.</span></h1>
                 <p>I'm a frontend developer obsessed with <strong>Technical Humanism</strong>—the intersection of rigorous code and approachable, user-centric design.</p>
                 <div class="hero-buttons">
                     <a href="#projects" class="btn-primary">View My Work</a>
@@ -42,7 +43,7 @@
             </div>
             <div class="hero-image">
                 <div class="image-wrapper">
-                    <img src="https://via.placeholder.com/400" alt="Hamza Bari">
+                    <img id="dyn-hero-img" src="https://via.placeholder.com/400" alt="Hamza Bari">
                     <div class="floating-badge">
                         <span class="icon">&lt;/&gt;</span>
                         <div class="text">
@@ -58,7 +59,7 @@
             <div class="section-header">
                 <span class="badge">The "Ice" Perspective</span>
                 <h2>Engineering with <span class="highlight">Precision</span><br>and Purpose.</h2>
-                <p class="subtitle">I am Hamza Bari, though colleagues often call me "Ice"—a nickname born from a reputation for staying calm under the pressure of complex debugging and for the analytical, crystalline clarity I bring to user interfaces.</p>
+                <p id="dyn-about-text" class="subtitle">I am Hamza Bari, though colleagues often call me "Ice"—a nickname born from a reputation for staying calm under the pressure of complex debugging and for the analytical, crystalline clarity I bring to user interfaces.</p>
             </div>
             <div class="about-grid">
                 <div class="about-text">
@@ -124,8 +125,8 @@
                     <div class="project-img placeholder-img"></div>
                     <div class="project-info">
                         <div class="tags"><span class="tag">Tailwind</span><span class="tag">JS</span><span class="tag">HTML5</span></div>
-                        <h3>Portfolio V1</h3>
-                        <p>The first iteration of my personal workspace, focusing on high-performance animations and a minimalist aesthetic.</p>
+                        <h3 id="dyn-project-title">Portfolio V1</h3>
+                        <p id="dyn-project-desc">The first iteration of my personal workspace, focusing on high-performance animations and a minimalist aesthetic.</p>
                         <a href="#" class="project-link">View Project &rarr;</a>
                     </div>
                 </div>
@@ -194,9 +195,6 @@
                 <p>&copy; 2024 Hamza Bari. Built with Technical Humanism.</p>
             </div>
             <div class="footer-right">
-                <i class="fi fi-brands-github"></i>
-                <i class="fi fi-brands-github"></i>
-                <i class="fi fi-brands-github"></i>
                 <i class="fi fi-brands-github"></i>
             </div>
         </div>
