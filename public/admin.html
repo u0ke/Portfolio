@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Back Office</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body style="padding: 2rem; background-color: var(--bg-color);">
+    <header>
+        <div class="nav-container">
+            <h1 class="logo">Back Office Mode</h1>
+            <a href="index.html" class="btn-secondary">Log Out & Return</a>
+        </div>
+    </header>
+    
+    <main style="max-width: 800px; margin: 100px auto 0 auto; background: var(--card-bg); padding: 2rem; border-radius: 16px; border: 1px solid var(--border-color);">
+        <h2>Update Portfolio Content</h2>
+        <p class="subtitle">Edit your text, images, and projects below.</p>
+        
+        <form id="admin-form" class="contact-form" style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem;">
+            <div class="field">
+                <label>Hero Title (HTML allowed)</label>
+                <input type="text" id="admin-hero-name" required>
+            </div>
+            <div class="field">
+                <label>Profile Image URL</label>
+                <input type="text" id="admin-hero-img" required>
+            </div>
+            <div class="field">
+                <label>Quick About Text</label>
+                <textarea id="admin-about-text" rows="5" required></textarea>
+            </div>
+            <hr style="border: 1px solid var(--border-color); margin: 1rem 0;">
+            <h3>Adjust Project 1</h3>
+            <div class="field">
+                <label>Project Title</label>
+                <input type="text" id="admin-proj-title" required>
+            </div>
+            <div class="field">
+                <label>Project Description</label>
+                <textarea id="admin-proj-desc" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="margin-top: 1rem;">Save Changes <span>&rarr;</span></button>
+        </form>
+    </main>
+
+    <script>
+        // Security check: ensure user actually logged in via the navbar button
+        if (sessionStorage.getItem("adminToken") !== "1234") {
+            alert("Unauthorized Access! Please use the Admin Mode button on the home page.");
+            window.location.href = "index.html";
+        }
+
+        // Load current data into the inputs
+        fetch('/api/data')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('admin-hero-name').value = data.heroName;
+                document.getElementById('admin-hero-img').value = data.heroImage;
+                document.getElementById('admin-about-text').value = data.aboutText;
+                document.getElementById('admin-proj-title').value = data.projectName;
+                document.getElementById('admin-proj-desc').value = data.projectDesc;
+            });
+
+        // Submit updates to the backend
+        document.getElementById('admin-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const newData = {
+                heroName: document.getElementById('admin-hero-name').value,
+                heroImage: document.getElementById('admin-hero-img').value,
+                aboutText: document.getElementById('admin-about-text').value,
+                projectName: document.getElementById('admin-proj-title').value,
+                projectDesc: document.getElementById('admin-proj-desc').value
+            };
+
+            fetch('/api/data', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ password: '1234', newData: newData })
+            })
+            .then(res => res.json())
+            .then(res => {
+                if (res.success) {
+                    alert("Content successfully updated!");
+                } else {
+                    alert("Error saving data: " + res.error);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
