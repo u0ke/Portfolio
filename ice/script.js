@@ -67,4 +67,28 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 3000);
         });
     }
+
+    // 4. Dark/Light Mode Toggle functionality
+    const themeToggleBtn = document.getElementById("theme-toggle");
+    const themeIcon = themeToggleBtn.querySelector("i");
+    
+    // Check for saved user preference in localStorage
+    const currentTheme = localStorage.getItem("theme");
+    if (currentTheme === "dark") {
+        document.body.classList.add("dark-mode");
+        themeIcon.classList.replace("fi-br-moon", "fi-br-sun");
+    }
+
+    themeToggleBtn.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+        
+        // Toggle icon and save preference
+        if (document.body.classList.contains("dark-mode")) {
+            themeIcon.classList.replace("fi-br-moon", "fi-br-sun");
+            localStorage.setItem("theme", "dark");
+        } else {
+            themeIcon.classList.replace("fi-br-sun", "fi-br-moon");
+            localStorage.setItem("theme", "light");
+        }
+    });
 });
