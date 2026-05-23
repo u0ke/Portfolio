@@ -105,3 +105,41 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+window.onload = async () => {
+    const res = await fetch('/api/data');
+    const data = await res.json();
+    
+    // Load About
+    const aboutText = document.getElementById('about-text');
+    const aboutImg = document.getElementById('about-image');
+    if (aboutText) aboutText.innerText = data.about.text;
+    if (aboutImg) aboutImg.src = data.about.image;
+
+    // Load Centered Skills
+    const skillsContainer = document.querySelector('.skills-container');
+    if (skillsContainer) {
+        skillsContainer.innerHTML = '';
+        data.skills.forEach(skill => {
+            const li = document.createElement('li');
+            li.innerText = skill;
+            li.className = 'skill-box'; // add styling for this box in your CSS
+            skillsContainer.appendChild(li);
+        });
+    }
+
+    // Load Projects Dynamically
+    const projectsContainer = document.querySelector('.projects-grid');
+    if (projectsContainer) {
+        projectsContainer.innerHTML = '';
+        data.projects.forEach(proj => {
+            projectsContainer.innerHTML += `
+                <div class="project-card">
+                    <img src="${proj.image}" alt="${proj.title}" style="width:100%; border-radius: 5px;">
+                    <h3>${proj.title}</h3>
+                    <p>${proj.description}</p>
+                </div>
+            `;
+        });
+    }
+};

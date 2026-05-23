@@ -231,3 +231,93 @@ body.dark-mode .icon-circle.blue { background: rgba(0, 86, 179, 0.2); color: #66
 body.dark-mode .icon-circle.red { background: rgba(255, 99, 71, 0.2); color: #ff8c7a; }
 body.dark-mode .btn-secondary { background: #1e1e1e; color: var(--text-dark); border-color: var(--border-color); }
 body.dark-mode .btn-secondary:hover { background: #333; }
+
+
+/* Centering the Skills Section */
+#skills {
+    text-align: center; /* Centers the section title */
+}
+.skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centers the skill boxes horizontally */
+    gap: 15px;
+    padding: 0;
+    list-style: none;
+}
+
+/* Professional Admin Panel Styles */
+.admin-body {
+    display: flex;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f6;
+}
+.sidebar {
+    width: 250px;
+    background: #1e293b;
+    color: white;
+    height: 100vh;
+    padding: 20px;
+    position: fixed;
+}
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+.sidebar li {
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: 0.3s;
+}
+.sidebar li:hover, .sidebar li.active {
+    background: #3b82f6;
+}
+.back-link {
+    display: block;
+    margin-top: 30px;
+    color: #94a3b8;
+    text-decoration: none;
+}
+.main-content {
+    margin-left: 290px;
+    padding: 40px;
+    width: 100%;
+}
+.admin-section form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+.admin-section label { margin-top: 15px; font-weight: bold; }
+.admin-section input, .admin-section textarea {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.admin-section button {
+    margin-top: 20px;
+    padding: 12px;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.admin-project-card {
+    background: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
