@@ -227,7 +227,7 @@ body.dark-mode .tag {
     color: var(--text-light);
 }
 
-body.dark-mode .icon-circle.blue { background: rgba(0, 86, 179, 0.2); color: #66b2ff; }
+body.dark-mode .icon-circle.blue { background: rgba(0, 86, 179, 0.2); color: #66b2ff;  }
 body.dark-mode .icon-circle.red { background: rgba(255, 99, 71, 0.2); color: #ff8c7a; }
 body.dark-mode .btn-secondary { background: #1e1e1e; color: var(--text-dark); border-color: var(--border-color); }
 body.dark-mode .btn-secondary:hover { background: #333; }
