@@ -3,168 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Back Office</title>
+    <title>Admin Dashboard</title>
     <link rel="stylesheet" href="style.css">
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
-    <style>
-        .admin-section {
-            background: var(--card-bg, #ffffff);
-            border: 1px solid var(--border-color, #ddd);
-            border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }
-        .admin-section h3 {
-            display: flex; align-items: center; gap: 10px; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 10px;
-        }
-        .input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-        .full-width { grid-column: span 2; }
-        .field label { display: flex; align-items: center; gap: 8px; font-weight: bold; margin-bottom: 5px;}
-        .top-controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;}
-    </style>
 </head>
-<body style="padding: 2rem; background-color: var(--bg-color);">
-    <div style="max-width: 900px; margin: 0 auto;">
-        
-        <div class="top-controls">
-            <h1 class="logo"><i class="fi fi-br-settings"></i> Admin Dashboard</h1>
-            <div>
-                <button onclick="document.body.classList.toggle('dark-mode')" class="btn-secondary" style="margin-right: 10px;"><i class="fi fi-br-moon"></i> Toggle Dark Mode</button>
-                <a href="index.html" class="btn-primary">Log Out</a>
-            </div>
-        </div>
-        
-        <form id="admin-form" class="contact-form">
-            
-            <div class="admin-section">
-                <h3><i class="fi fi-br-home"></i> Hero Section</h3>
-                <div class="input-grid">
-                    <div class="field full-width"><label><i class="fi fi-rr-text"></i> Hero Title (HTML allowed)</label><input type="text" id="hero-name" required></div>
-                    <div class="field full-width"><label><i class="fi fi-rr-align-left"></i> Hero Description</label><textarea id="hero-desc" rows="3" required></textarea></div>
-                    <div class="field full-width"><label><i class="fi fi-rr-picture"></i> Profile Image URL</label><input type="text" id="hero-img" required></div>
-                    <div class="field"><label><i class="fi fi-rr-bookmark"></i> Top Badge Text</label><input type="text" id="hero-badge" required></div>
-                    <div class="field"><label><i class="fi fi-rr-calendar"></i> Experience Years</label><input type="text" id="hero-exp-years" required></div>
-                    <div class="field full-width"><label><i class="fi fi-rr-briefcase"></i> Experience Text</label><input type="text" id="hero-exp-text" required></div>
-                </div>
-            </div>
-
-            <div class="admin-section">
-                <h3><i class="fi fi-br-user"></i> About Section</h3>
-                <div class="input-grid">
-                    <div class="field"><label><i class="fi fi-rr-bookmark"></i> Top Badge Text</label><input type="text" id="about-badge" required></div>
-                    <div class="field"><label><i class="fi fi-rr-text"></i> About Title (HTML allowed)</label><input type="text" id="about-title" required></div>
-                    <div class="field full-width"><label><i class="fi fi-rr-align-left"></i> About Subtitle / Quick Bio</label><textarea id="about-subtitle" rows="3" required></textarea></div>
-                </div>
-            </div>
-
-            <div class="admin-section">
-                <h3><i class="fi fi-br-star"></i> Skills Area</h3>
-                <p style="margin-bottom: 1rem; font-size: 0.9em; opacity: 0.8;">Use Flaticon classes for icons (e.g., <i>fi fi-rr-rocket-lunch</i>).</p>
-                <div class="input-grid">
-                    <div class="field"><label><i class="fi fi-rr-code"></i> Skill 1 - Icon Class</label><input type="text" id="s1-icon" required></div>
-                    <div class="field"><label><i class="fi fi-rr-text"></i> Skill 1 - Title</label><input type="text" id="s1-title" required></div>
-                    <div class="field full-width"><label><i class="fi fi-rr-align-left"></i> Skill 1 - Description</label><textarea id="s1-desc" rows="2" required></textarea></div>
-                    <div class="field"><label><i class="fi fi-rr-code"></i> Skill 2 - Icon Class</label><input type="text" id="s2-icon" required></div>
-                    <div class="field"><label><i class="fi fi-rr-text"></i> Skill 2 - Title</label><input type="text" id="s2-title" required></div>
-                    <div class="field full-width"><label><i class="fi fi-rr-align-left"></i> Skill 2 - Description</label><textarea id="s2-desc" rows="2" required></textarea></div>
-                    <div class="field"><label><i class="fi fi-rr-code"></i> Skill 3 - Icon Class</label><input type="text" id="s3-icon" required></div>
-                    <div class="field"><label><i class="fi fi-rr-text"></i> Skill 3 - Title</label><input type="text" id="s3-title" required></div>
-                    <div class="field full-width"><label><i class="fi fi-rr-align-left"></i> Skill 3 - Description</label><textarea id="s3-desc" rows="2" required></textarea></div>
-                </div>
-            </div>
-
-            <div class="admin-section">
-                <h3><i class="fi fi-br-folder"></i> Projects Area</h3>
-                <div class="input-grid">
-                    <div class="field full-width"><label><i class="fi fi-rr-picture"></i> Project 1 - Image URL</label><input type="text" id="p1-img" required></div>
-                    <div class="field full-width"><label><i class="fi fi-rr-text"></i> Project 1 - Title</label><input type="text" id="p1-title" required></div>
-                    <div class="field full-width"><label><i class="fi fi-rr-align-left"></i> Project 1 - Description</label><textarea id="p1-desc" rows="2" required></textarea></div>
-                    <div class="field full-width" style="margin-top: 1rem;"><label><i class="fi fi-rr-picture"></i> Project 2 - Image URL</label><input type="text" id="p2-img" required></div>
-                    <div class="field full-width"><label><i class="fi fi-rr-text"></i> Project 2 - Title</label><input type="text" id="p2-title" required></div>
-                    <div class="field full-width"><label><i class="fi fi-rr-align-left"></i> Project 2 - Description</label><textarea id="p2-desc" rows="2" required></textarea></div>
-                </div>
-            </div>
-
-            <button type="submit" class="btn-primary" style="width: 100%; font-size: 1.2rem; padding: 1rem;">Save All Changes to Database <span>&rarr;</span></button>
-        </form>
+<body class="admin-body">
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <ul>
+            <li onclick="showSection('about-section')" class="active">About Me</li>
+            <li onclick="showSection('skills-section')">Skills</li>
+            <li onclick="showSection('projects-section')">Projects</li>
+        </ul>
+        <a href="index.html" class="back-link">← Back to Portfolio</a>
     </div>
 
-    <script>
-        if (sessionStorage.getItem("adminToken") !== "1234") {
-            alert("Unauthorized Access!");
-            window.location.href = "index.html";
-        }
+    <div class="main-content">
+        <div id="about-section" class="admin-section active">
+            <h2>Update About Me</h2>
+            <form id="about-form">
+                <label>Profile Text:</label>
+                <textarea id="about-text" rows="4"></textarea>
+                
+                <label>Profile Photo:</label>
+                <input type="file" id="about-image" accept="image/*">
+                
+                <button type="submit">Save About</button>
+            </form>
+        </div>
 
-        // Load data
-        fetch('/api/data').then(res => res.json()).then(data => {
-            // Hero
-            document.getElementById('hero-badge').value = data.hero.badge;
-            document.getElementById('hero-name').value = data.hero.name;
-            document.getElementById('hero-desc').value = data.hero.desc;
-            document.getElementById('hero-img').value = data.hero.image;
-            document.getElementById('hero-exp-years').value = data.hero.expYears;
-            document.getElementById('hero-exp-text').value = data.hero.expText;
-            // About
-            document.getElementById('about-badge').value = data.about.badge;
-            document.getElementById('about-title').value = data.about.title;
-            document.getElementById('about-subtitle').value = data.about.subtitle;
-            // Skills
-            document.getElementById('s1-icon').value = data.skills.s1.icon;
-            document.getElementById('s1-title').value = data.skills.s1.title;
-            document.getElementById('s1-desc').value = data.skills.s1.desc;
-            document.getElementById('s2-icon').value = data.skills.s2.icon;
-            document.getElementById('s2-title').value = data.skills.s2.title;
-            document.getElementById('s2-desc').value = data.skills.s2.desc;
-            document.getElementById('s3-icon').value = data.skills.s3.icon;
-            document.getElementById('s3-title').value = data.skills.s3.title;
-            document.getElementById('s3-desc').value = data.skills.s3.desc;
-            // Projects
-            document.getElementById('p1-img').value = data.projects.p1.img;
-            document.getElementById('p1-title').value = data.projects.p1.title;
-            document.getElementById('p1-desc').value = data.projects.p1.desc;
-            document.getElementById('p2-img').value = data.projects.p2.img;
-            document.getElementById('p2-title').value = data.projects.p2.title;
-            document.getElementById('p2-desc').value = data.projects.p2.desc;
-        });
+        <div id="skills-section" class="admin-section" style="display:none;">
+            <h2>Update Skills</h2>
+            <textarea id="skills-input" rows="4" placeholder="Enter skills separated by commas (e.g. HTML, CSS, JavaScript)"></textarea>
+            <button onclick="saveSkills()">Save Skills</button>
+        </div>
 
-        // Save Data
-        document.getElementById('admin-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const newData = {
-                hero: {
-                    badge: document.getElementById('hero-badge').value,
-                    name: document.getElementById('hero-name').value,
-                    desc: document.getElementById('hero-desc').value,
-                    image: document.getElementById('hero-img').value,
-                    expYears: document.getElementById('hero-exp-years').value,
-                    expText: document.getElementById('hero-exp-text').value
-                },
-                about: {
-                    badge: document.getElementById('about-badge').value,
-                    title: document.getElementById('about-title').value,
-                    subtitle: document.getElementById('about-subtitle').value
-                },
-                skills: {
-                    s1: { icon: document.getElementById('s1-icon').value, title: document.getElementById('s1-title').value, desc: document.getElementById('s1-desc').value },
-                    s2: { icon: document.getElementById('s2-icon').value, title: document.getElementById('s2-title').value, desc: document.getElementById('s2-desc').value },
-                    s3: { icon: document.getElementById('s3-icon').value, title: document.getElementById('s3-title').value, desc: document.getElementById('s3-desc').value }
-                },
-                projects: {
-                    p1: { img: document.getElementById('p1-img').value, title: document.getElementById('p1-title').value, desc: document.getElementById('p1-desc').value },
-                    p2: { img: document.getElementById('p2-img').value, title: document.getElementById('p2-title').value, desc: document.getElementById('p2-desc').value }
-                }
-            };
+        <div id="projects-section" class="admin-section" style="display:none;">
+            <h2>Add New Project</h2>
+            <form id="project-form">
+                <label>Project Title:</label>
+                <input type="text" id="proj-title" required>
+                
+                <label>Description:</label>
+                <textarea id="proj-desc" rows="2" required></textarea>
+                
+                <label>Preview Photo:</label>
+                <input type="file" id="proj-image" accept="image/*" required>
+                
+                <button type="submit">Add Project</button>
+            </form>
 
-            fetch('/api/data', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ password: '1234', newData: newData })
-            }).then(res => res.json()).then(res => {
-                if (res.success) alert("Entire Portfolio successfully updated!");
-                else alert("Error saving data: " + res.error);
-            });
-        });
-    </script>
+            <hr>
+            <h2>Manage Projects</h2>
+            <div id="admin-projects-list"></div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
 </body>
 </html>
