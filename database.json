@@ -1,7 +1,44 @@
 {
-  "heroName": "Hi, I'm Hamza.<br><span class=\"highlight\">I build for the web.</span>",
-  "heroImage": "https://via.placeholder.com/400",
-  "aboutText": "I am Hamza Bari, though colleagues often call me \"Ice\"—a nickname born from a reputation for staying calm under the pressure of complex debugging and for the analytical, crystalline clarity I bring to user interfaces.",
-  "projectName": "Portfolio V1",
-  "projectDesc": "The first iteration of my personal workspace, focusing on high-performance animations and a minimalist aesthetic."
+  "hero": {
+    "badge": "Available for new opportunities",
+    "name": "Hi, I'm Hamza.<br><span class=\"highlight\">I build for the web.</span>",
+    "desc": "I'm a frontend developer obsessed with <strong>Technical Humanism</strong>—the intersection of rigorous code and approachable, user-centric design.",
+    "image": "/assets/Hunter x Hunter_.jpg",
+    "expYears": "6+ months",
+    "expText": "Frontend Experience"
+  },
+  "about": {
+    "badge": "The \"Ice\" Perspective",
+    "title": "Engineering with <span class=\"highlight\">Precision</span><br>and Purpose.",
+    "subtitle": "I am Hamza Bari, though colleagues often call me \"Ice\"—a nickname born from a reputation for staying calm under the pressure of complex debugging and for the analytical, crystalline clarity I bring to user interfaces."
+  },
+  "skills": {
+    "s1": {
+      "icon": "fi fi-rr-rocket-lunch",
+      "title": "Performance First",
+      "desc": "I specialize in building lightning-fast web applications. By prioritizing efficient rendering and lean codebases, I ensure your users never have to wait."
+    },
+    "s2": {
+      "icon": "fi fi-rr-palette",
+      "title": "Design Systems",
+      "desc": "Bridging the gap between Figma and code with scalable, themeable design systems that stay consistent as they grow."
+    },
+    "s3": {
+      "icon": "fi fi-rr-sparkles",
+      "title": "Clean UX",
+      "desc": "Simple, intuitive interfaces that guide users naturally toward their goals without friction or frustration."
+    }
+  },
+  "projects": {
+    "p1": {
+      "img": "/assets/download (1).jpg",
+      "title": "Portfolio V1",
+      "desc": "The first iteration of my personal workspace, focusing on high-performance animations and a minimalist aesthetic."
+    },
+    "p2": {
+      "img": "/assets/Using Tuples in Python_ Python is a programming language that… _ by Yancy Dennis _ Mar, 2022.jpg",
+      "title": "Python Scripting",
+      "desc": "A suite of automation tools designed to optimize data ingestion workflows and streamline cross-platform communication."
+    }
+  }
 }

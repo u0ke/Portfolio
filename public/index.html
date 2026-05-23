@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.cdnfonts.com/css/intel-one-mono" rel="stylesheet">
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
-    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
 </head>
 <body>
@@ -26,7 +25,6 @@
                     <i class="fi fi-br-moon"></i>
                 </button>
                 <button id="admin-mode-btn" class="btn-secondary" style="margin-left: 15px; padding: 0.5rem 1rem; font-size: 0.9rem; cursor: pointer;">Admin Mode</button>
-                <a href="#resume" class="btn-primary resume-btn" style="margin-left: 10px;">Resume</a>
             </nav>
         </div>
     </header>
@@ -34,11 +32,11 @@
     <main>
         <section id="home" class="hero reveal">
             <div class="hero-content">
-                <span class="badge">Available for new opportunities</span>
+                <span id="dyn-hero-badge" class="badge">Available for new opportunities</span>
                 <h1 id="dyn-hero-name">Hi, I'm Hamza.<br><span class="highlight">I build for the web.</span></h1>
-                <p>I'm a frontend developer obsessed with <strong>Technical Humanism</strong>—the intersection of rigorous code and approachable, user-centric design.</p>
+                <p id="dyn-hero-desc">I'm a frontend developer obsessed with <strong>Technical Humanism</strong>—the intersection of rigorous code and approachable, user-centric design.</p>
                 <div class="hero-buttons">
-                    <a href="#projects" class="btn-primary">View My Work</a>
+                    <a href="#projects" class="btn-primary" style="border: 1px solid var(--border-color, rgba(255,255,255,0.2));">View My Work</a>
                     <a href="#about" class="btn-secondary">About Me</a>
                 </div>
             </div>
@@ -48,8 +46,8 @@
                     <div class="floating-badge">
                         <span class="icon">&lt;/&gt;</span>
                         <div class="text">
-                            <strong>6+ months</strong>
-                            <span>Frontend Experience</span>
+                            <strong id="dyn-hero-exp-years">6+ months</strong>
+                            <span id="dyn-hero-exp-text">Frontend Experience</span>
                         </div>
                     </div>
                 </div>
@@ -58,9 +56,9 @@
 
         <section id="about" class="about reveal">
             <div class="section-header">
-                <span class="badge">The "Ice" Perspective</span>
-                <h2>Engineering with <span class="highlight">Precision</span><br>and Purpose.</h2>
-                <p id="dyn-about-text" class="subtitle">I am Hamza Bari, though colleagues often call me "Ice"—a nickname born from a reputation for staying calm under the pressure of complex debugging and for the analytical, crystalline clarity I bring to user interfaces.</p>
+                <span id="dyn-about-badge" class="badge">The "Ice" Perspective</span>
+                <h2 id="dyn-about-title">Engineering with <span class="highlight">Precision</span><br>and Purpose.</h2>
+                <p id="dyn-about-subtitle" class="subtitle">I am Hamza Bari, though colleagues often call me "Ice"...</p>
             </div>
             <div class="about-grid">
                 <div class="about-text">
@@ -101,19 +99,19 @@
             </div>
             <div class="skills-grid">
                 <div class="skill-card">
-                    <div class="icon-circle blue"><i class="fi fi-rr-rocket-lunch"></i></div>
-                    <h3>Performance First</h3>
-                    <p>I specialize in building lightning-fast web applications. By prioritizing efficient rendering and lean codebases, I ensure your users never have to wait.</p>
+                    <div class="icon-circle blue"><i id="dyn-s1-icon" class="fi fi-rr-rocket-lunch"></i></div>
+                    <h3 id="dyn-s1-title">Performance First</h3>
+                    <p id="dyn-s1-desc">I specialize in building lightning-fast web applications.</p>
                 </div>
                 <div class="skill-card">
-                    <div class="icon-circle red"><i class="fi fi-rr-palette"></i></div>
-                    <h3>Design Systems</h3>
-                    <p>Bridging the gap between Figma and code with scalable, themeable design systems that stay consistent as they grow.</p>
+                    <div class="icon-circle red"><i id="dyn-s2-icon" class="fi fi-rr-palette"></i></div>
+                    <h3 id="dyn-s2-title">Design Systems</h3>
+                    <p id="dyn-s2-desc">Bridging the gap between Figma and code with scalable, themeable design systems that stay consistent as they grow.</p>
                 </div>
                 <div class="skill-card solid-blue">
-                    <div class="icon-circle outline"><i class="fi fi-rr-sparkles"></i></div>
-                    <h3>Clean UX</h3>
-                    <p>Simple, intuitive interfaces that guide users naturally toward their goals without friction or frustration.</p>
+                    <div class="icon-circle outline"><i id="dyn-s3-icon" class="fi fi-rr-sparkles"></i></div>
+                    <h3 id="dyn-s3-title">Clean UX</h3>
+                    <p id="dyn-s3-desc">Simple, intuitive interfaces that guide users naturally toward their goals without friction or frustration.</p>
                 </div>
             </div>
         </section>
@@ -123,24 +121,24 @@
             <p class="subtitle">A collection of work spanning frontend engineering, system automation, and UI design.</p>
             <div class="projects-grid">
                 <div class="project-card">
-                    <div class="project-img placeholder-img"><img src="/assets/download (1).jpg" alt=""></div>
+                    <div class="project-img placeholder-img"><img id="dyn-p1-img" src="/assets/download (1).jpg" alt=""></div>
                     <div class="project-info">
                         <div class="tags"><span class="tag">Tailwind</span><span class="tag">JS</span><span class="tag">HTML5</span></div>
-                        <h3 id="dyn-project-title">Portfolio V1</h3>
-                        <p id="dyn-project-desc">The first iteration of my personal workspace, focusing on high-performance animations and a minimalist aesthetic.</p>
+                        <h3 id="dyn-p1-title">Portfolio V1</h3>
+                        <p id="dyn-p1-desc">The first iteration of my personal workspace, focusing on high-performance animations and a minimalist aesthetic.</p>
                         <a href="#" class="project-link">View Project &rarr;</a>
                     </div>
                 </div>
                 <div class="project-card">
-                    <div class="project-img dark-code-img"><img src="/assets/Using Tuples in Python_ Python is a programming language that… _ by Yancy Dennis _ Mar, 2022.jpg" alt=""></div>
+                    <div class="project-img dark-code-img"><img id="dyn-p2-img" src="/assets/Using Tuples in Python_ Python is a programming language that… _ by Yancy Dennis _ Mar, 2022.jpg" alt=""></div>
                     <div class="project-info">
                         <div class="tags"><span class="tag">Python</span><span class="tag">Automation</span></div>
-                        <h3>Python Scripting</h3>
-                        <p>A suite of automation tools designed to optimize data ingestion workflows and streamline cross-platform communication.</p>
+                        <h3 id="dyn-p2-title">Python Scripting</h3>
+                        <p id="dyn-p2-desc">A suite of automation tools designed to optimize data ingestion workflows and streamline cross-platform communication.</p>
                         <a href="#" class="project-link">View Scripts &rarr;</a>
                     </div>
                 </div>
-                </div>
+            </div>
         </section>
 
         <section id="contact" class="contact reveal">
@@ -173,14 +171,14 @@
                             <span class="icon"><i class="fi fi-br-envelope"></i></span>
                             <div>
                                 <small>Email</small>
-                                <p>barihamza73@gmail.com</p>
+                                <p>hello@hamzabari.com</p>
                             </div>
                         </div>
                         <div class="contact-method">
                             <span class="icon"><i class="fi fi-brands-github"></i></span>
                             <div>
                                 <small>GitHub</small>
-                                <p>github.com/u0ke</p>
+                                <p>github.com/hamzabari</p>
                             </div>
                         </div>
                     </div>
