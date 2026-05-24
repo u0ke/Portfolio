@@ -80,3 +80,53 @@ app.delete('/api/projects/:id', (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+
+const express = require('express');
+const fs = require('fs');
+const path = require('path');
+const multer = require('multer'); // Enables file uploading
+
+const app = express();
+app.use(express.json());
+app.use(express.static('public'));
+app.use('/assets', express.static('assets')); // Serve uploaded images to the portfolio
+
+// Configure Multer to save files in the "assets" folder
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        const dir = './assets/';
+        if (!fs.existsSync(dir)){ fs.mkdirSync(dir); }
+        cb(null, dir);
+    },
+    filename: (req, file, cb) => {
+        // Renames file to prevent duplicate name conflicts
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
+});
+const upload = multer({ storage: storage });
+
+const DB_PATH = './database.json';
+
+if (!fs.existsSync(DB_PATH)) {
+    fs.writeFileSync(DB_PATH, JSON.stringify({ about: {}, skills: [], projects: [] }));
+}
+
+// Fetch Data
+app.get('/api/data', (req, res) => {
+    const data = JSON.parse(fs.readFileSync(DB_PATH));
+    res.json(data);
+});
+
+// Save Full Portfolio Data
+app.post('/api/data', (req, res) => {
+    fs.writeFileSync(DB_PATH, JSON.stringify(req.body, null, 2));
+    res.json({ success: true });
+});
+
+// Handle Image Uploads
+app.post('/api/upload', upload.single('image'), (req, res) => {
+    if (!req.file) return res.status(400).send('No file uploaded.');
+    res.json({ imageUrl: '/assets/' + req.file.filename });
+});
+
+app.listen(3000, () => console.log('Server running on http://localhost:3000'));

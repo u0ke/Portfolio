@@ -4,57 +4,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* CSS Reset & Variables */
+        :root { --primary: #2563eb; --bg: #f3f4f6; --text: #1f2937; --card: #ffffff; }
+        body { margin: 0; font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); }
+        
+        /* Professional Login Modal */
+        #login-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+        .modal-content { background: var(--card); padding: 2.5rem; border-radius: 12px; box-shadow: 0 10px 15px rgba(0,0,0,0.1); text-align: center; width: 90%; max-width: 400px; }
+        .modal-content input { width: 100%; padding: 12px; margin: 20px 0; border: 1px solid #d1d5db; border-radius: 6px; box-sizing: border-box; font-size: 1rem; }
+        
+        /* Buttons */
+        .btn { background: var(--primary); color: #fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; transition: 0.2s; font-weight: 600; }
+        .btn:hover { background: #1d4ed8; }
+        .btn-danger { background: #dc2626; width: 100%; margin-top: 10px;}
+        .btn-danger:hover { background: #b91c1c; }
+
+        /* Dashboard Layout */
+        #dashboard { display: none; padding: 20px; max-width: 1200px; margin: 0 auto; }
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .section-card { background: var(--card); padding: 25px; border-radius: 10px; margin-bottom: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        
+        /* Form Inputs */
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; }
+        .form-group input, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; box-sizing: border-box; }
+        
+        /* File Explorer Triggers */
+        .file-upload-wrapper { position: relative; overflow: hidden; display: inline-block; width: 100%; }
+        .file-upload-wrapper input[type=file] { position: absolute; left: 0; top: 0; opacity: 0; cursor: pointer; height: 100%; width: 100%; }
+
+        /* Responsive Grids */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        .item-card { border: 1px solid #e5e7eb; padding: 15px; border-radius: 8px; background: #f9fafb; }
+        .item-card img { width: 100%; height: 180px; object-fit: cover; border-radius: 6px; margin-bottom: 15px; }
+
+        @media(max-width: 768px) {
+            header { flex-direction: column; gap: 15px; text-align: center; }
+        }
+    </style>
 </head>
-<body class="admin-body">
-    <div class="sidebar">
-        <h2>Admin Panel</h2>
-        <ul>
-            <li onclick="showSection('about-section')" class="active">About Me</li>
-            <li onclick="showSection('skills-section')">Skills</li>
-            <li onclick="showSection('projects-section')">Projects</li>
-        </ul>
-        <a href="index.html" class="back-link">← Back to Portfolio</a>
+<body>
+
+    <div id="login-modal">
+        <div class="modal-content">
+            <h2>Admin Security</h2>
+            <p style="color: #6b7280; font-size: 0.9rem;">Enter access code to manage portfolio.</p>
+            <input type="password" id="admin-code" placeholder="Enter Access Code">
+            <button class="btn" onclick="checkCode()" style="width: 100%;">Access Dashboard</button>
+            <p id="login-error" style="color: #dc2626; display: none; margin-top: 15px; font-weight: bold;">Incorrect Code</p>
+        </div>
     </div>
 
-    <div class="main-content">
-        <div id="about-section" class="admin-section active">
-            <h2>Update About Me</h2>
-            <form id="about-form">
-                <label>Profile Text:</label>
-                <textarea id="about-text" rows="4"></textarea>
-                
-                <label>Profile Photo:</label>
-                <input type="file" id="about-image" accept="image/*">
-                
-                <button type="submit">Save About</button>
-            </form>
+    <div id="dashboard">
+        <header>
+            <h1>Admin Dashboard</h1>
+            <button class="btn" onclick="saveAllChanges()" style="background: #10b981;">Publish Changes to Live Portfolio</button>
+        </header>
+
+        <div class="section-card">
+            <h2>About Me</h2>
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="about-name">
+            </div>
+            <div class="form-group">
+                <label>Bio</label>
+                <textarea id="about-bio" rows="4"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Profile Image</label>
+                <img id="about-img-preview" src="" style="width: 150px; height: 150px; object-fit: cover; display: block; margin-bottom: 15px; border-radius: 8px;">
+                <div class="file-upload-wrapper" style="width: auto;">
+                    <button class="btn" style="background: #4b5563;">Browse Files...</button>
+                    <input type="file" accept="image/*" onchange="uploadImage(event, 'about-img')">
+                </div>
+            </div>
         </div>
 
-        <div id="skills-section" class="admin-section" style="display:none;">
-            <h2>Update Skills</h2>
-            <textarea id="skills-input" rows="4" placeholder="Enter skills separated by commas (e.g. HTML, CSS, JavaScript)"></textarea>
-            <button onclick="saveSkills()">Save Skills</button>
+        <div class="section-card">
+            <h2>Skills <button class="btn" style="float: right; padding: 5px 15px;" onclick="addSkill()">+ Add Skill</button></h2>
+            <div id="skills-container" class="grid" style="margin-top: 20px;"></div>
         </div>
 
-        <div id="projects-section" class="admin-section" style="display:none;">
-            <h2>Add New Project</h2>
-            <form id="project-form">
-                <label>Project Title:</label>
-                <input type="text" id="proj-title" required>
-                
-                <label>Description:</label>
-                <textarea id="proj-desc" rows="2" required></textarea>
-                
-                <label>Preview Photo:</label>
-                <input type="file" id="proj-image" accept="image/*" required>
-                
-                <button type="submit">Add Project</button>
-            </form>
-
-            <hr>
-            <h2>Manage Projects</h2>
-            <div id="admin-projects-list"></div>
+        <div class="section-card">
+            <h2>Projects <button class="btn" style="float: right; padding: 5px 15px;" onclick="addProject()">+ Add Project</button></h2>
+            <div id="projects-container" class="grid" style="margin-top: 20px;"></div>
         </div>
     </div>
 
