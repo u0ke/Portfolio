@@ -321,3 +321,68 @@ body.dark-mode .btn-secondary:hover { background: #333; }
     align-items: center;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+
+/* =========================================
+   TABLET RESPONSIVENESS (Max Width: 1024px)
+   ========================================= */
+@media screen and (max-width: 1024px) {
+    body {
+        font-size: 95%; /* Slightly reduce the base font size */
+    }
+    
+    /* Adjust multi-column layouts (like 3 or 4 columns) to just 2 columns */
+    .grid, .portfolio-grid, .projects-container, .services {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    /* Ensure main containers do not touch the edges of the screen */
+    .container, section {
+        padding-left: 20px;
+        padding-right: 20px;
+        width: 100%;
+    }
+}
+
+/* =========================================
+   MOBILE RESPONSIVENESS (Max Width: 768px)
+   ========================================= */
+@media screen and (max-width: 768px) {
+    /* Stack navigation and header layouts vertically */
+    header, .nav, .navbar, .footer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    /* Adjust all grids to a single column for narrow mobile screens */
+    .grid, .portfolio-grid, .projects-container, .services {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Reduce typography sizes to prevent text from overflowing */
+    h1 {
+        font-size: 2rem;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+    p {
+        font-size: 1rem;
+    }
+    
+    /* Reduce vertical spacing for sections */
+    section {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    
+    /* Guarantee that images and media scale down responsively */
+    img, video, iframe {
+        max-width: 100%;
+        height: auto;
+    }
+}
