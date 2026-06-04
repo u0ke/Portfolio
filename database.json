@@ -1,12 +1,13 @@
 {
   "hero": {
     "badge": "Available for new opportunities",
-    "greeting": "Hi, I'm Hamza.",
+    "greeting": "Hi, I'm Hamza",
     "highlight": "I build for the web.",
-    "description": "I'm a frontend developer obsessed with <strong>Technical Humanism</strong>—the intersection of rigorous code and approachable, user-centric design.",
+    "description": "I'm a frontend developer obsessed with Technical Humanism the intersection of rigorous code and approachable, user-centric design.",
     "image": "/assets/Hunter x Hunter_.jpg",
     "expYears": "6+ months",
-    "expText": "Frontend Experience"
+    "expText": "Frontend Experience",
+    "name": "ice"
   },
   "about": {
     "badge": "The \"Ice\" Perspective",
@@ -20,7 +21,16 @@
     ],
     "philosophyTitle": "Technical Philosophy",
     "philosophyQuote": "Code should be as clean as a fresh design file, and design should be as structured as a well-written script.",
-    "competencies": ["HTML5", "CSS3", "Tailwind CSS", "JavaScript ES6+", "DOM API", "Python Logic", "Figma Design", "Responsive UI"],
+    "competencies": [
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS",
+      "JavaScript ES6+",
+      "DOM API",
+      "Python Logic",
+      "Figma Design",
+      "Responsive UI"
+    ],
     "codeSnippet": "def ice_mode(state):\n    # Maintain clarity under pressure\n    variables = {\n        \"focus\": True,\n        \"precision\": 1.0,\n        \"humanity\": \"Full\"\n    }\n    return variables[state]"
   },
   "skills": [
@@ -45,18 +55,27 @@
   ],
   "projects": [
     {
-      "title": "Portfolio V1",
+      "title": "Portfolio",
       "desc": "The first iteration of my personal workspace, focusing on high-performance animations and a minimalist aesthetic.",
       "image": "/assets/download (1).jpg",
       "link": "#",
-      "tags": ["Tailwind", "JS", "HTML5"]
+      "tags": [
+        "Tailwind",
+        "CSS",
+        "JAVASCRIPT",
+        "HTML5",
+        "Figma Design"
+      ]
     },
     {
       "title": "Python Scripting",
       "desc": "A suite of automation tools designed to optimize data ingestion workflows and streamline cross-platform communication.",
       "image": "/assets/Using Tuples in Python_ Python is a programming language that… _ by Yancy Dennis _ Mar, 2022.jpg",
       "link": "#",
-      "tags": ["Python", "Automation"]
+      "tags": [
+        "Python",
+        "Automation"
+      ]
     }
   ],
   "contact": {
