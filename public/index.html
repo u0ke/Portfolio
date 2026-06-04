@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hamza Bari - Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.cdnfonts.com/css/intel-one-mono" rel="stylesheet">
+    <title>Hamza Bari — Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
+    <!-- HEADER -->
+    <header class="site-header">
         <div class="nav-container">
-            <a href="#home" class="logo">Hamza Bari</a>
+            <a href="#home" class="logo">
+                <span class="logo-mark">H</span><span class="logo-text">Hamza Bari</span>
+            </a>
             <nav>
                 <ul class="nav-links">
                     <li><a href="#about">About</a></li>
@@ -22,135 +26,113 @@
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
-                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
-                    <i class="fi fi-br-moon"></i>
-                </button>
-                <button id="admin-mode-btn" class="btn-secondary" style="margin-left: 15px; padding: 0.5rem 1rem; font-size: 0.9rem; cursor: pointer;">Admin Mode</button>
+                <div class="nav-actions">
+                    <button id="theme-toggle" class="icon-btn" aria-label="Toggle Theme">
+                        <i class="fi fi-br-moon"></i>
+                    </button>
+                    <button id="admin-mode-btn" class="btn-ghost">Admin</button>
+                </div>
             </nav>
         </div>
     </header>
 
     <main>
+        <!-- HERO -->
         <section id="home" class="hero reveal">
             <div class="hero-content">
-                <span id="dyn-hero-badge" class="badge">Available for new opportunities</span>
-                <h1 id="dyn-hero-name">Hi, I'm Hamza.<br><span class="highlight">I build for the web.</span></h1>
-                <p id="dyn-hero-desc">I'm a frontend developer obsessed with <strong>Technical Humanism</strong>—the intersection of rigorous code and approachable, user-centric design.</p>
+                <span id="dyn-hero-badge" class="badge">Loading…</span>
+                <h1 class="hero-title">
+                    <span id="dyn-hero-greeting">Hi, I'm</span>
+                    <span class="hero-name">Hamza.</span>
+                    <span class="highlight"><span id="dyn-hero-highlight">I build for the web.</span></span>
+                </h1>
+                <p id="dyn-hero-desc" class="hero-desc">Loading…</p>
                 <div class="hero-buttons">
-                    <a href="#projects" class="btn-primary" style="border: 1px solid var(--border-color, rgba(255,255,255,0.2));">View My Work</a>
+                    <a href="#projects" class="btn-primary">View My Work <span>→</span></a>
                     <a href="#about" class="btn-secondary">About Me</a>
                 </div>
             </div>
             <div class="hero-image">
-                <div class="image-wrapper">
-                    <img id="dyn-hero-img" src="/assets/Hunter x Hunter_.jpg" alt="Hamza Bari">
+                <div class="image-frame">
+                    <img id="dyn-hero-img" src="" alt="Hamza Bari">
                     <div class="floating-badge">
-                        <span class="icon">&lt;/&gt;</span>
-                        <div class="text">
+                        <div class="fb-icon">&lt;/&gt;</div>
+                        <div class="fb-text">
                             <strong id="dyn-hero-exp-years">6+ months</strong>
-                            <span id="dyn-hero-exp-text">Frontend Experience</span>
+                            <span id="dyn-hero-exp-text">Experience</span>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- ABOUT -->
         <section id="about" class="about reveal">
             <div class="section-header">
-                <span id="dyn-about-badge" class="badge">The "Ice" Perspective</span>
-                <h2 id="dyn-about-title">Engineering with <span class="highlight">Precision</span><br>and Purpose.</h2>
-                <p id="dyn-about-subtitle" class="subtitle">I am Hamza Bari, though colleagues often call me "Ice"...</p>
+                <span id="dyn-about-badge" class="badge">About</span>
+                <h2 class="section-title">
+                    <span id="dyn-about-titleLine1">Engineering with</span>
+                    <span class="highlight" id="dyn-about-titleHighlight">Precision</span>
+                    <span id="dyn-about-titleLine2">and Purpose.</span>
+                </h2>
+                <p id="dyn-about-subtitle" class="section-subtitle">Loading…</p>
             </div>
+
             <div class="about-grid">
                 <div class="about-text">
-                    <h3>The Journey into the DOM</h3>
-                    <p>My path into frontend development wasn't just about learning syntax; it was about discovering the bridge between logical structures and human experience. It began with the foundational triad of HTML, CSS, and Tailwind, where I learned that structure and style are the silent narrators of any digital story.</p>
-                    <p>As my curiosity deepened, I transitioned from static layouts to dynamic interaction. Mastering JavaScript DOM manipulation felt like gaining a superpower. My background in Python provided the algorithmic backbone, where manipulating variables and building logic became second nature.</p>
+                    <h3 class="about-h3">The Journey into the DOM</h3>
+                    <div id="dyn-about-paragraphs"></div>
                     <div class="philosophy-card">
-                        <h4>Technical Philosophy</h4>
-                        <p>"Code should be as clean as a fresh design file, and design should be as structured as a well-written script."</p>
+                        <h4 id="dyn-about-philosophyTitle">Technical Philosophy</h4>
+                        <p id="dyn-about-philosophyQuote">…</p>
                     </div>
                 </div>
-                <div class="about-stats">
+                <div class="about-side">
                     <div class="competencies">
                         <h4>CORE COMPETENCIES</h4>
-                        <div class="tags">
-                            <span>HTML5</span><span>CSS3</span><span>Tailwind CSS</span>
-                            <span>JavaScript ES6+</span><span>DOM API</span>
-                            <span>Python Logic</span><span>Figma Design</span><span>Responsive UI</span>
-                        </div>
+                        <div id="dyn-about-competencies" class="tags"></div>
                     </div>
                     <div class="code-snippet">
-                        <pre><code>def ice_mode(state):
-    # Maintain clarity under pressure
-    variables = {
-        "focus": True,
-        "precision": 1.0,
-        "humanity": "Full"
-    }
-    return variables[state]</code></pre>
+                        <div class="code-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <pre><code id="dyn-about-codeSnippet">…</code></pre>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- SKILLS -->
         <section id="skills" class="skills reveal">
-            <div class="skills-header">
-                <h2>What I Bring to the Table</h2>
+            <div class="section-header">
+                <span class="badge">Skills</span>
+                <h2 class="section-title">What I Bring to the Table</h2>
             </div>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <div class="icon-circle blue"><i id="dyn-s1-icon" class="fi fi-rr-rocket-lunch"></i></div>
-                    <h3 id="dyn-s1-title">Performance First</h3>
-                    <p id="dyn-s1-desc">I specialize in building lightning-fast web applications.</p>
-                </div>
-                <div class="skill-card">
-                    <div class="icon-circle red"><i id="dyn-s2-icon" class="fi fi-rr-palette"></i></div>
-                    <h3 id="dyn-s2-title">Design Systems</h3>
-                    <p id="dyn-s2-desc">Bridging the gap between Figma and code with scalable, themeable design systems that stay consistent as they grow.</p>
-                </div>
-                <div class="skill-card solid-blue">
-                    <div class="icon-circle outline"><i id="dyn-s3-icon" class="fi fi-rr-sparkles"></i></div>
-                    <h3 id="dyn-s3-title">Clean UX</h3>
-                    <p id="dyn-s3-desc">Simple, intuitive interfaces that guide users naturally toward their goals without friction or frustration.</p>
-                </div>
-            </div>
+            <div id="dyn-skills" class="skills-grid"></div>
         </section>
 
+        <!-- PROJECTS -->
         <section id="projects" class="projects reveal">
-            <h2>Selected Projects</h2>
-            <p class="subtitle">A collection of work spanning frontend engineering, system automation, and UI design.</p>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-img placeholder-img"><img id="dyn-p1-img" src="/assets/download (1).jpg" alt=""></div>
-                    <div class="project-info">
-                        <div class="tags"><span class="tag">Tailwind</span><span class="tag">JS</span><span class="tag">HTML5</span></div>
-                        <h3 id="dyn-p1-title">Portfolio V1</h3>
-                        <p id="dyn-p1-desc">The first iteration of my personal workspace, focusing on high-performance animations and a minimalist aesthetic.</p>
-                        <a href="#" class="project-link">View Project &rarr;</a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-img dark-code-img"><img id="dyn-p2-img" src="/assets/Using Tuples in Python_ Python is a programming language that… _ by Yancy Dennis _ Mar, 2022.jpg" alt=""></div>
-                    <div class="project-info">
-                        <div class="tags"><span class="tag">Python</span><span class="tag">Automation</span></div>
-                        <h3 id="dyn-p2-title">Python Scripting</h3>
-                        <p id="dyn-p2-desc">A suite of automation tools designed to optimize data ingestion workflows and streamline cross-platform communication.</p>
-                        <a href="#" class="project-link">View Scripts &rarr;</a>
-                    </div>
-                </div>
+            <div class="section-header">
+                <span class="badge">Work</span>
+                <h2 class="section-title">Selected Projects</h2>
+                <p class="section-subtitle">A collection of work spanning frontend engineering, system automation, and UI design.</p>
             </div>
+            <div id="dyn-projects" class="projects-grid"></div>
         </section>
 
+        <!-- CONTACT -->
         <section id="contact" class="contact reveal">
             <div class="contact-container">
-                <div class="contact-text">
-                    <h2>Let's Build Something Together</h2>
-                    <p>Whether you have a specific project in mind or just want to chat about technical humanism and frontend architecture, my inbox is always open.</p>
+                <div class="contact-head">
+                    <span class="badge">Contact</span>
+                    <h2 id="dyn-contact-heading" class="section-title">Let's Build Something Together</h2>
+                    <p id="dyn-contact-description" class="section-subtitle">…</p>
                 </div>
-                <div class="contact-content">
-                    <form class="contact-form">
-                        <div class="input-group">
+
+                <div class="contact-grid">
+                    <form class="contact-form" onsubmit="event.preventDefault(); alert('Form is a demo — wire it to a backend service.');">
+                        <div class="row">
                             <div class="field">
                                 <label>Name</label>
                                 <input type="text" placeholder="John Doe" required>
@@ -164,38 +146,39 @@
                             <label>Message</label>
                             <textarea rows="5" placeholder="Tell me about your project..." required></textarea>
                         </div>
-                        <button type="submit" class="btn-primary">Send Message <span>&rarr;</span></button>
+                        <button type="submit" class="btn-primary">Send Message <span>→</span></button>
                     </form>
-                    <div class="direct-contact">
+
+                    <aside class="contact-direct">
                         <h3>Direct Contact</h3>
                         <div class="contact-method">
-                            <span class="icon"><i class="fi fi-br-envelope"></i></span>
+                            <span class="cm-icon"><i class="fi fi-br-envelope"></i></span>
                             <div>
                                 <small>Email</small>
-                                <p>barihamza73@gmail.com</p>
+                                <p id="dyn-contact-email">—</p>
                             </div>
                         </div>
                         <div class="contact-method">
-                            <span class="icon"><i class="fi fi-brands-github"></i></span>
+                            <span class="cm-icon"><i class="fi fi-brands-github"></i></span>
                             <div>
                                 <small>GitHub</small>
-                                <p>github.com/u0ke</p>
+                                <p id="dyn-contact-github">—</p>
                             </div>
                         </div>
-                    </div>
+                    </aside>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
+    <footer class="site-footer">
         <div class="footer-content">
             <div class="footer-left">
                 <strong>Hamza Bari</strong>
-                <p>&copy; 2024 Hamza Bari. Built with Technical Humanism.</p>
+                <p>© <span id="footer-year">2025</span> — Built with Technical Humanism.</p>
             </div>
             <div class="footer-right">
-                <i class="fi fi-brands-github"></i>
+                <a href="#" aria-label="GitHub"><i class="fi fi-brands-github"></i></a>
             </div>
         </div>
     </footer>

@@ -1,44 +1,68 @@
 {
   "hero": {
     "badge": "Available for new opportunities",
-    "name": "Hi, I'm Hamza.<br><span class=\"highlight\">I build for the web.</span>",
-    "desc": "I'm a frontend developer obsessed with <strong>Technical Humanism</strong>—the intersection of rigorous code and approachable, user-centric design.",
+    "greeting": "Hi, I'm Hamza.",
+    "highlight": "I build for the web.",
+    "description": "I'm a frontend developer obsessed with <strong>Technical Humanism</strong>—the intersection of rigorous code and approachable, user-centric design.",
     "image": "/assets/Hunter x Hunter_.jpg",
     "expYears": "6+ months",
     "expText": "Frontend Experience"
   },
   "about": {
     "badge": "The \"Ice\" Perspective",
-    "title": "Engineering with <span class=\"highlight\">Precision</span><br>and Purpose.",
-    "subtitle": "I am Hamza Bari, though colleagues often call me \"Ice\"—a nickname born from a reputation for staying calm under the pressure of complex debugging and for the analytical, crystalline clarity I bring to user interfaces."
+    "titleLine1": "Engineering with",
+    "titleHighlight": "Precision",
+    "titleLine2": "and Purpose.",
+    "subtitle": "I am Hamza Bari, though colleagues often call me \"Ice\". I believe great interfaces emerge from the thoughtful marriage of engineering rigor and human empathy.",
+    "paragraphs": [
+      "My path into frontend development wasn't just about learning syntax; it was about discovering the bridge between logical structures and human experience. It began with the foundational triad of HTML, CSS, and Tailwind, where I learned that structure and style are the silent narrators of any digital story.",
+      "As my curiosity deepened, I transitioned from static layouts to dynamic interaction. Mastering JavaScript DOM manipulation felt like gaining a superpower. My background in Python provided the algorithmic backbone, where manipulating variables and building logic became second nature."
+    ],
+    "philosophyTitle": "Technical Philosophy",
+    "philosophyQuote": "Code should be as clean as a fresh design file, and design should be as structured as a well-written script.",
+    "competencies": ["HTML5", "CSS3", "Tailwind CSS", "JavaScript ES6+", "DOM API", "Python Logic", "Figma Design", "Responsive UI"],
+    "codeSnippet": "def ice_mode(state):\n    # Maintain clarity under pressure\n    variables = {\n        \"focus\": True,\n        \"precision\": 1.0,\n        \"humanity\": \"Full\"\n    }\n    return variables[state]"
   },
-  "skills": {
-    "s1": {
-      "icon": "fi fi-rr-rocket-lunch",
+  "skills": [
+    {
       "title": "Performance First",
-      "desc": "I specialize in building lightning-fast web applications. By prioritizing efficient rendering and lean codebases, I ensure your users never have to wait."
+      "desc": "I specialize in building lightning-fast web applications with optimized load times, smooth 60fps animations, and code that scales gracefully under pressure.",
+      "icon": "fi fi-rr-rocket-lunch",
+      "color": "blue"
     },
-    "s2": {
-      "icon": "fi fi-rr-palette",
+    {
       "title": "Design Systems",
-      "desc": "Bridging the gap between Figma and code with scalable, themeable design systems that stay consistent as they grow."
+      "desc": "Bridging the gap between Figma and code with scalable, themeable design systems that stay consistent as they grow.",
+      "icon": "fi fi-rr-palette",
+      "color": "red"
     },
-    "s3": {
-      "icon": "fi fi-rr-sparkles",
+    {
       "title": "Clean UX",
-      "desc": "Simple, intuitive interfaces that guide users naturally toward their goals without friction or frustration."
+      "desc": "Simple, intuitive interfaces that guide users naturally toward their goals without friction or frustration.",
+      "icon": "fi fi-rr-sparkles",
+      "color": "blue-solid"
     }
-  },
-  "projects": {
-    "p1": {
-      "img": "/assets/download (1).jpg",
+  ],
+  "projects": [
+    {
       "title": "Portfolio V1",
-      "desc": "The first iteration of my personal workspace, focusing on high-performance animations and a minimalist aesthetic."
+      "desc": "The first iteration of my personal workspace, focusing on high-performance animations and a minimalist aesthetic.",
+      "image": "/assets/download (1).jpg",
+      "link": "#",
+      "tags": ["Tailwind", "JS", "HTML5"]
     },
-    "p2": {
-      "img": "/assets/Using Tuples in Python_ Python is a programming language that… _ by Yancy Dennis _ Mar, 2022.jpg",
+    {
       "title": "Python Scripting",
-      "desc": "A suite of automation tools designed to optimize data ingestion workflows and streamline cross-platform communication."
+      "desc": "A suite of automation tools designed to optimize data ingestion workflows and streamline cross-platform communication.",
+      "image": "/assets/Using Tuples in Python_ Python is a programming language that… _ by Yancy Dennis _ Mar, 2022.jpg",
+      "link": "#",
+      "tags": ["Python", "Automation"]
     }
+  ],
+  "contact": {
+    "heading": "Let's Build Something Together",
+    "description": "Whether you have a specific project in mind or just want to chat about technical humanism and frontend architecture, my inbox is always open.",
+    "email": "barihamza73@gmail.com",
+    "github": "github.com/u0ke"
   }
 }

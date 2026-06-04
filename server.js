@@ -1,132 +1,73 @@
 const express = require('express');
-const fs = require('fs');
-const cors = require('cors');
 const multer = require('multer');
+const fs = require('fs');
 const path = require('path');
 
 const app = express();
 const PORT = 3000;
+const DB_PATH = path.join(__dirname, 'database.json');
+const UPLOADS_DIR = path.join(__dirname, 'uploads');
 
-app.use(cors());
-app.use(express.json());
-app.use(express.static('public'));
+// Ensure uploads directory exists
+if (!fs.existsSync(UPLOADS_DIR)) fs.mkdirSync(UPLOADS_DIR);
 
-// Configure Multer to handle file uploads
+// Multer storage config
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'public/uploads/');
-    },
+    destination: (req, file, cb) => cb(null, UPLOADS_DIR),
     filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname));
+        const ext = path.extname(file.originalname) || '.jpg';
+        const safeName = Date.now() + '-' + Math.round(Math.random() * 1e9) + ext;
+        cb(null, safeName);
     }
 });
-const upload = multer({ storage: storage });
+const upload = multer({ storage, limits: { fileSize: 10 * 1024 * 1024 } });
 
-const DB_FILE = 'database.json';
+// Middleware
+app.use(express.json({ limit: '50mb' }));
+app.use(express.static(__dirname));
+app.use('/uploads', express.static(UPLOADS_DIR));
 
-// Initialize Database if it doesn't exist
-if (!fs.existsSync(DB_FILE)) {
-    fs.writeFileSync(DB_FILE, JSON.stringify({
-        about: { text: "Hello, I am a developer.", image: "assets/download.jpg" },
-        skills: ["HTML", "CSS", "JavaScript", "Tailwind"],
-        projects: []
-    }));
-}
-
-// Fetch all data
+// --- API: Get data ---
 app.get('/api/data', (req, res) => {
-    const data = JSON.parse(fs.readFileSync(DB_FILE));
-    res.json(data);
-});
-
-// Update About Section & Profile Photo
-app.post('/api/about', upload.single('image'), (req, res) => {
-    const data = JSON.parse(fs.readFileSync(DB_FILE));
-    if (req.body.text) data.about.text = req.body.text;
-    if (req.file) data.about.image = 'uploads/' + req.file.filename;
-    
-    fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2));
-    res.json({ success: true, about: data.about });
-});
-
-// Update Skills
-app.post('/api/skills', (req, res) => {
-    const data = JSON.parse(fs.readFileSync(DB_FILE));
-    data.skills = req.body.skills || [];
-    fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2));
-    res.json({ success: true, skills: data.skills });
-});
-
-// Add a New Project Box
-app.post('/api/projects', upload.single('image'), (req, res) => {
-    const data = JSON.parse(fs.readFileSync(DB_FILE));
-    const newProject = {
-        id: Date.now().toString(), // Unique ID
-        title: req.body.title,
-        description: req.body.description,
-        image: req.file ? 'uploads/' + req.file.filename : 'assets/default-project.jpg'
-    };
-    data.projects.push(newProject);
-    fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2));
-    res.json({ success: true, project: newProject });
-});
-
-// Delete a Project Box
-app.delete('/api/projects/:id', (req, res) => {
-    const data = JSON.parse(fs.readFileSync(DB_FILE));
-    data.projects = data.projects.filter(p => p.id !== req.params.id);
-    fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2));
-    res.json({ success: true });
-});
-
-app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
-
-const express = require('express');
-const fs = require('fs');
-const path = require('path');
-const multer = require('multer'); // Enables file uploading
-
-const app = express();
-app.use(express.json());
-app.use(express.static('public'));
-app.use('/assets', express.static('assets')); // Serve uploaded images to the portfolio
-
-// Configure Multer to save files in the "assets" folder
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        const dir = './assets/';
-        if (!fs.existsSync(dir)){ fs.mkdirSync(dir); }
-        cb(null, dir);
-    },
-    filename: (req, file, cb) => {
-        // Renames file to prevent duplicate name conflicts
-        cb(null, Date.now() + path.extname(file.originalname));
+    try {
+        const raw = fs.readFileSync(DB_PATH, 'utf8');
+        res.json(JSON.parse(raw));
+    } catch (err) {
+        console.error('Read error:', err);
+        res.status(500).json({ error: 'Failed to read database.json' });
     }
 });
-const upload = multer({ storage: storage });
 
-const DB_PATH = './database.json';
-
-if (!fs.existsSync(DB_PATH)) {
-    fs.writeFileSync(DB_PATH, JSON.stringify({ about: {}, skills: [], projects: [] }));
-}
-
-// Fetch Data
-app.get('/api/data', (req, res) => {
-    const data = JSON.parse(fs.readFileSync(DB_PATH));
-    res.json(data);
-});
-
-// Save Full Portfolio Data
+// --- API: Save all data ---
 app.post('/api/data', (req, res) => {
-    fs.writeFileSync(DB_PATH, JSON.stringify(req.body, null, 2));
-    res.json({ success: true });
+    try {
+        fs.writeFileSync(DB_PATH, JSON.stringify(req.body, null, 2), 'utf8');
+        res.json({ success: true, message: 'Saved to database.json' });
+    } catch (err) {
+        console.error('Write error:', err);
+        res.status(500).json({ error: 'Failed to save database.json' });
+    }
 });
 
-// Handle Image Uploads
+// --- API: Upload image ---
 app.post('/api/upload', upload.single('image'), (req, res) => {
-    if (!req.file) return res.status(400).send('No file uploaded.');
-    res.json({ imageUrl: '/assets/' + req.file.filename });
+    if (!req.file) return res.status(400).json({ error: 'No file uploaded' });
+    res.json({ imageUrl: '/uploads/' + req.file.filename });
 });
 
-app.listen(3000, () => console.log('Server running on http://localhost:3000'));
+// --- API: Delete image (optional) ---
+app.delete('/api/upload', (req, res) => {
+    const { imageUrl } = req.body;
+    if (!imageUrl) return res.status(400).json({ error: 'imageUrl required' });
+    const filePath = path.join(__dirname, imageUrl);
+    if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+        return res.json({ success: true });
+    }
+    res.status(404).json({ error: 'File not found' });
+});
+
+app.listen(PORT, () => {
+    console.log(`✅ Portfolio running at http://localhost:${PORT}`);
+    console.log(`🔐 Admin panel:  http://localhost:${PORT}/admin.html`);
+});
