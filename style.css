@@ -101,16 +101,6 @@ body.dark-mode .site-header {
     letter-spacing: -0.01em;
 }
 
-.logo-mark {
-    width: 34px; height: 34px;
-    display: grid; place-items: center;
-    background: var(--primary);
-    color: white;
-    border-radius: 9px;
-    font-weight: 800;
-    font-size: 0.95rem;
-    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
-}
 
 nav {
     display: flex;
@@ -320,10 +310,12 @@ nav {
     pointer-events: none;
 }
 
+
 .floating-badge {
     position: absolute;
-    bottom: 24px;
-    left: -28px;
+    bottom: 100%;              /* sits ABOVE the image instead of overlapping it */
+    left: 0;
+    margin-bottom: 18px;        /* gap between badge and image */
     background: var(--surface);
     border: 1px solid var(--border);
     padding: 12px 18px;
@@ -333,11 +325,13 @@ nav {
     gap: 12px;
     box-shadow: var(--shadow-lg);
     animation: float 4s ease-in-out infinite;
+    z-index: 2;
 }
+
 
 @keyframes float {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
+    50% { transform: translateY(-6px); }
 }
 
 .fb-icon {
