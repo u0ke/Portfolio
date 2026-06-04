@@ -10,8 +10,24 @@
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-bold-rounded/css/uicons-bold-rounded.css'>
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css'>
     <link rel="stylesheet" href="style.css">
+    <script>
+        // No-flash theme bootstrap: runs synchronously before <body> renders.
+        // Reads stored preference, falls back to OS prefers-color-scheme.
+        (function () {
+            try {
+                var stored = localStorage.getItem('theme');
+                var theme = stored || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                document.documentElement.dataset.theme = theme;
+            } catch (e) {
+                document.documentElement.dataset.theme = 'light';
+            }
+        })();
+    </script>
 </head>
 <body>
+
+    <!-- SCROLL PROGRESS BAR -->
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
 
     <!-- HEADER -->
     <header class="site-header">
@@ -22,6 +38,7 @@
             <nav>
                 <ul class="nav-links">
                     <li><a href="#about">About</a></li>
+                    <li><a href="#journey">Journey</a></li>
                     <li><a href="#skills">Skills</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#contact">Contact</a></li>
@@ -99,6 +116,21 @@
                     </div>
                 </div>
             </div>
+        </section>
+
+        <!-- STATS -->
+        <section id="stats" class="stats reveal">
+            <div class="stats-grid" id="dyn-stats"></div>
+        </section>
+
+        <!-- JOURNEY / TIMELINE -->
+        <section id="journey" class="journey reveal">
+            <div class="section-header">
+                <span class="badge">Journey</span>
+                <h2 class="section-title">The Path So Far</h2>
+                <p class="section-subtitle">A timeline of the milestones that shaped my frontend craft.</p>
+            </div>
+            <div id="dyn-journey" class="timeline"></div>
         </section>
 
         <!-- SKILLS -->
