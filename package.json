@@ -1,0 +1,26 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "A production-ready, ultra-minimalist personal portfolio website with a complete admin dashboard for content management. Inspired by the calm, focused aesthetic of the Helium browser.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/u0ke/Portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/u0ke/Portfolio/issues"
+  },
+  "homepage": "https://github.com/u0ke/Portfolio#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "live-server": "^1.2.2"
+  }
+}
