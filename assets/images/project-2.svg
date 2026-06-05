@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E3A8A"/>
+      <stop offset="100%" stop-color="#0A0F2C"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#g2)"/>
+  <path d="M0 380 Q200 280 400 340 T800 300 L800 500 L0 500 Z" fill="rgba(27,255,255,0.08)"/>
+  <path d="M0 420 Q200 340 400 380 T800 360 L800 500 L0 500 Z" fill="rgba(27,255,255,0.15)"/>
+  <circle cx="650" cy="100" r="50" fill="rgba(255,200,100,0.6)"/>
+  <rect x="40" y="60" width="80" height="6" rx="3" fill="#1BFFFF"/>
+  <rect x="40" y="80" width="280" height="22" rx="3" fill="#fff"/>
+  <rect x="40" y="115" width="220" height="12" rx="3" fill="rgba(255,255,255,0.4)"/>
+  <rect x="40" y="180" width="140" height="44" rx="22" fill="#fff"/>
+  <text x="110" y="475" text-anchor="middle" font-family="Inter, sans-serif" font-size="16" font-weight="600" fill="#fff" opacity="0.7">Mirleft Travel</text>
+</svg>

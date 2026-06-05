@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1BFFFF"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" fill="#1E1B4B"/>
+  <circle cx="100" cy="80" r="35" fill="url(#g)"/>
+  <path d="M40 180 Q40 130 100 130 Q160 130 160 180 Z" fill="url(#g)"/>
+  <text x="100" y="195" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#fff" opacity="0.6">ICE</text>
+</svg>
