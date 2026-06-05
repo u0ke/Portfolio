@@ -30,15 +30,6 @@ A production-ready, ultra-minimalist personal portfolio website with a complete 
 - 💾 **Import/Export JSON** — full data backup
 - 🔄 **Reset to defaults**
 
-## 🔑 Default Admin Login
-
-```
-Username: ice_admin
-Password: Ice2026!
-```
-
-> You can change these from **Settings → Admin Credentials** after logging in.
-
 ## 🛠️ Tech Stack
 
 - **HTML5** semantic markup
