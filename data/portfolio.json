@@ -1,7 +1,7 @@
 {
   "profile": {
     "name": "Hamza Bari",
-    "nickname": "Ice",
+    "nickname": "ice",
     "tagline": "Web Developer",
     "age": 19,
     "location": "Agadir, Morocco",
@@ -99,7 +99,7 @@
   ],
   "messages": [],
   "settings": {
-    "siteTitle": "Hamza Bari — Ice",
+    "siteTitle": "Hamza Bari — ice",
     "theme": "helium-dark",
     "accent": "#1BFFFF"
   }
