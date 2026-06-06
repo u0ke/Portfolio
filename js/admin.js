@@ -1,5 +1,5 @@
 /* ===========================================
-   Hamza Bari (Ice) — admin.js
+   Hamza Bari (ice) — admin.js
    Full admin dashboard logic
    =========================================== */
 
@@ -16,9 +16,9 @@
   const STORAGE_KEY = 'ice_portfolio_data_v1';
   const DEFAULT_DATA = {
     profile: {
-      name: 'Hamza Bari', nickname: 'Ice', tagline: 'Web Developer & Graphic Designer',
+      name: 'Hamza Bari', nickname: 'ice', tagline: 'Web Developer & Graphic Designer',
       age: 19, location: 'Mirleft / Agadir, Morocco',
-      bio: "I'm a 19-year-old creative developer from Mirleft, currently based in Agadir. I specialize in building sleek, minimalist digital experiences that feel calm, fast, and intentional. When I'm not coding, I'm usually hitting the gym or optimizing my gaming setup.",
+      bio: "I'm a 19-year-old creative developer from Morocco, currently based in Agadir. I specialize in building sleek, minimalist digital experiences that feel calm, fast, and intentional. When I'm not coding, I'm usually hitting the gym or optimizing my gaming setup.",
       avatar: 'assets/images/avatar.svg',
       funFacts: [
         { icon: 'dumbbell', label: 'Gym Lover' },
@@ -26,16 +26,16 @@
         { icon: 'code', label: 'Code Junkie' },
         { icon: 'coffee', label: 'Coffee Powered' }
       ],
-      contact: { email: 'hello@hamzabari.dev', linkedin: 'https://linkedin.com/in/hamzabari', github: 'https://github.com/hamzabari' }
+      contact: { email: 'barihamza73@gmail.com', linkedin: 'https://linkedin.com/u0ke', github: 'https://github.com/u0ke' }
     },
     skills: {
       hard: [
-        { name: 'JavaScript', level: 90 },
-        { name: 'Node.js', level: 80 },
+        { name: 'JavaScript', level: 60 },
+        { name: 'Node.js', level: 60 },
         { name: 'Tailwind CSS', level: 95 },
-        { name: 'Figma', level: 85 },
+        { name: 'Figma', level: 70 },
         { name: 'Responsive Design', level: 92 },
-        { name: 'HTML5 & CSS3', level: 95 }
+        { name: 'HTML5 & CSS3', level: 97 }
       ],
       soft: [
         { name: 'Problem-solving' },
@@ -50,7 +50,7 @@
     education: [{ school: 'Ecole du Web Avancé (EWA)', location: 'Agadir, Morocco', program: 'Web Development Program', status: 'Currently Studying' }],
     blog: [{ id: 'b-001', title: 'Tailwind CSS Tips for Minimalist Design', excerpt: 'A few opinionated tricks to keep your Tailwind output clean and your UI calm.', date: '2026-04-12' }],
     messages: [],
-    settings: { siteTitle: 'Hamza Bari — Ice', theme: 'helium-dark', accent: '#1BFFFF' }
+    settings: { siteTitle: 'Hamza Bari — ice', theme: 'helium-dark', accent: '#1BFFFF' }
   };
 
   const ICONS = {
@@ -693,7 +693,7 @@
     // Credentials form
     $('#credsForm').addEventListener('submit', function (ev) {
       ev.preventDefault();
-      const cur = window.IceAuth.getCreds() || { username: 'ice_admin', password: 'Ice2026!' };
+      const cur = window.IceAuth.getCreds() || { username: 'ice', password: 'ice123' };
       const newUser = this.username.value.trim() || cur.username;
       const newPwd = this.password.value;
       if (!newPwd) {

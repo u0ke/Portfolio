@@ -11,8 +11,8 @@
   const SESSION_HOURS = 8;
 
   // Default credentials (overridable in admin settings)
-  // username: ice_admin / password: Ice2026!
-  const DEFAULT_CREDS = { username: 'ice_admin', password: 'Ice2026!' };
+  // username: ice / password: ice123
+  const DEFAULT_CREDS = { username: 'ice', password: 'admin123' };
 
   function getCreds() {
     try {
