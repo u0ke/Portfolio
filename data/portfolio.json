@@ -2,11 +2,11 @@
   "profile": {
     "name": "Hamza Bari",
     "nickname": "Ice",
-    "tagline": "Web Developer & Graphic Designer",
+    "tagline": "Web Developer",
     "age": 19,
-    "location": "Mirleft / Agadir, Morocco",
-    "bio": "I'm a 19-year-old creative developer from Mirleft, currently based in Agadir. I specialize in building sleek, minimalist digital experiences that feel calm, fast, and intentional. When I'm not coding, I'm usually hitting the gym or optimizing my gaming setup.",
-    "avatar": "assets/images/avatar.svg",
+    "location": "Agadir, Morocco",
+    "bio": "I'm a 19-year-old creative developer from Morocco, currently based in Agadir. I specialize in building sleek, minimalist digital experiences that feel calm, fast, and intentional. When I'm not coding, I'm usually hitting the gym or optimizing my gaming setup.",
+    "avatar": "assets/images/Hunter x Hunter_.webp",
     "funFacts": [
       { "icon": "dumbbell", "label": "Gym Lover" },
       { "icon": "cpu", "label": "PC Enthusiast" },
@@ -14,19 +14,19 @@
       { "icon": "coffee", "label": "Coffee Powered" }
     ],
     "contact": {
-      "email": "hello@hamzabari.dev",
-      "linkedin": "https://linkedin.com/in/hamzabari",
-      "github": "https://github.com/hamzabari"
+      "email": "barihamza73@gmail.com",
+      "linkedin": "https://linkedin.com/u0ke",
+      "github": "https://github.com/u0ke"
     }
   },
   "skills": {
     "hard": [
-      { "name": "JavaScript", "level": 90 },
-      { "name": "Node.js", "level": 80 },
+      { "name": "JavaScript", "level": 60 },
+      { "name": "Node.js", "level": 60 },
       { "name": "Tailwind CSS", "level": 95 },
-      { "name": "Figma", "level": 85 },
+      { "name": "Figma", "level": 70 },
       { "name": "Responsive Design", "level": 92 },
-      { "name": "HTML5 & CSS3", "level": 95 }
+      { "name": "HTML5 & CSS3", "level": 97 }
     ],
     "soft": [
       { "name": "Problem-solving" },
@@ -40,32 +40,32 @@
   "projects": [
     {
       "id": "p-001",
-      "title": "Helix Dashboard",
-      "description": "A clean, minimal admin dashboard template built with vanilla JS and Tailwind.",
-      "image": "assets/images/project-1.svg",
-      "stack": ["JavaScript", "Tailwind", "Chart.js"],
+      "title": "Quiz App",
+      "description": "An interactive quiz application designed to test knowledge through engaging multiple-choice questions. It features real-time scoring, instant feedback, progress tracking, and a clean user interface that makes learning both fun and effective. Built with a focus on simplicity and performance, the app delivers a smooth experience across devices.",
+      "image": "assets/images/Michi Programador.jpg",
+      "stack": ["HTML, JavaScript, Tailwind CSS"],
       "demo": "https://example.com",
-      "github": "https://github.com/hamzabari/helix",
+      "github": "https://github.com/u0ke",
       "featured": true
     },
     {
       "id": "p-002",
-      "title": "Mirleft Travel",
-      "description": "A modern landing page celebrating the surf-town vibes of Mirleft, Morocco.",
-      "image": "assets/images/project-2.svg",
-      "stack": ["HTML5", "Tailwind", "GSAP"],
+      "title": "Task Flow",
+      "description": "Task Flow is a modern task management platform that helps users organize, track, and complete their work efficiently. It provides features such as task creation, priority management, progress tracking, deadlines, and team collaboration. With an intuitive dashboard and streamlined workflow, Task Flow improves productivity by keeping all tasks and project information in one place.",
+      "image": "assets/images/download.webp",
+      "stack": ["HTML5, Tailwind, JavaScript"],
       "demo": "https://example.com",
-      "github": "https://github.com/hamzabari/mirleft",
+      "github": "https://github.com/u0ke",
       "featured": true
     },
     {
       "id": "p-003",
-      "title": "Ice Portfolio v1",
-      "description": "My first personal portfolio with a focus on dark mode and typography.",
-      "image": "assets/images/project-3.svg",
+      "title": "ice's Portfolio",
+      "description": "My first personal portfolio, designed with a minimalist approach, soft color palettes, and a smooth, elegant layout inspired by modern design principles. Built to showcase my skills, projects, and journey as a developer, it emphasizes clean visuals, seamless navigation, and a calm user experience that keeps the focus on content and creativity.",
+      "image": "assets/images/Cat loves discord.jpg",
       "stack": ["HTML", "CSS", "Vanilla JS"],
       "demo": "https://example.com",
-      "github": "https://github.com/hamzabari/portfolio-v1",
+      "github": "https://github.com/u0ke",
       "featured": false
     }
   ],
