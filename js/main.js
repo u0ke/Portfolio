@@ -15,8 +15,8 @@
       nickname: 'Ice',
       tagline: 'Web Developer & Graphic Designer',
       age: 19,
-      location: 'Mirleft / Agadir, Morocco',
-      bio: "I'm a 19-year-old creative developer from Mirleft, currently based in Agadir. I specialize in building sleek, minimalist digital experiences that feel calm, fast, and intentional. When I'm not coding, I'm usually hitting the gym or optimizing my gaming setup.",
+      location: 'Agadir, Morocco',
+      bio: "I'm a 19-year-old creative developer from Morocco. I specialize in building sleek, minimalist digital experiences that feel calm, fast, and intentional. When I'm not coding, I'm usually hitting the gym or optimizing my gaming setup.",
       avatar: 'assets/images/avatar.svg',
       funFacts: [
         { icon: 'dumbbell', label: 'Gym Lover' },

@@ -17,7 +17,7 @@
   const DEFAULT_DATA = {
     profile: {
       name: 'Hamza Bari', nickname: 'ice', tagline: 'Web Developer & Graphic Designer',
-      age: 19, location: 'Mirleft / Agadir, Morocco',
+      age: 19, location: 'Agadir, Morocco',
       bio: "I'm a 19-year-old creative developer from Morocco, currently based in Agadir. I specialize in building sleek, minimalist digital experiences that feel calm, fast, and intentional. When I'm not coding, I'm usually hitting the gym or optimizing my gaming setup.",
       avatar: 'assets/images/avatar.svg',
       funFacts: [
