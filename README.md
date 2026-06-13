@@ -2,7 +2,7 @@
 
 A production-ready, ultra-minimalist personal portfolio website with a complete admin dashboard for content management. Inspired by the calm, focused aesthetic of the Helium browser.
 
-## ✨ Features
+## ✨ Features 
 
 ### Public Site (`index.html`)
 - 🎨 **Helium-aesthetic** — deep indigo-to-blue gradient, stark white text, pill-shaped buttons
