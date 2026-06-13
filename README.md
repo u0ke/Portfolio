@@ -115,4 +115,4 @@ MIT — feel free to use, modify, and ship.
 
 ---
 
-Built with ❄️ by **Hamza Bari (Ice)** — Agadir, Morocco.
+Built with ❄️ by **Hamza Bari (ice)** — Agadir, Morocco.
