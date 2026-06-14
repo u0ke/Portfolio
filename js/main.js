@@ -98,7 +98,7 @@
   };
 
   function loadData() {
-    // Try localStorage first (admin writes to it), then fetch portfolio.json, then default
+    // Try localStorage first (admin writes to it)
     try {
       const cached = localStorage.getItem(STORAGE_KEY);
       if (cached) {
@@ -107,17 +107,23 @@
       }
     } catch (e) { /* ignore */ }
 
-    // Fallback: try fetch (works when served via http)
+    // No cache — return defaults now so the page can render fast.
+    // If we are over http(s), asynchronously load portfolio.json and re-render
+    // when it arrives. This is the path used on Netlify.
     if (typeof fetch !== 'undefined') {
-      // Fire and forget — if it works, store for next time
-      fetch('data/portfolio.json')
-        .then(r => r.ok ? r.json() : null)
+      // Don't await — kick off the load and let the page render with defaults
+      // first (or whatever localStorage was), then re-render with real data.
+      fetch('data/portfolio.json', { cache: 'no-cache' })
+        .then(r => (r.ok ? r.json() : null))
         .then(json => {
-          if (json) {
-            try { localStorage.setItem(STORAGE_KEY, JSON.stringify(json)); } catch (e) {}
-          }
+          if (!json || !json.profile) return;
+          try { localStorage.setItem(STORAGE_KEY, JSON.stringify(json)); } catch (e) {}
+          // Merge into our live data and re-render every section
+          const merged = mergeDefaults(json, defaultData);
+          Object.keys(merged).forEach(k => { data[k] = merged[k]; });
+          renderAll();
         })
-        .catch(() => { /* allow file:// usage */ });
+        .catch(() => { /* allow file:// usage or offline */ });
     }
 
     return defaultData;
@@ -154,6 +160,47 @@
     return ICONS[name] || ICONS.code;
   }
 
+  // -------- Image helpers (fix: missing/broken images on Netlify) --------
+  // Inline SVG placeholder — used as the src when a JSON image is missing or
+  // fails to load. Keeps the layout intact instead of showing a broken icon.
+  const FALLBACK_IMG =
+    "data:image/svg+xml;utf8," +
+    encodeURIComponent(
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">' +
+      '<rect width="400" height="300" fill="#1E1B4B"/>' +
+      '<g fill="none" stroke="#ffffff33" stroke-width="2">' +
+      '<rect x="40" y="40" width="320" height="220" rx="12"/>' +
+      '<circle cx="140" cy="130" r="22"/>' +
+      '<path d="M60 240 L160 160 L220 210 L280 170 L340 240 Z"/>' +
+      '</g>' +
+      '<text x="200" y="285" text-anchor="middle" fill="#ffffff66" ' +
+      'font-family="Inter, sans-serif" font-size="14">Image unavailable</text>' +
+      '</svg>'
+    );
+
+  // Resolve "./assets/..." / "assets/..." / "https://..." into a clean URL.
+  // Returns the placeholder when the path is empty.
+  function resolveImg(path, fallback) {
+    if (!path) return fallback || FALLBACK_IMG;
+    const p = String(path).trim();
+    if (!p) return fallback || FALLBACK_IMG;
+    if (/^(https?:|data:|\/\/)/i.test(p)) return p; // already absolute
+    // Strip leading "./" so "./assets/x" and "assets/x" both work
+    return p.replace(/^\.\//, '').replace(/^\/+/, '');
+  }
+
+  // Render every dynamic section. Called on first load AND whenever new JSON
+  // arrives (e.g. after the async fetch on Netlify completes).
+  function renderAll() {
+    renderHeroName();
+    renderProfile();
+    renderSkills();
+    renderProjects();
+    renderEducation();
+    renderBlog();
+    setTimeout(animateSkillBars, 50);
+  }
+
   // -------- Hero name letter reveal --------
   function renderHeroName() {
     const el = document.getElementById('heroName');
@@ -179,7 +226,15 @@
     if (bioEl) bioEl.textContent = p.bio || '';
 
     const avatarEl = document.getElementById('avatarImg');
-    if (avatarEl && p.avatar) avatarEl.src = p.avatar;
+    if (avatarEl) {
+      avatarEl.src = resolveImg(p.avatar);
+      avatarEl.onerror = function () {
+        if (avatarEl.dataset.fallback !== '1') {
+          avatarEl.dataset.fallback = '1';
+          avatarEl.src = FALLBACK_IMG;
+        }
+      };
+    }
 
     // Fun facts
     const factsEl = document.getElementById('funFactsGrid');
@@ -257,7 +312,7 @@
     }
     el.innerHTML = list.map((p, i) => `
       <article class="project-card" data-aos="fade-up" data-aos-delay="${i * 80}">
-        <img class="project-thumb" src="${escapeAttr(p.image || 'assets/images/project-1.svg')}" alt="${escapeAttr(p.title || 'Project')}" loading="lazy" />
+        <img class="project-thumb" src="${escapeAttr(resolveImg(p.image, 'assets/images/project-1.svg'))}" alt="${escapeAttr(p.title || 'Project')}" loading="lazy" onerror="if(this.dataset.fb!=='1'){this.dataset.fb='1';this.src='${FALLBACK_IMG.replace(/'/g, '%27')}';}" />
         <div class="project-body">
           <h3 class="project-title">${escapeHtml(p.title || 'Untitled')}</h3>
           <p class="project-desc">${escapeHtml(p.description || '')}</p>
@@ -380,12 +435,7 @@
 
   // -------- Init --------
   document.addEventListener('DOMContentLoaded', function () {
-    renderHeroName();
-    renderProfile();
-    renderSkills();
-    renderProjects();
-    renderEducation();
-    renderBlog();
+    renderAll();
     setupContactForm();
     setupMobileNav();
 
@@ -408,12 +458,7 @@
         const fresh = JSON.parse(e.newValue || 'null');
         if (!fresh) return;
         Object.assign(data, fresh);
-        renderProfile();
-        renderSkills();
-        renderProjects();
-        renderEducation();
-        renderBlog();
-        setTimeout(animateSkillBars, 100);
+        renderAll();
       } catch (err) { /* ignore */ }
     });
   });
