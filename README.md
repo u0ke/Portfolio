@@ -1,4 +1,4 @@
-# ❄️ Hamza Bari (Ice) — Portfolio
+# ❄️ Hamza Bari (ice) — Portfolio
 
 A production-ready, ultra-minimalist personal portfolio website with a complete admin dashboard for content management. Inspired by the calm, focused aesthetic of the Helium browser.
 
