@@ -213,15 +213,24 @@ body {
   gap: 1.25rem;
   padding: 1.5rem 1.75rem;
   border-radius: 1.25rem;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.edu-info {
+  flex: 1;
+  min-width: 0;
 }
 
 .edu-icon {
   width: 48px;
   height: 48px;
   border-radius: 1rem;
-  background: linear-gradient(135deg, rgba(27, 255, 255, 0.2), rgba(99, 102, 241, 0.2));
+  background: linear-gradient(
+    135deg,
+    rgba(27,255,255,.2),
+    rgba(99,102,241,.2)
+  );
   display: flex;
   align-items: center;
   justify-content: center;
@@ -233,23 +242,43 @@ body {
   font-size: 1.125rem;
   font-weight: 700;
   color: #fff;
+  line-height: 1.3;
 }
 
 .edu-loc {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.5);
+  font-size: .85rem;
+  color: rgba(255,255,255,.5);
 }
 
 .edu-status {
   margin-left: auto;
-  font-size: 0.75rem;
+  font-size: .75rem;
   font-weight: 500;
-  padding: 0.35rem 0.85rem;
+  padding: .35rem .85rem;
   border-radius: 999px;
-  background: rgba(27, 255, 255, 0.1);
+  background: rgba(27,255,255,.1);
   color: #1BFFFF;
-  border: 1px solid rgba(27, 255, 255, 0.25);
+  border: 1px solid rgba(27,255,255,.25);
   white-space: nowrap;
+}
+
+/* MOBILE */
+@media (max-width: 640px) {
+  .edu-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.25rem;
+  }
+
+  .edu-status {
+    margin-left: 0;
+    margin-top: .75rem;
+    align-self: flex-start;
+  }
+
+  .edu-school {
+    font-size: 1rem;
+  }
 }
 
 /* Blog card */
