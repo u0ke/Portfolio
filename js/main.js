@@ -71,7 +71,7 @@
       },
       {
         id: 'p-003',
-        title: 'Ice Portfolio v1',
+        title: 'ice Portfolio v1',
         description: 'My first personal portfolio with a focus on dark mode and typography.',
         image: 'assets/images/project-3.svg',
         stack: ['HTML', 'CSS', 'Vanilla JS'],
@@ -94,7 +94,7 @@
       { id: 'b-003', title: 'PC Hardware Tweaking: A Casual Guide', excerpt: 'Subtle tuning tricks to squeeze more frames out of your gaming rig.', date: '2026-02-08' }
     ],
     messages: [],
-    settings: { siteTitle: 'Hamza Bari — Ice', theme: 'helium-dark', accent: '#1BFFFF' }
+    settings: { siteTitle: 'Hamza Bari — ice', theme: 'helium-dark', accent: '#1BFFFF' }
   };
 
   function loadData() {
