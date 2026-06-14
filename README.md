@@ -1,4 +1,5 @@
-# ❄️ Hamza Bari (Ice) — Portfolio
+# ❄️ Hamza Bari (ice) — Portfolio
+
 
 A production-ready, ultra-minimalist personal portfolio website with a complete admin dashboard for content management. Inspired by the calm, focused aesthetic of the Helium browser.
 
@@ -107,7 +108,7 @@ Then open http://localhost:8000
 
 ## 🔒 Security Note
 
-This is a static-site admin — credentials are stored in `localStorage`. For production, you'd want a real backend. For personal portfolios and demos, this is more than enough.
+This is a static-site admin  —  credentials are stored in `localStorage`. For production, you'd want a real backend. For personal portfolios and demos, this is more than enough.
 
 ## 📜 License
 
