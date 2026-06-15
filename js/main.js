@@ -32,12 +32,15 @@
     },
     skills: {
       hard: [
-        { name: 'JavaScript', level: 90 },
-        { name: 'Node.js', level: 80 },
-        { name: 'Tailwind CSS', level: 95 },
-        { name: 'Figma', level: 85 },
-        { name: 'Responsive Design', level: 92 },
-        { name: 'HTML5 & CSS3', level: 95 }
+        { "name": "Html", "level": 96 },
+        { "name": "CSS", "level": 95 },
+        { "name": "Tailwind CSS", "level": 95 },
+        { "name": "JavaScript", "level": 62 },
+        { "name": "Node.js", "level": 60 },
+        { "name": "Python", "level": 55 },
+        { "name": "Git", "level": 93 },
+        { "name": "Figma", "level": 70 },
+        { "name": "VS Code", "level": 90 }
       ],
       soft: [
         { name: 'Problem-solving' },
