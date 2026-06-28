@@ -1,106 +1,73 @@
 {
   "profile": {
     "name": "Hamza Bari",
-    "nickname": "Ice",
-    "tagline": "Web Developer & Graphic Designer",
+    "title": "Frontend Developer",
+    "location": "Agadir, Morocco",
     "age": 19,
-    "location": "Mirleft / Agadir, Morocco",
-    "bio": "I'm a 19-year-old creative developer from Mirleft, currently based in Agadir. I specialize in building sleek, minimalist digital experiences that feel calm, fast, and intentional. When I'm not coding, I'm usually hitting the gym or optimizing my gaming setup.",
-    "avatar": "assets/images/avatar.svg",
-    "funFacts": [
-      { "icon": "dumbbell", "label": "Gym Lover" },
-      { "icon": "cpu", "label": "PC Enthusiast" },
-      { "icon": "code", "label": "Code Junkie" },
-      { "icon": "coffee", "label": "Coffee Powered" }
-    ],
-    "contact": {
-      "email": "hello@hamzabari.dev",
-      "linkedin": "https://linkedin.com/in/hamzabari",
-      "github": "https://github.com/hamzabari"
-    }
+    "school": "EWA School",
+    "bio": "I'm a 19-year-old frontend developer based in Agadir, Morocco, currently studying at EWA School. I love crafting smooth, performant interfaces and building tools that make people's work easier.",
+    "tagline": "Building interfaces that feel inevitable.",
+    "email": "hamza.bari@example.com",
+    "github": "https://github.com/",
+    "linkedin": "https://linkedin.com/",
+    "twitter": "https://twitter.com/",
+    "avatar": "HB"
   },
-  "skills": {
-    "hard": [
-      { "name": "JavaScript", "level": 90 },
-      { "name": "Node.js", "level": 80 },
-      { "name": "Tailwind CSS", "level": 95 },
-      { "name": "Figma", "level": 85 },
-      { "name": "Responsive Design", "level": 92 },
-      { "name": "HTML5 & CSS3", "level": 95 }
-    ],
-    "soft": [
-      { "name": "Problem-solving" },
-      { "name": "Teamwork" },
-      { "name": "Communication" },
-      { "name": "Time management" },
-      { "name": "Adaptability" },
-      { "name": "Creativity" }
-    ]
-  },
+  "skills": [
+    { "name": "HTML", "level": 95, "icon": "html" },
+    { "name": "CSS", "level": 92, "icon": "css" },
+    { "name": "Tailwind CSS", "level": 88, "icon": "tailwind" },
+    { "name": "JavaScript", "level": 90, "icon": "js" },
+    { "name": "Bootstrap", "level": 85, "icon": "bootstrap" },
+    { "name": "Node.js", "level": 78, "icon": "node" },
+    { "name": "Python", "level": 75, "icon": "python" },
+    { "name": "Git", "level": 88, "icon": "git" },
+    { "name": "Figma", "level": 82, "icon": "figma" }
+  ],
   "projects": [
     {
-      "id": "p-001",
-      "title": "Helix Dashboard",
-      "description": "A clean, minimal admin dashboard template built with vanilla JS and Tailwind.",
-      "image": "assets/images/project-1.svg",
-      "stack": ["JavaScript", "Tailwind", "Chart.js"],
-      "demo": "https://example.com",
-      "github": "https://github.com/hamzabari/helix",
-      "featured": true
+      "id": "task-flow",
+      "name": "Task Flow",
+      "description": "A clean, minimal task manager with focus mode, keyboard shortcuts, and local persistence. Built for people who think faster than they type.",
+      "tech": ["HTML", "CSS", "JavaScript"],
+      "color": "#0070f3",
+      "status": "Live",
+      "url": "#"
     },
     {
-      "id": "p-002",
-      "title": "Mirleft Travel",
-      "description": "A modern landing page celebrating the surf-town vibes of Mirleft, Morocco.",
-      "image": "assets/images/project-2.svg",
-      "stack": ["HTML5", "Tailwind", "GSAP"],
-      "demo": "https://example.com",
-      "github": "https://github.com/hamzabari/mirleft",
-      "featured": true
+      "id": "code-arena",
+      "name": "Code Arena",
+      "description": "A real-time coding battleground where developers solve challenges head-to-head. Live cursors, instant feedback, and a leaderboard that actually feels rewarding.",
+      "tech": ["JavaScript", "Node.js", "CSS"],
+      "color": "#7928ca",
+      "status": "Live",
+      "url": "#"
     },
     {
-      "id": "p-003",
-      "title": "Ice Portfolio v1",
-      "description": "My first personal portfolio with a focus on dark mode and typography.",
-      "image": "assets/images/project-3.svg",
-      "stack": ["HTML", "CSS", "Vanilla JS"],
-      "demo": "https://example.com",
-      "github": "https://github.com/hamzabari/portfolio-v1",
-      "featured": false
+      "id": "portfolio-v1",
+      "name": "Portfolio v1",
+      "description": "My first portfolio — a single-page site that introduced me to the web. Simple, fast, and honest. The starting line for everything that came after.",
+      "tech": ["HTML", "CSS", "Bootstrap"],
+      "color": "#ff0080",
+      "status": "Archived",
+      "url": "#"
     }
   ],
   "education": [
     {
-      "school": "Ecole du Web Avancé (EWA)",
+      "school": "EWA School",
       "location": "Agadir, Morocco",
-      "program": "Web Development Program",
+      "program": "Web Development",
       "status": "Currently Studying"
-    }
-  ],
-  "blog": [
-    {
-      "id": "b-001",
-      "title": "Tailwind CSS Tips for Minimalist Design",
-      "excerpt": "A few opinionated tricks to keep your Tailwind output clean and your UI calm.",
-      "date": "2026-04-12"
-    },
-    {
-      "id": "b-002",
-      "title": "Minimalist Design Principles",
-      "excerpt": "Why removing elements is harder than adding them — and how to do it well.",
-      "date": "2026-03-22"
-    },
-    {
-      "id": "b-003",
-      "title": "PC Hardware Tweaking: A Casual Guide",
-      "excerpt": "Subtle tuning tricks to squeeze more frames out of your gaming rig.",
-      "date": "2026-02-08"
     }
   ],
   "messages": [],
   "settings": {
-    "siteTitle": "Hamza Bari — Ice",
-    "theme": "helium-dark",
-    "accent": "#1BFFFF"
+    "siteTitle": "Hamza Bari — Frontend Developer",
+    "accent": "#0070f3"
+  },
+  "admin": {
+    "username": "admin",
+    "password": "hamza2026"
   }
 }

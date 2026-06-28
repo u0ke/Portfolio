@@ -1,420 +1,398 @@
 /* ===========================================
-   Hamza Bari (Ice) — Portfolio main.js
-   Public site logic: data load, render, UX
+   Hamza Bari — Portfolio main.js
+   Loads data/portfolio.json, renders content,
+   handles interactions (navbar hover, contact
+   form, admin trigger, popup).
    =========================================== */
 
 (function () {
   'use strict';
 
-  // -------- Data store (localStorage-backed) --------
-  const STORAGE_KEY = 'ice_portfolio_data_v1';
+  // ------- DATA STORE (single source) -------
+  const DATA_PATH = 'data/portfolio.json';
+  const SESSION_KEY = 'hb_admin_session';
 
-  const defaultData = {
-    profile: {
-      name: 'Hamza Bari',
-      nickname: 'Ice',
-      tagline: 'Web Developer & Graphic Designer',
-      age: 19,
-      location: 'Mirleft / Agadir, Morocco',
-      bio: "I'm a 19-year-old creative developer from Mirleft, currently based in Agadir. I specialize in building sleek, minimalist digital experiences that feel calm, fast, and intentional. When I'm not coding, I'm usually hitting the gym or optimizing my gaming setup.",
-      avatar: 'assets/images/avatar.svg',
-      funFacts: [
-        { icon: 'dumbbell', label: 'Gym Lover' },
-        { icon: 'cpu', label: 'PC Enthusiast' },
-        { icon: 'code', label: 'Code Junkie' },
-        { icon: 'coffee', label: 'Coffee Powered' }
-      ],
-      contact: {
-        email: 'hello@hamzabari.dev',
-        linkedin: 'https://linkedin.com/in/hamzabari',
-        github: 'https://github.com/hamzabari'
-      }
-    },
-    skills: {
-      hard: [
-        { name: 'JavaScript', level: 90 },
-        { name: 'Node.js', level: 80 },
-        { name: 'Tailwind CSS', level: 95 },
-        { name: 'Figma', level: 85 },
-        { name: 'Responsive Design', level: 92 },
-        { name: 'HTML5 & CSS3', level: 95 }
-      ],
-      soft: [
-        { name: 'Problem-solving' },
-        { name: 'Teamwork' },
-        { name: 'Communication' },
-        { name: 'Time management' },
-        { name: 'Adaptability' },
-        { name: 'Creativity' }
-      ]
-    },
-    projects: [
-      {
-        id: 'p-001',
-        title: 'Helix Dashboard',
-        description: 'A clean, minimal admin dashboard template built with vanilla JS and Tailwind.',
-        image: 'assets/images/project-1.svg',
-        stack: ['JavaScript', 'Tailwind', 'Chart.js'],
-        demo: 'https://example.com',
-        github: 'https://github.com/hamzabari/helix',
-        featured: true
-      },
-      {
-        id: 'p-002',
-        title: 'Mirleft Travel',
-        description: 'A modern landing page celebrating the surf-town vibes of Mirleft, Morocco.',
-        image: 'assets/images/project-2.svg',
-        stack: ['HTML5', 'Tailwind', 'GSAP'],
-        demo: 'https://example.com',
-        github: 'https://github.com/hamzabari/mirleft',
-        featured: true
-      },
-      {
-        id: 'p-003',
-        title: 'Ice Portfolio v1',
-        description: 'My first personal portfolio with a focus on dark mode and typography.',
-        image: 'assets/images/project-3.svg',
-        stack: ['HTML', 'CSS', 'Vanilla JS'],
-        demo: 'https://example.com',
-        github: 'https://github.com/hamzabari/portfolio-v1',
-        featured: false
-      }
-    ],
-    education: [
-      {
-        school: 'Ecole du Web Avancé (EWA)',
-        location: 'Agadir, Morocco',
-        program: 'Web Development Program',
-        status: 'Currently Studying'
-      }
-    ],
-    blog: [
-      { id: 'b-001', title: 'Tailwind CSS Tips for Minimalist Design', excerpt: 'A few opinionated tricks to keep your Tailwind output clean and your UI calm.', date: '2026-04-12' },
-      { id: 'b-002', title: 'Minimalist Design Principles', excerpt: 'Why removing elements is harder than adding them — and how to do it well.', date: '2026-03-22' },
-      { id: 'b-003', title: 'PC Hardware Tweaking: A Casual Guide', excerpt: 'Subtle tuning tricks to squeeze more frames out of your gaming rig.', date: '2026-02-08' }
-    ],
-    messages: [],
-    settings: { siteTitle: 'Hamza Bari — Ice', theme: 'helium-dark', accent: '#1BFFFF' }
-  };
+  let DATA = null;
+  let isAdminLoggedIn = false;
 
-  function loadData() {
-    // Try localStorage first (admin writes to it), then fetch portfolio.json, then default
+  // ------- UTIL -------
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+  const escapeHtml = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+  // ------- DATA LOAD -------
+  async function loadData() {
     try {
-      const cached = localStorage.getItem(STORAGE_KEY);
-      if (cached) {
-        const parsed = JSON.parse(cached);
-        if (parsed && parsed.profile) return mergeDefaults(parsed, defaultData);
-      }
-    } catch (e) { /* ignore */ }
-
-    // Fallback: try fetch (works when served via http)
-    if (typeof fetch !== 'undefined') {
-      // Fire and forget — if it works, store for next time
-      fetch('data/portfolio.json')
-        .then(r => r.ok ? r.json() : null)
-        .then(json => {
-          if (json) {
-            try { localStorage.setItem(STORAGE_KEY, JSON.stringify(json)); } catch (e) {}
-          }
-        })
-        .catch(() => { /* allow file:// usage */ });
+      const res = await fetch(DATA_PATH + '?v=' + Date.now(), { cache: 'no-store' });
+      if (!res.ok) throw new Error('Failed to load portfolio.json');
+      DATA = await res.json();
+      return DATA;
+    } catch (err) {
+      console.error('[portfolio] data load error:', err);
+      // Fallback minimal data so site still renders
+      DATA = {
+        profile: {
+          name: 'Hamza Bari',
+          title: 'Frontend Developer',
+          location: 'Agadir, Morocco',
+          age: 19,
+          school: 'EWA School',
+          bio: '',
+          tagline: 'Building interfaces that feel inevitable.',
+          email: 'hello@hamzabari.dev',
+          github: 'https://github.com/',
+          linkedin: 'https://linkedin.com/',
+          twitter: '',
+          avatar: 'HB'
+        },
+        skills: [
+          { name: 'HTML', level: 95, icon: 'html' },
+          { name: 'CSS', level: 92, icon: 'css' },
+          { name: 'JavaScript', level: 90, icon: 'js' }
+        ],
+        projects: [],
+        messages: [],
+        settings: { siteTitle: 'Hamza Bari', accent: '#0070f3' },
+        admin: { username: 'admin', password: 'hamza2026' }
+      };
+      return DATA;
     }
-
-    return defaultData;
   }
 
-  function mergeDefaults(loaded, def) {
-    // Shallow merge for top-level keys, deep-ish for nested
-    const out = JSON.parse(JSON.stringify(def));
-    Object.keys(loaded).forEach(k => {
-      if (loaded[k] && typeof loaded[k] === 'object' && !Array.isArray(loaded[k])) {
-        out[k] = Object.assign({}, out[k] || {}, loaded[k]);
-      } else {
-        out[k] = loaded[k];
-      }
-    });
-    return out;
-  }
-
-  const data = loadData();
-
-  // -------- SVG Icon Library --------
-  const ICONS = {
-    dumbbell: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.4 14.4 9.6 9.6"/><path d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z"/><path d="m21.5 21.5-1.4-1.4"/><path d="M3.9 3.9 2.5 2.5"/><path d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z"/></svg>',
-    cpu: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>',
-    code: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
-    coffee: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" x2="6" y1="2" y2="4"/><line x1="10" x2="10" y1="2" y2="4"/><line x1="14" x2="14" y1="2" y2="4"/></svg>',
-    cap: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>',
-    arrow: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>',
-    send: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>',
-    github: '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2.16c-3.2.7-3.87-1.36-3.87-1.36-.52-1.34-1.27-1.7-1.27-1.7-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.34.95.1-.74.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18.91-.25 1.89-.38 2.86-.39.97.01 1.95.14 2.86.39 2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.41-5.27 5.69.41.35.78 1.04.78 2.1v3.12c0 .31.21.67.8.56C20.21 21.38 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>'
-  };
-
-  function icon(name) {
-    return ICONS[name] || ICONS.code;
-  }
-
-  // -------- Hero name letter reveal --------
-  function renderHeroName() {
-    const el = document.getElementById('heroName');
-    if (!el) return;
-    const name = (data.profile.name || 'Hamza Bari').toUpperCase();
-    el.innerHTML = name
-      .split('')
-      .map((c, i) => {
-        const isSpace = c === ' ';
-        return `<span class="char" style="animation-delay:${isSpace ? 0 : (300 + i * 50)}ms;${isSpace ? 'width:.4em;' : ''}">${isSpace ? '&nbsp;' : escapeHtml(c)}</span>`;
-      })
-      .join('');
-  }
-
-  // -------- Profile / Hero --------
+  // ------- RENDER -------
   function renderProfile() {
-    const p = data.profile;
+    const p = DATA.profile;
+    if (!p) return;
 
-    const taglineEl = document.getElementById('heroTagline');
-    if (taglineEl) taglineEl.textContent = p.tagline || '';
+    document.title = (DATA.settings?.siteTitle) || `${p.name} — Frontend Developer`;
 
-    const bioEl = document.getElementById('aboutBio');
-    if (bioEl) bioEl.textContent = p.bio || '';
+    if ($('#brandName')) $('#brandName').textContent = p.name;
+    if ($('#brandMark')) $('#brandMark').textContent = p.avatar || (p.name || '?').split(' ').map(x => x[0]).join('').slice(0, 2).toUpperCase();
+    if ($('#heroBadge')) $('#heroBadge').textContent = p.avatar || 'HB';
 
-    const avatarEl = document.getElementById('avatarImg');
-    if (avatarEl && p.avatar) avatarEl.src = p.avatar;
+    if ($('#metaLocation')) $('#metaLocation').textContent = p.location;
+    if ($('#metaAge')) $('#metaAge').textContent = p.age;
+    if ($('#metaSchool')) $('#metaSchool').textContent = p.school;
 
-    // Fun facts
-    const factsEl = document.getElementById('funFactsGrid');
-    if (factsEl) {
-      factsEl.innerHTML = (p.funFacts || [])
-        .map(f => `
-          <div class="fun-fact">
-            <div class="fun-fact-icon">${icon(f.icon || 'code')}</div>
-            <span class="fun-fact-label">${escapeHtml(f.label || '')}</span>
-          </div>
-        `).join('');
+    if ($('#heroBio') && p.bio) $('#heroBio').textContent = p.bio;
+    if ($('#heroBadgeText')) $('#heroBadgeText').textContent = 'Available for new opportunities';
+
+    // Split hero title into parts if defined
+    if (p.tagline && typeof p.tagline === 'string') {
+      // keep current static layout but adjust tagline
     }
 
-    // Contact
-    const e = p.contact || {};
-    const emailLink = document.getElementById('emailLink');
-    const liLink = document.getElementById('linkedinLink');
-    const ghLink = document.getElementById('githubLink');
-    if (emailLink) { emailLink.href = 'mailto:' + (e.email || '#'); emailLink.textContent = e.email || 'Email'; }
-    if (liLink) liLink.href = e.linkedin || '#';
-    if (ghLink) ghLink.href = e.github || '#';
+    // About paragraphs
+    if (p.bio) {
+      const p1 = $('#aboutP1');
+      if (p1) p1.textContent = p.bio;
+    }
 
-    // Footer
-    const fn = document.getElementById('footerName');
-    if (fn) fn.textContent = p.name || 'Hamza Bari';
-    const y = document.getElementById('year');
-    if (y) y.textContent = new Date().getFullYear();
-
-    // Page title
-    document.title = (p.name || 'Hamza Bari') + ' — ' + (p.tagline || 'Portfolio');
+    // Contact links
+    const emailEl = $('[data-email]');
+    if (emailEl && p.email) emailEl.textContent = p.email;
+    const ghEl = $('#contactGithub');
+    if (ghEl && p.github) ghEl.setAttribute('href', p.github);
+    const liEl = $('#contactLinkedin');
+    if (liEl && p.linkedin) liEl.setAttribute('href', p.linkedin);
+    const emLink = $('#contactEmail');
+    if (emLink && p.email) emLink.setAttribute('href', 'mailto:' + p.email);
   }
 
-  // -------- Skills --------
   function renderSkills() {
-    const hardEl = document.getElementById('hardSkillsList');
-    if (hardEl) {
-      const hard = (data.skills && data.skills.hard) || [];
-      hardEl.innerHTML = hard.map((s, i) => `
-        <div data-aos="fade-up" data-aos-delay="${100 + i * 60}">
-          <div class="skill-row">
-            <span class="text-sm font-medium text-white/90">${escapeHtml(s.name)}</span>
-            <span class="text-xs text-white/40">${s.level || 0}%</span>
+    const grid = $('#skillsGrid');
+    if (!grid) return;
+    const icons = window.SKILL_ICONS || {};
+    grid.innerHTML = (DATA.skills || []).map((s) => {
+      const svg = icons[s.icon] || icons.html || '';
+      const level = Math.max(0, Math.min(100, Number(s.level) || 0));
+      return `
+        <div class="skill-card reveal">
+          <div class="skill-head">
+            <div class="skill-name">
+              <span class="skill-icon">${svg}</span>
+              <span>${escapeHtml(s.name)}</span>
+            </div>
+            <span class="skill-pct">${level}%</span>
           </div>
-          <div class="skill-bar">
-            <div class="skill-bar-fill" data-level="${s.level || 0}"></div>
-          </div>
+          <div class="skill-bar"><div class="skill-bar-fill" data-fill="${level}"></div></div>
         </div>
-      `).join('');
-    }
-
-    const softEl = document.getElementById('softSkillsList');
-    if (softEl) {
-      const soft = (data.skills && data.skills.soft) || [];
-      softEl.innerHTML = soft.map((s, i) => `
-        <span class="skill-chip" data-aos="zoom-in" data-aos-delay="${100 + i * 40}">${icon('code')} ${escapeHtml(s.name)}</span>
-      `).join('');
-    }
+      `;
+    }).join('');
   }
 
-  function animateSkillBars() {
-    document.querySelectorAll('.skill-bar-fill').forEach(bar => {
-      const lvl = parseInt(bar.getAttribute('data-level') || '0', 10);
-      requestAnimationFrame(() => { bar.style.width = lvl + '%'; });
-    });
-  }
-
-  // -------- Projects --------
   function renderProjects() {
-    const el = document.getElementById('projectsGrid');
-    if (!el) return;
-    const list = data.projects || [];
-    if (!list.length) {
-      el.innerHTML = '<p class="col-span-full text-center text-white/40">No projects yet.</p>';
+    const list = $('#projectsList');
+    if (!list) return;
+    const arrowSvg = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>`;
+    list.innerHTML = (DATA.projects || []).map((pr) => {
+      const tech = (pr.tech || []).map(t => `<span>${escapeHtml(t)}</span>`).join('');
+      const status = (pr.status || 'Live').toLowerCase();
+      const statusClass = status === 'archived' ? 'archived' : '';
+      const accent = pr.color || '#0070f3';
+      return `
+        <article class="project-card reveal" style="--accent:${escapeHtml(accent)}">
+          <div class="project-left">
+            <div class="project-head">
+              <h3 class="project-name">${escapeHtml(pr.name)}</h3>
+              <span class="project-status ${statusClass}">${escapeHtml(pr.status || 'Live')}</span>
+            </div>
+            <p class="project-desc">${escapeHtml(pr.description || '')}</p>
+            <div class="project-tech">${tech}</div>
+          </div>
+          <a href="${escapeHtml(pr.url || '#')}" target="_blank" rel="noopener" class="project-cta">
+            View ${arrowSvg}
+          </a>
+        </article>
+      `;
+    }).join('');
+  }
+
+  // ------- REVEAL ON SCROLL -------
+  function setupReveal() {
+    const els = $$('.reveal');
+    if (!('IntersectionObserver' in window) || els.length === 0) {
+      els.forEach(e => e.classList.add('is-visible'));
       return;
     }
-    el.innerHTML = list.map((p, i) => `
-      <article class="project-card" data-aos="fade-up" data-aos-delay="${i * 80}">
-        <img class="project-thumb" src="${escapeAttr(p.image || 'assets/images/project-1.svg')}" alt="${escapeAttr(p.title || 'Project')}" loading="lazy" />
-        <div class="project-body">
-          <h3 class="project-title">${escapeHtml(p.title || 'Untitled')}</h3>
-          <p class="project-desc">${escapeHtml(p.description || '')}</p>
-          <div class="project-stack">
-            ${(p.stack || []).map(t => `<span class="project-tag">${escapeHtml(t)}</span>`).join('')}
-          </div>
-          <div class="project-actions">
-            ${p.demo ? `<a href="${escapeAttr(p.demo)}" target="_blank" rel="noopener" class="px-4 py-2 rounded-full bg-white text-ink text-xs font-semibold hover:bg-electric transition">Live Demo</a>` : ''}
-            ${p.github ? `<a href="${escapeAttr(p.github)}" target="_blank" rel="noopener" class="px-4 py-2 rounded-full border border-white/20 text-white text-xs font-semibold hover:bg-white/10 transition inline-flex items-center gap-1.5">${icon('github')} GitHub</a>` : ''}
-          </div>
-        </div>
-      </article>
-    `).join('');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting) {
+          en.target.classList.add('is-visible');
+          io.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(e => io.observe(e));
   }
 
-  // -------- Education --------
-  function renderEducation() {
-    const el = document.getElementById('educationList');
-    if (!el) return;
-    const list = data.education || [];
-    el.innerHTML = list.map((e, i) => `
-      <div class="edu-card" data-aos="fade-up" data-aos-delay="${i * 80}">
-        <div class="edu-icon">${icon('cap')}</div>
-        <div>
-          <div class="edu-school">${escapeHtml(e.school || '')}</div>
-          <div class="edu-loc">${escapeHtml(e.location || '')}${e.program ? ' · ' + escapeHtml(e.program) : ''}</div>
-        </div>
-        ${e.status ? `<div class="edu-status">${escapeHtml(e.status)}</div>` : ''}
-      </div>
-    `).join('');
+  // ------- FILL BARS WHEN VISIBLE -------
+  function setupSkillBars() {
+    const fills = $$('.skill-bar-fill');
+    if (fills.length === 0) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting) {
+          const v = en.target.getAttribute('data-fill') || '0';
+          en.target.style.width = v + '%';
+          io.unobserve(en.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    fills.forEach(f => io.observe(f));
   }
 
-  // -------- Blog --------
-  function renderBlog() {
-    const el = document.getElementById('blogGrid');
-    if (!el) return;
-    const list = data.blog || [];
-    if (!list.length) {
-      el.innerHTML = '<p class="col-span-full text-center text-white/40">No posts yet.</p>';
-      return;
-    }
-    el.innerHTML = list.map((b, i) => `
-      <article class="blog-card" data-aos="fade-up" data-aos-delay="${i * 80}">
-        <div class="blog-date">${formatDate(b.date)}</div>
-        <h3 class="blog-title">${escapeHtml(b.title || '')}</h3>
-        <p class="blog-excerpt">${escapeHtml(b.excerpt || '')}</p>
-      </article>
-    `).join('');
+  // ------- ACTIVE NAV LINK ON SCROLL -------
+  function setupActiveNav() {
+    const sections = $$('section[id]');
+    const links = $$('[data-nav]');
+    if (sections.length === 0 || links.length === 0) return;
+
+    const map = new Map();
+    links.forEach((a) => {
+      const id = (a.getAttribute('href') || '').replace('#', '');
+      if (id) map.set(id, a);
+    });
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (!en.isIntersecting) return;
+        links.forEach(a => a.classList.remove('is-active'));
+        const link = map.get(en.target.id);
+        if (link) link.classList.add('is-active');
+      });
+    }, { rootMargin: '-50% 0px -45% 0px', threshold: 0 });
+    sections.forEach(s => io.observe(s));
   }
 
-  // -------- Contact Form --------
+  // ------- NAVBAR HOVER SHOW/HIDE -------
+  function setupNavbarHover() {
+    const navbar = $('#navbar');
+    const trigger = $('#navTrigger');
+    if (!navbar || !trigger) return;
+
+    let hideTimer = null;
+
+    const show = () => {
+      clearTimeout(hideTimer);
+      navbar.classList.add('is-visible');
+    };
+    const hide = () => {
+      hideTimer = setTimeout(() => {
+        navbar.classList.remove('is-visible');
+      }, 180);
+    };
+
+    trigger.addEventListener('mouseenter', show);
+    navbar.addEventListener('mouseenter', show);
+    trigger.addEventListener('mouseleave', hide);
+    navbar.addEventListener('mouseleave', hide);
+
+    // Touch / mobile: tap the trigger to toggle
+    trigger.addEventListener('click', () => {
+      navbar.classList.toggle('is-visible');
+    });
+
+    // Always show when scrolled near top of hero
+    let lastY = window.scrollY;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      // Hide if user is scrolling down beyond hero, show if scrolling up
+      if (y < 80) {
+        show();
+      } else if (y > lastY) {
+        hide();
+      } else {
+        show();
+      }
+      lastY = y;
+    }, { passive: true });
+  }
+
+  // ------- CONTACT FORM -------
   function setupContactForm() {
-    const form = document.getElementById('contactForm');
+    const form = $('#contactForm');
     if (!form) return;
-    const status = document.getElementById('formStatus');
+    const status = $('#formStatus');
+    const submitBtn = $('#submitBtn');
+    const submitText = $('#submitText');
 
-    form.addEventListener('submit', function (ev) {
-      ev.preventDefault();
-      const fd = new FormData(form);
-      const name = (fd.get('name') || '').toString().trim();
-      const email = (fd.get('email') || '').toString().trim();
-      const message = (fd.get('message') || '').toString().trim();
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = $('#cf-name').value.trim();
+      const email = $('#cf-email').value.trim();
+      const subject = $('#cf-subject').value.trim();
+      const message = $('#cf-message').value.trim();
 
       if (!name || !email || !message) {
-        status.textContent = 'Please fill in all fields.';
-        status.className = 'text-sm form-status-error';
+        showStatus('Please fill in your name, email, and message.', 'error');
         return;
       }
-      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-        status.textContent = 'Please enter a valid email.';
-        status.className = 'text-sm form-status-error';
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showStatus('Please enter a valid email address.', 'error');
         return;
       }
 
-      const messages = (data.messages || []);
-      messages.push({
-        id: 'm-' + Date.now().toString(36),
-        name, email, message,
+      submitBtn.disabled = true;
+      submitText.textContent = 'Sending...';
+
+      const entry = {
+        id: 'm-' + Date.now(),
+        name, email, subject, message,
         date: new Date().toISOString(),
         read: false
-      });
-      data.messages = messages;
+      };
 
-      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch (e) {}
+      // Save to localStorage (acts as our JSON-backed store on the client)
+      try {
+        const list = JSON.parse(localStorage.getItem('hb_messages') || '[]');
+        list.push(entry);
+        localStorage.setItem('hb_messages', JSON.stringify(list));
+      } catch (_) { /* ignore quota */ }
 
-      status.textContent = '✓ Message sent! I\'ll get back to you soon.';
-      status.className = 'text-sm form-status-success';
+      // Simulate send delay for nice UX
+      await new Promise(r => setTimeout(r, 600));
+
+      submitBtn.disabled = false;
+      submitText.textContent = 'Send message';
       form.reset();
-      setTimeout(() => { status.textContent = ''; status.className = 'text-sm text-white/60'; }, 5000);
+      showStatus('Message sent — thanks! I\'ll get back to you soon.', 'success');
+    });
+
+    function showStatus(msg, type) {
+      if (!status) return;
+      status.textContent = msg;
+      status.classList.remove('is-success', 'is-error');
+      status.classList.add(type === 'success' ? 'is-success' : 'is-error');
+      clearTimeout(showStatus._t);
+      showStatus._t = setTimeout(() => {
+        status.classList.remove('is-success', 'is-error');
+      }, 6000);
+    }
+  }
+
+  // ------- ADMIN TRIGGER + POPUP -------
+  function setupAdmin() {
+    const trigger = $('#adminTrigger');
+    const overlay = $('#adminOverlay');
+    const closeBtn = $('#adminPopupClose');
+    const form = $('#adminLoginForm');
+    const errEl = $('#adminPopupError');
+    if (!trigger || !overlay || !form) return;
+
+    // Check existing session
+    isAdminLoggedIn = !!sessionStorage.getItem(SESSION_KEY);
+
+    const open = () => {
+      overlay.classList.add('is-open');
+      overlay.setAttribute('aria-hidden', 'false');
+      const firstInput = form.querySelector('input');
+      if (firstInput) setTimeout(() => firstInput.focus(), 100);
+    };
+    const close = () => {
+      overlay.classList.remove('is-open');
+      overlay.setAttribute('aria-hidden', 'true');
+      errEl.classList.remove('is-show');
+      form.reset();
+    };
+
+    trigger.addEventListener('click', () => {
+      if (isAdminLoggedIn) {
+        window.location.href = 'admin.html';
+      } else {
+        open();
+      }
+    });
+    closeBtn.addEventListener('click', close);
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) close();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && overlay.classList.contains('is-open')) close();
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const user = $('#al-user').value.trim();
+      const pass = $('#al-pass').value;
+
+      const admin = DATA?.admin || { username: 'admin', password: 'hamza2026' };
+      if (user === admin.username && pass === admin.password) {
+        sessionStorage.setItem(SESSION_KEY, JSON.stringify({ user, time: Date.now() }));
+        isAdminLoggedIn = true;
+        errEl.classList.remove('is-show');
+        window.location.href = 'admin.html';
+      } else {
+        errEl.textContent = 'Invalid credentials. Try again.';
+        errEl.classList.add('is-show');
+      }
     });
   }
 
-  // -------- Mobile Nav --------
-  function setupMobileNav() {
-    const btn = document.getElementById('navToggle');
-    const menu = document.getElementById('mobileMenu');
-    if (!btn || !menu) return;
-    btn.addEventListener('click', () => menu.classList.toggle('hidden'));
-    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.add('hidden')));
+  // ------- YEAR -------
+  function setYear() {
+    const y = $('#year');
+    if (y) y.textContent = new Date().getFullYear();
   }
 
-  // -------- Utilities --------
-  function escapeHtml(s) {
-    if (s == null) return '';
-    return String(s)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#39;');
-  }
-  function escapeAttr(s) { return escapeHtml(s); }
-  function formatDate(iso) {
-    if (!iso) return '';
-    try {
-      const d = new Date(iso);
-      return d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-    } catch (e) { return iso; }
-  }
-
-  // -------- Init --------
-  document.addEventListener('DOMContentLoaded', function () {
-    renderHeroName();
+  // ------- INIT -------
+  async function init() {
+    await loadData();
     renderProfile();
     renderSkills();
     renderProjects();
-    renderEducation();
-    renderBlog();
+    setYear();
+    setupReveal();
+    setupSkillBars();
+    setupActiveNav();
+    setupNavbarHover();
     setupContactForm();
-    setupMobileNav();
+    setupAdmin();
+  }
 
-    if (window.AOS) {
-      window.AOS.init({
-        duration: 700,
-        easing: 'ease-out-cubic',
-        once: true,
-        offset: 60
-      });
-    }
-
-    // Animate skill bars after a beat
-    setTimeout(animateSkillBars, 700);
-
-    // Live update: if admin tab updates localStorage in another tab, refresh dynamic sections
-    window.addEventListener('storage', function (e) {
-      if (e.key !== STORAGE_KEY) return;
-      try {
-        const fresh = JSON.parse(e.newValue || 'null');
-        if (!fresh) return;
-        Object.assign(data, fresh);
-        renderProfile();
-        renderSkills();
-        renderProjects();
-        renderEducation();
-        renderBlog();
-        setTimeout(animateSkillBars, 100);
-      } catch (err) { /* ignore */ }
-    });
-  });
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();

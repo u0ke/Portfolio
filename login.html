@@ -4,105 +4,108 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Login — Hamza Bari</title>
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
-          colors: { ink: '#0A0F2C', deep: '#1E1B4B', ocean: '#1E3A8A', electric: '#1BFFFF' }
-        }
-      }
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .login-page {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
     }
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9B%BA%3C/text%3E%3C/svg%3E" />
-  <link rel="stylesheet" href="css/main.css" />
+    .login-card {
+      width: 100%;
+      max-width: 420px;
+      padding: 40px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--bg-soft);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+    }
+    .login-head { text-align: center; margin-bottom: 28px; }
+    .login-mark {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: var(--gradient);
+      display: grid; place-items: center;
+      font-weight: 700; margin: 0 auto 16px;
+      color: white;
+    }
+    .login-head h1 { font-size: 24px; letter-spacing: -0.02em; margin-bottom: 6px; }
+    .login-head p { font-size: 14px; color: var(--text-soft); }
+    .login-form { display: grid; gap: 14px; }
+    .login-error {
+      font-size: 13px; color: #fca5a5; text-align: center;
+      display: none; padding: 10px;
+      background: rgba(255, 80, 80, 0.08);
+      border-radius: 6px;
+      border: 1px solid rgba(255, 80, 80, 0.2);
+    }
+    .login-error.is-show { display: block; }
+    .login-foot { text-align: center; margin-top: 18px; font-size: 13px; color: var(--text-mute); }
+    .login-foot a { color: var(--text-soft); }
+    .login-foot a:hover { color: var(--text); }
+  </style>
 </head>
-<body class="bg-ink text-white font-sans antialiased min-h-screen flex items-center justify-center px-6 relative overflow-hidden">
+<body>
+  <div class="bg-grid"></div>
 
-  <!-- Backdrop -->
-  <div class="fixed inset-0 -z-10 bg-gradient-to-b from-deep via-ocean to-ink"></div>
-  <div class="fixed inset-0 -z-10 hero-glow"></div>
-
-  <!-- Back link -->
-  <a href="index.html" class="absolute top-6 left-6 text-sm text-white/50 hover:text-white inline-flex items-center gap-2 transition">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7M19 12H5"/></svg>
-    Back to site
-  </a>
-
-  <!-- Login card -->
-  <main class="w-full max-w-md">
-    <div class="text-center mb-8">
-      <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-white/5 border border-white/10 mb-5">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1BFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+  <div class="login-page">
+    <div class="login-card">
+      <div class="login-head">
+        <div class="login-mark">HB</div>
+        <h1>Admin Login</h1>
+        <p>Sign in to manage your portfolio.</p>
       </div>
-      <h1 class="text-3xl font-bold tracking-tight mb-2">Admin Login</h1>
-      <p class="text-sm text-white/50">Sign in to manage your portfolio content.</p>
-    </div>
-
-    <form id="loginForm" class="rounded-3xl bg-white/5 border border-white/10 p-8 space-y-5" autocomplete="off">
-      <div>
-        <label class="block text-xs uppercase tracking-widest text-white/50 mb-2" for="username">Username</label>
-        <input id="username" name="username" type="text" required
-          class="w-full bg-transparent border-0 border-b border-white/20 focus:border-electric focus:ring-0 focus:outline-none px-0 py-3 text-white placeholder-white/30 transition"
-          placeholder="ice_admin" />
-      </div>
-      <div>
-        <label class="block text-xs uppercase tracking-widest text-white/50 mb-2" for="password">Password</label>
-        <div class="relative">
-          <input id="password" name="password" type="password" required
-            class="w-full bg-transparent border-0 border-b border-white/20 focus:border-electric focus:ring-0 focus:outline-none px-0 py-3 pr-10 text-white placeholder-white/30 transition"
-            placeholder="••••••••" />
-          <button type="button" id="togglePwd" class="absolute right-0 top-1/2 -translate-y-1/2 text-white/40 hover:text-white p-2" aria-label="Show password">
-            <svg id="eyeOn" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-          </button>
+      <form class="login-form" id="loginForm">
+        <div class="field">
+          <label for="lg-user">Username</label>
+          <input type="text" id="lg-user" name="username" autocomplete="username" placeholder="admin" required />
         </div>
+        <div class="field">
+          <label for="lg-pass">Password</label>
+          <input type="password" id="lg-pass" name="password" autocomplete="current-password" placeholder="••••••••" required />
+        </div>
+        <div class="login-error" id="loginError">Invalid credentials. Try again.</div>
+        <button type="submit" class="btn btn-primary">Sign in</button>
+      </form>
+      <div class="login-foot">
+        <a href="index.html">← Back to portfolio</a>
       </div>
+    </div>
+  </div>
 
-      <div id="loginError" class="hidden text-sm text-red-300 bg-red-500/10 border border-red-400/20 rounded-xl px-4 py-2.5"></div>
-
-      <button type="submit" class="w-full px-7 py-3 rounded-full bg-white text-ink font-semibold text-sm tracking-wide hover:bg-electric transition">
-        Sign In
-      </button>
-
-      <p class="text-xs text-white/40 text-center pt-2">Default: <code class="text-white/60">ice_admin</code> / <code class="text-white/60">Ice2026!</code></p>
-    </form>
-  </main>
-
-  <script src="js/auth.js"></script>
   <script>
     (function () {
-      // Already logged in? skip
-      if (window.IceAuth && window.IceAuth.isAuthenticated()) {
-        window.location.href = 'admin.html';
-        return;
+      'use strict';
+      const SESSION_KEY = 'hb_admin_session';
+      const form = document.getElementById('loginForm');
+      const errEl = document.getElementById('loginError');
+
+      // If already logged in, redirect to admin
+      if (sessionStorage.getItem(SESSION_KEY)) {
+        window.location.replace('admin.html');
       }
 
-      const form = document.getElementById('loginForm');
-      const err = document.getElementById('loginError');
-      const toggle = document.getElementById('togglePwd');
-      const pwd = document.getElementById('password');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const user = document.getElementById('lg-user').value.trim();
+        const pass = document.getElementById('lg-pass').value;
 
-      toggle.addEventListener('click', () => {
-        pwd.type = pwd.type === 'password' ? 'text' : 'password';
-      });
+        let admin = { username: 'admin', password: 'hamza2026' };
+        try {
+          const res = await fetch('data/portfolio.json?v=' + Date.now(), { cache: 'no-store' });
+          if (res.ok) {
+            const json = await res.json();
+            if (json.admin) admin = json.admin;
+          }
+        } catch (_) { /* use fallback */ }
 
-      form.addEventListener('submit', function (ev) {
-        ev.preventDefault();
-        err.classList.add('hidden');
-        const u = document.getElementById('username').value.trim();
-        const p = pwd.value;
-        if (window.IceAuth.login(u, p)) {
+        if (user === admin.username && pass === admin.password) {
+          sessionStorage.setItem(SESSION_KEY, JSON.stringify({ user, time: Date.now() }));
+          errEl.classList.remove('is-show');
           window.location.href = 'admin.html';
         } else {
-          err.textContent = 'Invalid credentials. Please try again.';
-          err.classList.remove('hidden');
-          pwd.value = '';
-          pwd.focus();
+          errEl.textContent = 'Invalid credentials. Try again.';
+          errEl.classList.add('is-show');
         }
       });
     })();

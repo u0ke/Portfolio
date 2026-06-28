@@ -1,0 +1,15 @@
+/* ===========================================
+   Skill icon library — clean SVG paths
+   Used by main.js to render skill cards
+   =========================================== */
+window.SKILL_ICONS = {
+  html: `<svg viewBox="0 0 24 24" fill="none" stroke="#ff5722" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h16l-1.5 17L12 22l-6.5-2L4 3z"/><path d="M8 7h8M8 11h8M9 15l3 1 3-1"/></svg>`,
+  css: `<svg viewBox="0 0 24 24" fill="none" stroke="#2196f3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h16l-1.5 17L12 22l-6.5-2L4 3z"/><path d="M8 8h8M8 12h6M9 16l3 1 3-1"/></svg>`,
+  tailwind: `<svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6c-2.67 0-4.33 1.33-5 4 1-1.33 2.17-1.83 3.5-1.5 0.76 0.19 1.3 0.74 1.9 1.35C13.39 10.93 14.55 12 17 12c2.67 0 4.33-1.33 5-4-1 1.33-2.17 1.83-3.5 1.5-0.76-0.19-1.3-0.74-1.9-1.35C15.61 7.07 14.45 6 12 6zM7 14c-2.67 0-4.33 1.33-5 4 1-1.33 2.17-1.83 3.5-1.5 0.76 0.19 1.3 0.74 1.9 1.35C8.39 18.93 9.55 20 12 20c2.67 0 4.33-1.33 5-4-1 1.33-2.17 1.83-3.5 1.5-0.76-0.19-1.3-0.74-1.9-1.35C10.61 15.07 9.45 14 7 14z"/></svg>`,
+  js: `<svg viewBox="0 0 24 24" fill="none" stroke="#f7df1e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 17v-3M9 14c0 1.5 1 2 2 2s2-0.5 2-2-2-1.5-2-3 1-2 2-2 2 0.5 2 1"/></svg>`,
+  bootstrap: `<svg viewBox="0 0 24 24" fill="none" stroke="#7952b3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 8h4a2 2 0 0 1 0 4H8zM8 12h5a2 2 0 0 1 0 4H8zM16 16h2"/></svg>`,
+  node: `<svg viewBox="0 0 24 24" fill="none" stroke="#8cc84b" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3 7v10l9 5 9-5V7l-9-5z"/><path d="M12 22V12M3 7l9 5 9-5M7 4.5l10 5"/></svg>`,
+  python: `<svg viewBox="0 0 24 24" fill="none" stroke="#3776ab" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-3 0-5 1-5 4v3h6v1H5c-2 0-3 2-3 5s1 5 3 5h2v-3c0-2 2-4 5-4h5c2 0 4-2 4-4V6c0-2-2-4-5-4h-4z"/><circle cx="9" cy="5" r="0.7" fill="#3776ab"/><path d="M12 22c3 0 5-1 5-4v-3h-6v-1h8c2 0 3-2 3-5s-1-5-3-5h-2v3c0 2-2 4-5 4H7c-2 0-4 2-4 4v3c0 2 2 4 5 4h4z"/><circle cx="15" cy="19" r="0.7" fill="#3776ab"/></svg>`,
+  git: `<svg viewBox="0 0 24 24" fill="none" stroke="#f05033" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><circle cx="18" cy="6" r="2.5"/><path d="M6 8.5v7a2.5 2.5 0 0 0 2.5 2.5h7"/></svg>`,
+  figma: `<svg viewBox="0 0 24 24" fill="none" stroke="#a259ff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2h6v8H9zM9 14h6v8H9z"/><circle cx="9" cy="6" r="4"/><circle cx="9" cy="18" r="4"/><circle cx="15" cy="18" r="4"/></svg>`
+};
