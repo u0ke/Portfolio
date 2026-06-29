@@ -1,7 +1,3 @@
-/* ===========================================
-   Hamza Bari (Ice) — auth.js
-   Session-based admin authentication
-   =========================================== */
 
 (function () {
   'use strict';

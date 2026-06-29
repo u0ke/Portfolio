@@ -1,7 +1,4 @@
-/* ===========================================
-   Skill icon library — clean SVG paths
-   Used by main.js to render skill cards
-   =========================================== */
+
 window.SKILL_ICONS = {
   html: `<svg viewBox="0 0 24 24" fill="none" stroke="#ff5722" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h16l-1.5 17L12 22l-6.5-2L4 3z"/><path d="M8 7h8M8 11h8M9 15l3 1 3-1"/></svg>`,
   css: `<svg viewBox="0 0 24 24" fill="none" stroke="#2196f3" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3h16l-1.5 17L12 22l-6.5-2L4 3z"/><path d="M8 8h8M8 12h6M9 16l3 1 3-1"/></svg>`,

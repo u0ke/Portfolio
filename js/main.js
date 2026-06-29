@@ -1,9 +1,3 @@
-/* ===========================================
-   Hamza Bari — Portfolio main.js
-   Loads data/portfolio.json, renders content,
-   handles interactions (navbar hover, contact
-   form, admin trigger, popup).
-   =========================================== */
 
 (function () {
   'use strict';

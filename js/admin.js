@@ -1,8 +1,3 @@
-/* ===========================================
-   Hamza Bari — admin.js
-   Admin dashboard: load/edit data, messages,
-   auth gating, logout.
-   =========================================== */
 
 (function () {
   'use strict';
