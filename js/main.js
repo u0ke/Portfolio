@@ -101,7 +101,6 @@
   };
 
   function loadData() {
-    // 1) Try localStorage first so admin edits are reflected immediately.
     let initial = null;
     try {
       const cached = localStorage.getItem(STORAGE_KEY);
@@ -112,17 +111,11 @@
     } catch (e) { /* ignore */ }
     if (!initial) initial = defaultData;
 
-    // 2) Always also try to fetch the JSON file so updates to
-    //    data/portfolio.json take effect even when localStorage is populated.
-    //    On http(s) we kick off the fetch and re-render when it arrives.
     if (typeof fetch !== 'undefined') {
       fetch('data/portfolio.json', { cache: 'no-cache' })
         .then(r => (r.ok ? r.json() : null))
         .then(json => {
           if (!json || !json.profile) return;
-          // Only refresh if the JSON is actually newer / different
-          // from what's in localStorage. We treat the JSON as the
-          // source of truth for the public site.
           try { localStorage.setItem(STORAGE_KEY, JSON.stringify(json)); } catch (e) {}
           const merged = mergeDefaults(json, defaultData);
           Object.keys(merged).forEach(k => { data[k] = merged[k]; });
@@ -135,7 +128,6 @@
   }
 
   function mergeDefaults(loaded, def) {
-    // Shallow merge for top-level keys, deep-ish for nested
     const out = JSON.parse(JSON.stringify(def));
     Object.keys(loaded).forEach(k => {
       if (loaded[k] && typeof loaded[k] === 'object' && !Array.isArray(loaded[k])) {
@@ -165,9 +157,6 @@
     return ICONS[name] || ICONS.code;
   }
 
-  // -------- Image helpers (fix: missing/broken images on Netlify) --------
-  // Inline SVG placeholder — used as the src when a JSON image is missing or
-  // fails to load. Keeps the layout intact instead of showing a broken icon.
   const FALLBACK_IMG =
     "data:image/svg+xml;utf8," +
     encodeURIComponent(
@@ -183,19 +172,14 @@
       '</svg>'
     );
 
-  // Resolve "./assets/..." / "assets/..." / "https://..." into a clean URL.
-  // Returns the placeholder when the path is empty.
   function resolveImg(path, fallback) {
     if (!path) return fallback || FALLBACK_IMG;
     const p = String(path).trim();
     if (!p) return fallback || FALLBACK_IMG;
-    if (/^(https?:|data:|\/\/)/i.test(p)) return p; // already absolute
-    // Strip leading "./" so "./assets/x" and "assets/x" both work
+    if (/^(https?:|data:|\/\/)/i.test(p)) return p;
     return p.replace(/^\.\//, '').replace(/^\/+/, '');
   }
 
-  // Render every dynamic section. Called on first load AND whenever new JSON
-  // arrives (e.g. after the async fetch on Netlify completes).
   function renderAll() {
     renderHeroName();
     renderProfile();
@@ -206,7 +190,6 @@
     setTimeout(animateSkillBars, 50);
   }
 
-  // -------- Hero name letter reveal --------
   function renderHeroName() {
     const el = document.getElementById('heroName');
     if (!el) return;
@@ -220,7 +203,6 @@
       .join('');
   }
 
-  // -------- Profile / Hero --------
   function renderProfile() {
     const p = data.profile;
 
@@ -241,7 +223,6 @@
       };
     }
 
-    // Fun facts
     const factsEl = document.getElementById('funFactsGrid');
     if (factsEl) {
       factsEl.innerHTML = (p.funFacts || [])
@@ -253,7 +234,6 @@
         `).join('');
     }
 
-    // Contact
     const e = p.contact || {};
     const emailLink = document.getElementById('emailLink');
     const liLink = document.getElementById('linkedinLink');
@@ -262,17 +242,14 @@
     if (liLink) liLink.href = e.linkedin || '#';
     if (ghLink) ghLink.href = e.github || '#';
 
-    // Footer
     const fn = document.getElementById('footerName');
     if (fn) fn.textContent = p.name || 'Hamza Bari';
     const y = document.getElementById('year');
     if (y) y.textContent = new Date().getFullYear();
 
-    // Page title
     document.title = (p.name || 'Hamza Bari') + ' — ' + (p.tagline || 'Portfolio');
   }
 
-  // -------- Skills --------
   function renderSkills() {
     const hardEl = document.getElementById('hardSkillsList');
     if (hardEl) {
@@ -306,7 +283,6 @@
     });
   }
 
-  // -------- Projects --------
   function renderProjects() {
     const el = document.getElementById('projectsGrid');
     if (!el) return;
@@ -333,7 +309,6 @@
     `).join('');
   }
 
-  // -------- Education --------
   function renderEducation() {
     const el = document.getElementById('educationList');
     if (!el) return;
@@ -350,7 +325,6 @@
     `).join('');
   }
 
-  // -------- Blog --------
   function renderBlog() {
     const el = document.getElementById('blogGrid');
     if (!el) return;
@@ -368,7 +342,6 @@
     `).join('');
   }
 
-  // -------- Contact Form --------
   function setupContactForm() {
     const form = document.getElementById('contactForm');
     if (!form) return;
@@ -410,7 +383,6 @@
     });
   }
 
-  // -------- Mobile Nav --------
   function setupMobileNav() {
     const btn = document.getElementById('navToggle');
     const menu = document.getElementById('mobileMenu');
@@ -419,7 +391,7 @@
     menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.add('hidden')));
   }
 
-  // -------- Theme switcher --------
+  // -------- Theme switcher (dropdown) --------
   const THEME_KEY = 'ice_portfolio_theme_v1';
   const VALID_THEMES = ['helium', 'vercel'];
 
@@ -437,11 +409,48 @@
     try { saved = localStorage.getItem(THEME_KEY) || 'helium'; } catch (e) { /* ignore */ }
     applyTheme(saved);
 
+    // Dropdown toggle
+    document.querySelectorAll('.theme-dropdown-toggle').forEach(toggle => {
+      toggle.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const switcher = toggle.closest('.theme-switcher');
+        const isOpen = switcher.classList.contains('open');
+        // Close all others first
+        document.querySelectorAll('.theme-switcher').forEach(s => {
+          s.classList.remove('open');
+          const t = s.querySelector('.theme-dropdown-toggle');
+          if (t) t.setAttribute('aria-expanded', 'false');
+        });
+        if (!isOpen) {
+          switcher.classList.add('open');
+          toggle.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    // Swatch selection
     document.querySelectorAll('.theme-swatch').forEach(btn => {
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
         const t = btn.getAttribute('data-theme-target') || 'helium';
         try { localStorage.setItem(THEME_KEY, t); } catch (e) { /* ignore */ }
         applyTheme(t);
+        // Close dropdown after selection
+        const switcher = btn.closest('.theme-switcher');
+        if (switcher) {
+          switcher.classList.remove('open');
+          const toggle = switcher.querySelector('.theme-dropdown-toggle');
+          if (toggle) toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function () {
+      document.querySelectorAll('.theme-switcher').forEach(s => {
+        s.classList.remove('open');
+        const toggle = s.querySelector('.theme-dropdown-toggle');
+        if (toggle) toggle.setAttribute('aria-expanded', 'false');
       });
     });
   }
@@ -481,10 +490,8 @@
       });
     }
 
-    // Animate skill bars after a beat
     setTimeout(animateSkillBars, 700);
 
-    // Live update: if admin tab updates localStorage in another tab, refresh dynamic sections
     window.addEventListener('storage', function (e) {
       if (e.key !== STORAGE_KEY) return;
       try {

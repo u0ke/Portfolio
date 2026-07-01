@@ -8,14 +8,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* -------- Theme tokens --------
-   Two themes:
-     - helium (default): deep blue/cyan, radial glow, electric accent
-     - vercel:            pure black canvas, fine 1px borders, white
-                          accent. Inspired by vercel.com.
-   Components below reference these vars; the old hardcoded
-   electric/ink values live in :root as the default theme.
-*/
+/* -------- Theme tokens -------- */
 :root,
 body[data-theme="helium"] {
   --bg-base:        #0A0F2C;
@@ -453,71 +446,117 @@ html[data-theme-preload="helium"] body {
 }
 
 /* ===========================================
-   Theme switcher
-   Shoe-style color circles. Each swatch is
-   a small button that toggles body[data-theme].
+   Theme switcher — Dropdown with arrow
    =========================================== */
 .theme-switcher {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.theme-swatches {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.theme-swatch {
   position: relative;
-  width: 22px;
-  height: 22px;
-  border-radius: 999px;
-  padding: 0;
-  border: 1px solid var(--border-strong);
-  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
+.theme-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
   background: transparent;
-  transition: transform 0.15s ease, box-shadow 0.2s ease;
+  border: 1px solid var(--border);
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.theme-dropdown-toggle:hover {
+  background: var(--surface-hover);
+  border-color: var(--border-strong);
+}
+
+.theme-dropdown-toggle:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.theme-dropdown-arrow {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.theme-switcher.open .theme-dropdown-arrow {
+  transform: rotate(180deg);
+}
+
+.theme-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  opacity: 0;
+  transform: translateX(-50%) translateY(-8px) scale(0.95);
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  z-index: 60;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.theme-dropdown-menu::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 10px;
+  height: 10px;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  border-top: 1px solid var(--border);
+}
+
+.theme-switcher.open .theme-dropdown-menu {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* Simple filled circles inside dropdown */
+.theme-dropdown-menu .theme-swatch {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  background: var(--swatch-color);
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
   -webkit-appearance: none;
   appearance: none;
 }
 
-.theme-swatch::before {
-  content: "";
-  position: absolute;
-  inset: 3px;
-  border-radius: 999px;
-  background: var(--swatch-color, #1BFFFF);
-  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.15);
+.theme-dropdown-menu .theme-swatch::before {
+  display: none;
 }
 
-.theme-swatch:hover {
-  transform: scale(1.08);
+.theme-dropdown-menu .theme-swatch:hover {
+  transform: scale(1.2);
 }
 
-.theme-swatch:focus-visible {
-  outline: 2px solid var(--focus-ring);
-  outline-offset: 3px;
-}
-
-.theme-swatch[aria-pressed="true"] {
-  box-shadow: 0 0 0 2px var(--bg-base), 0 0 0 3px var(--accent);
+.theme-dropdown-menu .theme-swatch[aria-pressed="true"] {
+  box-shadow: 0 0 0 2px var(--bg-base), 0 0 0 4px var(--accent);
   transform: scale(1.05);
 }
 
-.theme-swatch-label {
-  font-size: 0.7rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-faint);
-  user-select: none;
-}
-
 /* ===========================================
-   Vercel theme page-level overrides.
-   Pure black canvas, sharp 1px borders, mono
-   accents, geometric grid background.
+   Vercel theme page-level overrides
    =========================================== */
 body[data-theme="vercel"] {
   font-feature-settings: "ss01", "cv11";
@@ -542,14 +581,10 @@ body[data-theme="vercel"] #hero {
   position: relative;
 }
 
-/* In Vercel theme, kill the Tailwind deep->ocean->ink gradient
-   on the fixed backdrop and use pure black instead. */
 body[data-theme="vercel"] > .fixed.bg-gradient-to-b {
   background: #000 !important;
 }
 
-/* Override Tailwind text-electric / border-electric on text accents
-   in Vercel mode so they read as monochrome white. */
 body[data-theme="vercel"] .text-electric,
 body[data-theme="vercel"] a[href="login.html"].text-electric {
   color: var(--text) !important;
@@ -587,20 +622,10 @@ body[data-theme="vercel"] header a:hover {
 /* ===========================================
    Vercel theme — Button fixes & hovers
    =========================================== */
-
-/* "View My Work" — remove white bg, use border style */
-
-
 body[data-theme="vercel"] .project-button:hover {
   background: #b7b7b7 !important;
   box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
 }
-
-/* "Contact Me" — enhance hover */
-
-
-/* Submit button — keep white but with smooth hover */
-
 
 body[data-theme="vercel"] button[type="submit"]:hover {
   background: #d4d4d4 !important;
@@ -608,7 +633,6 @@ body[data-theme="vercel"] button[type="submit"]:hover {
   box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
 }
 
-/* Scroll-down arrow hover */
 body[data-theme="vercel"] #hero a[aria-label="Scroll to about"] {
   color: var(--text-faint);
   transition: color 0.2s ease, transform 0.2s ease;
@@ -619,12 +643,10 @@ body[data-theme="vercel"] #hero a[aria-label="Scroll to about"]:hover {
   transform: translateY(2px);
 }
 
-/* Hero glow kill */
 body[data-theme="vercel"] .hero-glow {
   background: transparent;
 }
 
-/* Card radius tweaks */
 body[data-theme="vercel"] .project-card,
 body[data-theme="vercel"] .fun-fact,
 body[data-theme="vercel"] .blog-card,
@@ -644,7 +666,6 @@ body[data-theme="vercel"] .project-tag {
   font-weight: 400;
 }
 
-/* Project action buttons hover */
 body[data-theme="vercel"] .project-actions a {
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -709,7 +730,6 @@ body[data-theme="vercel"] .project-actions a:hover {
   pointer-events: auto;
 }
 
-/* Vercel theme admin access */
 body[data-theme="vercel"] .admin-arrow {
   background: rgba(255,255,255,0.04);
   border-color: rgba(255,255,255,0.10);
