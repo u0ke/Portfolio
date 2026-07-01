@@ -593,7 +593,6 @@ body[data-theme="vercel"] header a:hover {
 
 body[data-theme="vercel"] a[href="#projects"]:hover {
   background: #b7b7b7 !important;
-  
   box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
 }
 
