@@ -419,6 +419,33 @@
     menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.add('hidden')));
   }
 
+  // -------- Theme switcher --------
+  const THEME_KEY = 'ice_portfolio_theme_v1';
+  const VALID_THEMES = ['helium', 'vercel'];
+
+  function applyTheme(theme) {
+    const t = VALID_THEMES.indexOf(theme) >= 0 ? theme : 'helium';
+    document.body.setAttribute('data-theme', t);
+    document.querySelectorAll('.theme-swatch').forEach(btn => {
+      const active = btn.getAttribute('data-theme-target') === t;
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+  }
+
+  function setupThemeSwitcher() {
+    let saved = 'helium';
+    try { saved = localStorage.getItem(THEME_KEY) || 'helium'; } catch (e) { /* ignore */ }
+    applyTheme(saved);
+
+    document.querySelectorAll('.theme-swatch').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const t = btn.getAttribute('data-theme-target') || 'helium';
+        try { localStorage.setItem(THEME_KEY, t); } catch (e) { /* ignore */ }
+        applyTheme(t);
+      });
+    });
+  }
+
   // -------- Utilities --------
   function escapeHtml(s) {
     if (s == null) return '';
@@ -440,6 +467,7 @@
 
   // -------- Init --------
   document.addEventListener('DOMContentLoaded', function () {
+    setupThemeSwitcher();
     renderAll();
     setupContactForm();
     setupMobileNav();

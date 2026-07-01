@@ -39,6 +39,18 @@
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="./css/main.css" />
+
+  <!-- Apply persisted theme before paint to avoid flash -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('ice_portfolio_theme_v1');
+        if (t === 'vercel' || t === 'helium') {
+          document.documentElement.setAttribute('data-theme-preload', t);
+        }
+      } catch (e) { /* ignore */ }
+    })();
+  </script>
 </head>
 <body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
 
@@ -59,6 +71,15 @@
         <li><a href="#education" class="hover:text-white transition">Education</a></li>
         <li><a href="#blog" class="hover:text-white transition">Blog</a></li>
         <li><a href="#contact" class="hover:text-white transition">Contact</a></li>
+        <li>
+          <div class="theme-switcher" role="group" aria-label="Color theme">
+            <span class="theme-swatch-label">Style</span>
+            <div class="theme-swatches">
+              <button type="button" class="theme-swatch" data-theme-target="helium" style="--swatch-color:#1BFFFF" aria-label="Helium blue" aria-pressed="true" title="Helium"></button>
+              <button type="button" class="theme-swatch" data-theme-target="vercel" style="--swatch-color:#000000" aria-label="Vercel black" aria-pressed="false" title="Vercel"></button>
+            </div>
+          </div>
+        </li>
       </ul>
       <a href="login.html" class="hidden md:inline-block text-xs uppercase tracking-widest text-white/50 hover:text-white transition">Admin</a>
       <button id="navToggle" class="md:hidden text-white p-2" aria-label="Toggle menu">
@@ -73,6 +94,15 @@
         <li><a href="#education" class="block py-1">Education</a></li>
         <li><a href="#blog" class="block py-1">Blog</a></li>
         <li><a href="#contact" class="block py-1">Contact</a></li>
+        <li>
+          <div class="theme-switcher py-1" role="group" aria-label="Color theme">
+            <span class="theme-swatch-label mr-2">Style</span>
+            <div class="theme-swatches">
+              <button type="button" class="theme-swatch" data-theme-target="helium" style="--swatch-color:#1BFFFF" aria-label="Helium blue" aria-pressed="true" title="Helium"></button>
+              <button type="button" class="theme-swatch" data-theme-target="vercel" style="--swatch-color:#000000" aria-label="Vercel black" aria-pressed="false" title="Vercel"></button>
+            </div>
+          </div>
+        </li>
         <li><a href="login.html" class="block py-1 text-electric">Admin</a></li>
       </ul>
     </div>
