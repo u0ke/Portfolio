@@ -101,27 +101,29 @@
   };
 
   function loadData() {
-    // Try localStorage first (admin writes to it)
+    // 1) Try localStorage first so admin edits are reflected immediately.
+    let initial = null;
     try {
       const cached = localStorage.getItem(STORAGE_KEY);
       if (cached) {
         const parsed = JSON.parse(cached);
-        if (parsed && parsed.profile) return mergeDefaults(parsed, defaultData);
+        if (parsed && parsed.profile) initial = mergeDefaults(parsed, defaultData);
       }
     } catch (e) { /* ignore */ }
+    if (!initial) initial = defaultData;
 
-    // No cache — return defaults now so the page can render fast.
-    // If we are over http(s), asynchronously load portfolio.json and re-render
-    // when it arrives. This is the path used on Netlify.
+    // 2) Always also try to fetch the JSON file so updates to
+    //    data/portfolio.json take effect even when localStorage is populated.
+    //    On http(s) we kick off the fetch and re-render when it arrives.
     if (typeof fetch !== 'undefined') {
-      // Don't await — kick off the load and let the page render with defaults
-      // first (or whatever localStorage was), then re-render with real data.
       fetch('data/portfolio.json', { cache: 'no-cache' })
         .then(r => (r.ok ? r.json() : null))
         .then(json => {
           if (!json || !json.profile) return;
+          // Only refresh if the JSON is actually newer / different
+          // from what's in localStorage. We treat the JSON as the
+          // source of truth for the public site.
           try { localStorage.setItem(STORAGE_KEY, JSON.stringify(json)); } catch (e) {}
-          // Merge into our live data and re-render every section
           const merged = mergeDefaults(json, defaultData);
           Object.keys(merged).forEach(k => { data[k] = merged[k]; });
           renderAll();
@@ -129,7 +131,7 @@
         .catch(() => { /* allow file:// usage or offline */ });
     }
 
-    return defaultData;
+    return initial;
   }
 
   function mergeDefaults(loaded, def) {
