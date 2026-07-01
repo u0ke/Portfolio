@@ -560,40 +560,72 @@ body[data-theme="vercel"] .bg-electric {
   color: #000 !important;
 }
 
-body[data-theme="vercel"] a[href="#projects"] {
-  background: #fff !important;
-  color: #000 !important;
-  border-radius: 0.5rem;
+/* ===========================================
+   Vercel theme — Navigation fixes
+   =========================================== */
+body[data-theme="vercel"] header {
+  background: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border-bottom-color: rgba(255, 255, 255, 0.08);
 }
+
+body[data-theme="vercel"] #mobileMenu {
+  background: rgba(0, 0, 0, 0.95) !important;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+body[data-theme="vercel"] header a {
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+body[data-theme="vercel"] header a:hover {
+  color: #fff !important;
+  transform: translateY(-1px);
+}
+
+/* ===========================================
+   Vercel theme — Button fixes & hovers
+   =========================================== */
+
+/* "View My Work" — remove white bg, use border style */
+
 
 body[data-theme="vercel"] a[href="#projects"]:hover {
-  background: #d4d4d4 !important;
+  background: #b7b7b7 !important;
+  
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
 }
 
-body[data-theme="vercel"] a[href="#contact"] {
-  border-color: var(--border-strong);
-  color: var(--text);
-  border-radius: 0.5rem;
-}
+/* "Contact Me" — enhance hover */
 
-body[data-theme="vercel"] button[type="submit"] {
-  background: #fff !important;
-  color: #000 !important;
-  border-radius: 0.5rem;
-}
+
+/* Submit button — keep white but with smooth hover */
+
 
 body[data-theme="vercel"] button[type="submit"]:hover {
   background: #d4d4d4 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
 }
 
+/* Scroll-down arrow hover */
 body[data-theme="vercel"] #hero a[aria-label="Scroll to about"] {
   color: var(--text-faint);
+  transition: color 0.2s ease, transform 0.2s ease;
 }
 
+body[data-theme="vercel"] #hero a[aria-label="Scroll to about"]:hover {
+  color: #fff;
+  transform: translateY(2px);
+}
+
+/* Hero glow kill */
 body[data-theme="vercel"] .hero-glow {
   background: transparent;
 }
 
+/* Card radius tweaks */
 body[data-theme="vercel"] .project-card,
 body[data-theme="vercel"] .fun-fact,
 body[data-theme="vercel"] .blog-card,
@@ -613,13 +645,12 @@ body[data-theme="vercel"] .project-tag {
   font-weight: 400;
 }
 
-body[data-theme="vercel"] a[href="#projects"],
-body[data-theme="vercel"] button[type="submit"] {
-  background: var(--accent);
-  color: #000;
+/* Project action buttons hover */
+body[data-theme="vercel"] .project-actions a {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-body[data-theme="vercel"] a[href="#projects"]:hover,
-body[data-theme="vercel"] button[type="submit"]:hover {
-  background: #d4d4d4;
+body[data-theme="vercel"] .project-actions a:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.15);
 }
