@@ -262,3 +262,164 @@ body { line-height: 1.6; min-height: 100vh; }
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ===========================================
+   Theme support — Vercel (dark/minimal)
+   =========================================== */
+body[data-theme="vercel"] {
+  background: #000;
+  color: #ededed;
+}
+
+body[data-theme="vercel"] ::-webkit-scrollbar-track { background: #000; }
+body[data-theme="vercel"] ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-color: #000; }
+body[data-theme="vercel"] ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.20); }
+
+body[data-theme="vercel"] ::selection { background: rgba(255,255,255,0.18); color: #fff; }
+body[data-theme="vercel"] *:focus-visible { outline-color: #fff; }
+
+/* Sidebar & mobile nav */
+body[data-theme="vercel"] aside#sidebar {
+  background: rgba(0,0,0,0.40) !important;
+  border-color: rgba(255,255,255,0.08);
+}
+body[data-theme="vercel"] #mobileNav {
+  background: rgba(0,0,0,0.95) !important;
+}
+body[data-theme="vercel"] #adminBackdrop {
+  background: #000 !important;
+}
+
+/* Nav active */
+body[data-theme="vercel"] .nav-btn.active {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  border-color: rgba(255,255,255,0.18);
+}
+
+/* Stats & quick actions */
+body[data-theme="vercel"] .stat-card {
+  background: rgba(255,255,255,0.03);
+  border-color: rgba(255,255,255,0.08);
+}
+body[data-theme="vercel"] .stat-card:hover {
+  background: rgba(255,255,255,0.06);
+}
+
+body[data-theme="vercel"] .quick-btn {
+  background: rgba(255,255,255,0.03);
+  border-color: rgba(255,255,255,0.08);
+}
+body[data-theme="vercel"] .quick-btn:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.15);
+}
+
+/* Forms */
+body[data-theme="vercel"] .form-group input,
+body[data-theme="vercel"] .form-group textarea,
+body[data-theme="vercel"] .form-group select {
+  background: rgba(255,255,255,0.03);
+  border-color: rgba(255,255,255,0.10);
+  color: #ededed;
+}
+body[data-theme="vercel"] .form-group input:focus,
+body[data-theme="vercel"] .form-group textarea:focus,
+body[data-theme="vercel"] .form-group select:focus {
+  border-color: #fff;
+  background: rgba(255,255,255,0.05);
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.08);
+}
+body[data-theme="vercel"] .form-group input::placeholder,
+body[data-theme="vercel"] .form-group textarea::placeholder {
+  color: rgba(237,237,237,0.30);
+}
+body[data-theme="vercel"] .form-group select option { background: #111; color: #ededed; }
+
+/* Inline rows */
+body[data-theme="vercel"] .inline-row {
+  background: rgba(255,255,255,0.03);
+  border-color: rgba(255,255,255,0.08);
+}
+body[data-theme="vercel"] .inline-row input,
+body[data-theme="vercel"] .inline-row select {
+  color: #ededed;
+}
+body[data-theme="vercel"] .inline-row button:hover {
+  background: rgba(239,68,68,0.10);
+}
+
+/* Cards */
+body[data-theme="vercel"] .admin-card {
+  background: rgba(255,255,255,0.03);
+  border-color: rgba(255,255,255,0.08);
+}
+body[data-theme="vercel"] .admin-card .card-thumb {
+  background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
+}
+
+/* Buttons & icons */
+body[data-theme="vercel"] .btn-icon {
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(255,255,255,0.08);
+  color: rgba(237,237,237,0.70);
+}
+body[data-theme="vercel"] .btn-icon:hover {
+  background: rgba(255,255,255,0.10);
+  color: #fff;
+  border-color: rgba(255,255,255,0.20);
+}
+body[data-theme="vercel"] .btn-icon.danger:hover {
+  background: rgba(239,68,68,0.10);
+  color: #fca5a5;
+  border-color: rgba(239,68,68,0.30);
+}
+
+/* Messages */
+body[data-theme="vercel"] .message-item {
+  background: rgba(255,255,255,0.03);
+  border-color: rgba(255,255,255,0.08);
+}
+body[data-theme="vercel"] .message-item:hover {
+  background: rgba(255,255,255,0.06);
+}
+body[data-theme="vercel"] .message-item.unread {
+  border-color: rgba(255,255,255,0.20);
+}
+body[data-theme="vercel"] .message-avatar {
+  background: linear-gradient(135deg, #fff, #a3a3a3);
+  color: #000;
+}
+body[data-theme="vercel"] .unread-dot {
+  background: #fff;
+}
+body[data-theme="vercel"] .message-from { color: #ededed; }
+body[data-theme="vercel"] .message-email { color: rgba(237,237,237,0.50); }
+body[data-theme="vercel"] .message-date { color: rgba(237,237,237,0.40); }
+body[data-theme="vercel"] .message-body { color: rgba(237,237,237,0.75); }
+
+/* Toast & modal */
+body[data-theme="vercel"] #toast {
+  background: #fff;
+  color: #000;
+}
+body[data-theme="vercel"] #modal > div {
+  background: #0a0a0a;
+  border-color: rgba(255,255,255,0.10);
+}
+
+/* Tailwind color overrides for Vercel */
+body[data-theme="vercel"] .text-electric { color: #fff !important; }
+body[data-theme="vercel"] .bg-electric { background-color: #fff !important; color: #000 !important; }
+body[data-theme="vercel"] .hover\:bg-electric:hover { background-color: #d4d4d4 !important; color: #000 !important; }
+body[data-theme="vercel"] .border-electric { border-color: rgba(255,255,255,0.20) !important; }
+
+/* Preload */
+html[data-theme-preload="vercel"] body {
+  background: #000;
+  color: #ededed;
+}
+html[data-theme-preload="helium"] body {
+  background: #0A0F2C;
+  color: #fff;
+}

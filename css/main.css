@@ -653,3 +653,81 @@ body[data-theme="vercel"] .project-actions a:hover {
   transform: translateY(-1px);
   filter: brightness(1.15);
 }
+
+/* ===========================================
+   Floating Admin Access
+   =========================================== */
+#adminAccess {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 40;
+}
+
+.admin-arrow {
+  width: 40px;
+  height: 64px;
+  border-radius: 16px 0 0 16px;
+  background: rgba(255,255,255,0.10);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.20);
+  border-right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.70);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.admin-arrow:hover,
+#adminAccess:hover .admin-arrow,
+#adminAccess:focus-within .admin-arrow {
+  background: rgba(255,255,255,0.20);
+  color: #fff;
+}
+
+.admin-panel {
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 8px;
+  opacity: 0;
+  transform: translate(16px, -50%);
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#adminAccess:hover .admin-panel,
+#adminAccess:focus-within .admin-panel,
+.admin-panel.admin-panel-visible {
+  opacity: 1;
+  transform: translate(0, -50%);
+  pointer-events: auto;
+}
+
+/* Vercel theme admin access */
+body[data-theme="vercel"] .admin-arrow {
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(255,255,255,0.10);
+  color: rgba(237,237,237,0.60);
+}
+
+body[data-theme="vercel"] .admin-arrow:hover {
+  background: rgba(255,255,255,0.10);
+  color: #fff;
+}
+
+body[data-theme="vercel"] .admin-panel a {
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(255,255,255,0.10);
+  color: #ededed;
+}
+
+body[data-theme="vercel"] .admin-panel a:hover {
+  background: #fff;
+  color: #000;
+}
