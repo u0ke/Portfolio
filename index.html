@@ -96,15 +96,11 @@
         <li><a href="#education" class="block py-1">Education</a></li>
         <li><a href="#blog" class="block py-1">Blog</a></li>
         <li><a href="#contact" class="block py-1">Contact</a></li>
-        <li>
-          <div class="theme-switcher py-1" role="group" aria-label="Color theme">
-            <button type="button" class="theme-dropdown-toggle" aria-label="Select theme" aria-expanded="false">
-              <svg class="theme-dropdown-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
-            <div class="theme-dropdown-menu">
-              <button type="button" class="theme-swatch" data-theme-target="helium" style="--swatch-color:#1BFFFF" aria-label="Helium blue" aria-pressed="true" title="Helium"></button>
-              <button type="button" class="theme-swatch" data-theme-target="vercel" style="--swatch-color:#000000" aria-label="Vercel black" aria-pressed="false" title="Vercel"></button>
-            </div>
+        <li class="py-1">
+          <span class="text-xs uppercase tracking-widest text-white/50 mb-2 block">Theme</span>
+          <div class="flex items-center gap-3">
+            <button type="button" class="theme-swatch" data-theme-target="helium" style="--swatch-color:#1BFFFF" aria-label="Helium blue" aria-pressed="true" title="Helium"></button>
+            <button type="button" class="theme-swatch" data-theme-target="vercel" style="--swatch-color:#000000" aria-label="Vercel black" aria-pressed="false" title="Vercel"></button>
           </div>
         </li>
         <li><a href="login.html" class="block py-1 text-electric">Admin</a></li>

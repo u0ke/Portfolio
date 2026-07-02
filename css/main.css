@@ -527,8 +527,8 @@ html[data-theme-preload="helium"] body {
   pointer-events: auto;
 }
 
-/* Simple filled circles inside dropdown */
-.theme-dropdown-menu .theme-swatch {
+/* Theme swatches — work in dropdown AND mobile inline menu */
+.theme-swatch {
   width: 26px;
   height: 26px;
   border-radius: 50%;
@@ -542,15 +542,15 @@ html[data-theme-preload="helium"] body {
   appearance: none;
 }
 
-.theme-dropdown-menu .theme-swatch::before {
+.theme-swatch::before {
   display: none;
 }
 
-.theme-dropdown-menu .theme-swatch:hover {
+.theme-swatch:hover {
   transform: scale(1.2);
 }
 
-.theme-dropdown-menu .theme-swatch[aria-pressed="true"] {
+.theme-swatch[aria-pressed="true"] {
   box-shadow: 0 0 0 2px var(--bg-base), 0 0 0 4px var(--accent);
   transform: scale(1.05);
 }

@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9B%BA%3C/text%3E%3C/svg%3E" />
-    <!-- Apply persisted theme before paint -->
+  <!-- Apply persisted theme before paint -->
   <script>
     (function() {
       try {
@@ -31,12 +31,26 @@
       } catch (e) {}
     })();
   </script>
+  <!-- Critical theme CSS to prevent flash of blue -->
+  <style>
+    html[data-theme-preload="vercel"] body {
+      background-color: #000 !important;
+      color: #ededed !important;
+    }
+    html[data-theme-preload="vercel"] #loginBackdrop {
+      background: #000 !important;
+    }
+    html[data-theme-preload="helium"] body {
+      background-color: #0A0F2C !important;
+      color: #fff !important;
+    }
+  </style>
   <link rel="stylesheet" href="css/main.css" />
 </head>
-<body class="bg-ink text-white font-sans antialiased min-h-screen flex items-center justify-center px-6 relative overflow-hidden" data-theme="helium">
+<body class="bg-ink text-white font-sans antialiased min-h-screen flex items-center justify-center px-6 relative overflow-hidden">
 
   <!-- Backdrop -->
-  <div class="fixed inset-0 -z-10 bg-gradient-to-b from-deep via-ocean to-ink"></div>
+  <div id="loginBackdrop" class="fixed inset-0 -z-10 bg-gradient-to-b from-deep via-ocean to-ink"></div>
   <div class="fixed inset-0 -z-10 hero-glow"></div>
 
   <!-- Back link -->
@@ -115,15 +129,16 @@
           pwd.focus();
         }
       });
-          // Apply theme from home
-    (function() {
-      try {
-        var t = localStorage.getItem('ice_portfolio_theme_v1');
-        if (t === 'vercel' || t === 'helium') {
-          document.body.setAttribute('data-theme', t);
-        }
-      } catch (e) {}
-    })();
+
+      // Apply theme from home
+      (function() {
+        try {
+          var t = localStorage.getItem('ice_portfolio_theme_v1');
+          if (t === 'vercel' || t === 'helium') {
+            document.body.setAttribute('data-theme', t);
+          }
+        } catch (e) {}
+      })();
     })();
   </script>
 </body>
