@@ -1,154 +1,165 @@
 /* ===========================================
    Hamza Bari (Ice) — admin.css
    Admin dashboard custom styles
+   Vercel-inspired redesign
+   Colors: Black #000, Cream #FFFFF7, Blue #3590ae
    =========================================== */
 
 html { scroll-behavior: smooth; }
-body { line-height: 1.6; min-height: 100vh; }
+body { line-height: 1.6; min-height: 100vh; background: #000; color: #FFFFF7; }
 
-::-webkit-scrollbar { width: 10px; height: 10px; }
-::-webkit-scrollbar-track { background: #0A0F2C; }
-::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 999px; border: 2px solid #0A0F2C; }
-::-webkit-scrollbar-thumb:hover { background: rgba(27,255,255,0.3); }
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: #000; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,247,0.06); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,247,0.12); }
 
-::selection { background: rgba(27, 255, 255, 0.3); color: #fff; }
-*:focus-visible { outline: 2px solid #1BFFFF; outline-offset: 2px; border-radius: 4px; }
+::selection { background: rgba(53, 144, 174, 0.25); color: #FFFFF7; }
+*:focus-visible { outline: 1px solid #3590ae; outline-offset: 2px; border-radius: 4px; }
 
 /* ---------- Sidebar nav ---------- */
 .nav-btn.active {
-  background: linear-gradient(135deg, rgba(27,255,255,0.15), rgba(99,102,241,0.15));
-  color: #fff;
-  border: 1px solid rgba(27,255,255,0.25);
+  background: rgba(255,255,247,0.04);
+  color: #FFFFF7;
+  border: 1px solid rgba(255,255,247,0.08);
 }
 
 /* ---------- Stat card ---------- */
 .stat-card {
-  padding: 1.5rem;
-  border-radius: 1.25rem;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  background: rgba(255,255,247,0.02);
+  border: 1px solid rgba(255,255,247,0.06);
   transition: all 0.25s ease;
 }
 .stat-card:hover {
-  background: rgba(255,255,255,0.07);
-  transform: translateY(-2px);
+  background: rgba(255,255,247,0.04);
+  transform: translateY(-1px);
 }
 
 /* ---------- Quick button ---------- */
 .quick-btn {
-  padding: 0.85rem 1rem;
-  border-radius: 0.85rem;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  color: #fff;
-  font-size: 0.875rem;
+  padding: 0.65rem 0.875rem;
+  border-radius: 0.6rem;
+  background: transparent;
+  border: 1px solid rgba(255,255,247,0.08);
+  color: rgba(255,255,247,0.60);
+  font-size: 0.8rem;
   font-weight: 500;
   transition: all 0.2s ease;
+  text-align: left;
 }
 .quick-btn:hover {
-  background: rgba(27,255,255,0.1);
-  border-color: rgba(27,255,255,0.3);
+  background: rgba(255,255,247,0.04);
+  border-color: rgba(255,255,247,0.15);
+  color: #FFFFF7;
 }
 
 /* ---------- Form group ---------- */
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 .form-group label {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
+  font-family: 'Geist Mono', monospace;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,247,0.35);
   font-weight: 500;
 }
 .form-group input,
 .form-group textarea,
 .form-group select {
   width: 100%;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 0.85rem;
-  padding: 0.7rem 0.95rem;
-  color: #fff;
+  background: rgba(255,255,247,0.02);
+  border: 1px solid rgba(255,255,247,0.06);
+  border-radius: 0.6rem;
+  padding: 0.6rem 0.85rem;
+  color: #FFFFF7;
   font-family: inherit;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   transition: all 0.2s ease;
 }
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus {
   outline: none;
-  border-color: #1BFFFF;
-  background: rgba(27,255,255,0.05);
-  box-shadow: 0 0 0 3px rgba(27,255,255,0.1);
+  border-color: #3590ae;
+  background: rgba(53, 144, 174, 0.03);
+  box-shadow: 0 0 0 2px rgba(53, 144, 174, 0.08);
 }
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-  color: rgba(255,255,255,0.3);
+  color: rgba(255,255,247,0.15);
 }
 .form-group select {
   appearance: none;
   -webkit-appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23ffffff80' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23ffffff30' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
-  background-position: right 1rem center;
-  padding-right: 2.5rem;
+  background-position: right 0.75rem center;
+  padding-right: 2rem;
 }
-.form-group select option { background: #1E1B4B; color: #fff; }
+.form-group select option { background: #0a0a0a; color: #FFFFF7; }
 
 /* ---------- Inline list (skills, fun facts) ---------- */
 .inline-row {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 0.85rem;
+  padding: 0.4rem 0.5rem;
+  background: rgba(255,255,247,0.02);
+  border: 1px solid rgba(255,255,247,0.06);
+  border-radius: 0.6rem;
 }
 .inline-row input,
 .inline-row select {
   flex: 1;
   background: transparent;
   border: 0;
-  color: #fff;
-  padding: 0.4rem 0.6rem;
-  font-size: 0.875rem;
+  color: #FFFFF7;
+  padding: 0.3rem 0.5rem;
+  font-size: 0.8rem;
   min-width: 0;
 }
 .inline-row input:focus { outline: none; }
 .inline-row button {
   flex-shrink: 0;
-  width: 32px;
-  height: 32px;
-  border-radius: 0.5rem;
+  width: 28px;
+  height: 28px;
+  border-radius: 0.4rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,247,0.30);
   transition: all 0.2s ease;
-  background: rgba(255,255,255,0.04);
+  background: rgba(255,255,247,0.02);
+  border: 1px solid rgba(255,255,247,0.06);
 }
-.inline-row button:hover { background: rgba(239, 68, 68, 0.15); color: #fca5a5; }
+.inline-row button:hover { background: rgba(239, 68, 68, 0.08); color: #fca5a5; border-color: rgba(239,68,68,0.15); }
 
 /* ---------- Project / Blog admin card ---------- */
 .admin-card {
   display: flex;
   gap: 1rem;
-  padding: 1.25rem;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 1.25rem;
+  padding: 1rem;
+  background: rgba(255,255,247,0.02);
+  border: 1px solid rgba(255,255,247,0.06);
+  border-radius: 0.75rem;
   align-items: flex-start;
+  transition: all 0.2s ease;
+}
+.admin-card:hover {
+  background: rgba(255,255,247,0.03);
+  border-color: rgba(255,255,247,0.10);
 }
 .admin-card .card-thumb {
-  width: 100px;
-  height: 70px;
-  border-radius: 0.75rem;
+  width: 80px;
+  height: 56px;
+  border-radius: 0.5rem;
   object-fit: cover;
-  background: linear-gradient(135deg, #1E1B4B, #1E3A8A);
+  background: linear-gradient(135deg, #0a0a0a, #111111);
   flex-shrink: 0;
 }
 .admin-card .card-body {
@@ -157,12 +168,13 @@ body { line-height: 1.6; min-height: 100vh; }
 }
 .admin-card .card-title {
   font-weight: 600;
-  color: #fff;
-  margin-bottom: 0.25rem;
+  color: #FFFFF7;
+  font-size: 0.9rem;
+  margin-bottom: 0.15rem;
 }
 .admin-card .card-sub {
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.5);
+  font-size: 0.75rem;
+  color: rgba(255,255,247,0.40);
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -171,42 +183,38 @@ body { line-height: 1.6; min-height: 100vh; }
 }
 .admin-card .card-actions {
   display: flex;
-  gap: 0.4rem;
+  gap: 0.3rem;
   flex-shrink: 0;
 }
 .btn-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 0.6rem;
+  width: 32px;
+  height: 32px;
+  border-radius: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255,255,255,0.05);
-  color: rgba(255,255,255,0.7);
+  background: rgba(255,255,247,0.03);
+  color: rgba(255,255,247,0.50);
   transition: all 0.2s ease;
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,247,0.06);
 }
-.btn-icon:hover { background: rgba(27,255,255,0.1); color: #1BFFFF; border-color: rgba(27,255,255,0.3); }
-.btn-icon.danger:hover { background: rgba(239,68,68,0.15); color: #fca5a5; border-color: rgba(239,68,68,0.3); }
+.btn-icon:hover { background: rgba(53, 144, 174, 0.08); color: #3590ae; border-color: rgba(53, 144, 174, 0.15); }
+.btn-icon.danger:hover { background: rgba(239,68,68,0.08); color: #fca5a5; border-color: rgba(239,68,68,0.15); }
 
 /* ---------- Message item ---------- */
 .message-item {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding: 1.25rem 1.5rem;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 1.25rem;
+  padding: 1rem 1.25rem;
+  background: rgba(255,255,247,0.02);
+  border: 1px solid rgba(255,255,247,0.06);
+  border-radius: 0.75rem;
   transition: all 0.2s ease;
   cursor: pointer;
 }
-.message-item:hover { background: rgba(255,255,255,0.07); }
-.message-item.unread { border-color: rgba(27,255,255,0.25); }
-.message-item.unread::before {
-  content: '';
-  position: absolute;
-}
+.message-item:hover { background: rgba(255,255,247,0.04); }
+.message-item.unread { border-color: rgba(53, 144, 174, 0.20); }
 .message-head {
   display: flex;
   align-items: center;
@@ -215,27 +223,27 @@ body { line-height: 1.6; min-height: 100vh; }
 }
 .message-meta { display: flex; align-items: center; gap: 0.5rem; min-width: 0; }
 .message-avatar {
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   border-radius: 999px;
-  background: linear-gradient(135deg, #1BFFFF, #6366f1);
-  color: #0A0F2C;
+  background: linear-gradient(135deg, #3590ae, #4db8d4);
+  color: #000;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
-.message-from { font-weight: 600; color: #fff; }
-.message-email { font-size: 0.8rem; color: rgba(255,255,255,0.5); }
-.message-date { font-size: 0.75rem; color: rgba(255,255,255,0.4); white-space: nowrap; }
-.message-body { color: rgba(255,255,255,0.75); font-size: 0.9rem; line-height: 1.5; }
+.message-from { font-weight: 600; color: #FFFFF7; font-size: 0.9rem; }
+.message-email { font-size: 0.75rem; color: rgba(255,255,247,0.35); }
+.message-date { font-size: 0.7rem; color: rgba(255,255,247,0.25); white-space: nowrap; font-family: 'Geist Mono', monospace; }
+.message-body { color: rgba(255,255,247,0.55); font-size: 0.85rem; line-height: 1.5; }
 .unread-dot {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   border-radius: 999px;
-  background: #1BFFFF;
+  background: #3590ae;
   display: inline-block;
 }
 
@@ -261,165 +269,4 @@ body { line-height: 1.6; min-height: 100vh; }
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
-}
-
-/* ===========================================
-   Theme support — Vercel (dark/minimal)
-   =========================================== */
-body[data-theme="vercel"] {
-  background: #000;
-  color: #ededed;
-}
-
-body[data-theme="vercel"] ::-webkit-scrollbar-track { background: #000; }
-body[data-theme="vercel"] ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-color: #000; }
-body[data-theme="vercel"] ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.20); }
-
-body[data-theme="vercel"] ::selection { background: rgba(255,255,255,0.18); color: #fff; }
-body[data-theme="vercel"] *:focus-visible { outline-color: #fff; }
-
-/* Sidebar & mobile nav */
-body[data-theme="vercel"] aside#sidebar {
-  background: rgba(0,0,0,0.40) !important;
-  border-color: rgba(255,255,255,0.08);
-}
-body[data-theme="vercel"] #mobileNav {
-  background: rgba(0,0,0,0.95) !important;
-}
-body[data-theme="vercel"] #adminBackdrop {
-  background: #000 !important;
-}
-
-/* Nav active */
-body[data-theme="vercel"] .nav-btn.active {
-  background: rgba(255,255,255,0.08);
-  color: #fff;
-  border-color: rgba(255,255,255,0.18);
-}
-
-/* Stats & quick actions */
-body[data-theme="vercel"] .stat-card {
-  background: rgba(255,255,255,0.03);
-  border-color: rgba(255,255,255,0.08);
-}
-body[data-theme="vercel"] .stat-card:hover {
-  background: rgba(255,255,255,0.06);
-}
-
-body[data-theme="vercel"] .quick-btn {
-  background: rgba(255,255,255,0.03);
-  border-color: rgba(255,255,255,0.08);
-}
-body[data-theme="vercel"] .quick-btn:hover {
-  background: rgba(255,255,255,0.08);
-  border-color: rgba(255,255,255,0.15);
-}
-
-/* Forms */
-body[data-theme="vercel"] .form-group input,
-body[data-theme="vercel"] .form-group textarea,
-body[data-theme="vercel"] .form-group select {
-  background: rgba(255,255,255,0.03);
-  border-color: rgba(255,255,255,0.10);
-  color: #ededed;
-}
-body[data-theme="vercel"] .form-group input:focus,
-body[data-theme="vercel"] .form-group textarea:focus,
-body[data-theme="vercel"] .form-group select:focus {
-  border-color: #fff;
-  background: rgba(255,255,255,0.05);
-  box-shadow: 0 0 0 3px rgba(255,255,255,0.08);
-}
-body[data-theme="vercel"] .form-group input::placeholder,
-body[data-theme="vercel"] .form-group textarea::placeholder {
-  color: rgba(237,237,237,0.30);
-}
-body[data-theme="vercel"] .form-group select option { background: #111; color: #ededed; }
-
-/* Inline rows */
-body[data-theme="vercel"] .inline-row {
-  background: rgba(255,255,255,0.03);
-  border-color: rgba(255,255,255,0.08);
-}
-body[data-theme="vercel"] .inline-row input,
-body[data-theme="vercel"] .inline-row select {
-  color: #ededed;
-}
-body[data-theme="vercel"] .inline-row button:hover {
-  background: rgba(239,68,68,0.10);
-}
-
-/* Cards */
-body[data-theme="vercel"] .admin-card {
-  background: rgba(255,255,255,0.03);
-  border-color: rgba(255,255,255,0.08);
-}
-body[data-theme="vercel"] .admin-card .card-thumb {
-  background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
-}
-
-/* Buttons & icons */
-body[data-theme="vercel"] .btn-icon {
-  background: rgba(255,255,255,0.04);
-  border-color: rgba(255,255,255,0.08);
-  color: rgba(237,237,237,0.70);
-}
-body[data-theme="vercel"] .btn-icon:hover {
-  background: rgba(255,255,255,0.10);
-  color: #fff;
-  border-color: rgba(255,255,255,0.20);
-}
-body[data-theme="vercel"] .btn-icon.danger:hover {
-  background: rgba(239,68,68,0.10);
-  color: #fca5a5;
-  border-color: rgba(239,68,68,0.30);
-}
-
-/* Messages */
-body[data-theme="vercel"] .message-item {
-  background: rgba(255,255,255,0.03);
-  border-color: rgba(255,255,255,0.08);
-}
-body[data-theme="vercel"] .message-item:hover {
-  background: rgba(255,255,255,0.06);
-}
-body[data-theme="vercel"] .message-item.unread {
-  border-color: rgba(255,255,255,0.20);
-}
-body[data-theme="vercel"] .message-avatar {
-  background: linear-gradient(135deg, #fff, #a3a3a3);
-  color: #000;
-}
-body[data-theme="vercel"] .unread-dot {
-  background: #fff;
-}
-body[data-theme="vercel"] .message-from { color: #ededed; }
-body[data-theme="vercel"] .message-email { color: rgba(237,237,237,0.50); }
-body[data-theme="vercel"] .message-date { color: rgba(237,237,237,0.40); }
-body[data-theme="vercel"] .message-body { color: rgba(237,237,237,0.75); }
-
-/* Toast & modal */
-body[data-theme="vercel"] #toast {
-  background: #fff;
-  color: #000;
-}
-body[data-theme="vercel"] #modal > div {
-  background: #0a0a0a;
-  border-color: rgba(255,255,255,0.10);
-}
-
-/* Tailwind color overrides for Vercel */
-body[data-theme="vercel"] .text-electric { color: #fff !important; }
-body[data-theme="vercel"] .bg-electric { background-color: #fff !important; color: #000 !important; }
-body[data-theme="vercel"] .hover\:bg-electric:hover { background-color: #d4d4d4 !important; color: #000 !important; }
-body[data-theme="vercel"] .border-electric { border-color: rgba(255,255,255,0.20) !important; }
-
-/* Preload */
-html[data-theme-preload="vercel"] body {
-  background: #000;
-  color: #ededed;
-}
-html[data-theme-preload="helium"] body {
-  background: #0A0F2C;
-  color: #fff;
 }

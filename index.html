@@ -4,156 +4,136 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Hamza Bari (Ice) — Web Developer & Graphic Designer from Agadir." />
-  <title>Hamza Bari — ice</title>
+  <title>Hamza Bari — Ice</title>
 
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Inter', 'Poppins', 'system-ui', 'sans-serif'],
+            sans: ['Inter', 'Geist', 'system-ui', 'sans-serif'],
+            mono: ['Geist Mono', 'JetBrains Mono', 'monospace'],
           },
           colors: {
-            ink: '#0A0F2C',
-            deep: '#1E1B4B',
-            ocean: '#1E3A8A',
-            electric: '#1BFFFF',
+            ink: '#000000',
+            surface: '#0a0a0a',
+            electric: '#3590ae',
+            cream: '#FFFFF7',
           },
         }
       }
     }
   </script>
 
-  <!-- AOS Animations (CSS loaded from CDN to match the JS below) -->
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
-
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-
-  <!-- Favicon -->
-  <link rel="icon" href="./assets/images/avatar.svg" type="image/svg+xml" />
-
-  <!-- Custom CSS -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9B%BA%3C/text%3E%3C/svg%3E" />
   <link rel="stylesheet" href="./css/main.css" />
-
-  <!-- Apply persisted theme before paint to avoid flash -->
-  <script>
-    (function () {
-      try {
-        var t = localStorage.getItem('ice_portfolio_theme_v1');
-        if (t === 'vercel' || t === 'helium') {
-          document.documentElement.setAttribute('data-theme-preload', t);
-        }
-      } catch (e) { /* ignore */ }
-    })();
-  </script>
 </head>
-<body class="bg-ink text-white font-sans antialiased overflow-x-hidden">
+<body class="bg-ink text-cream font-sans antialiased overflow-x-hidden selection:bg-electric/30 selection:text-cream">
 
-  <!-- Deep gradient backdrop -->
-  <div class="fixed inset-0 -z-10 bg-gradient-to-b from-deep via-ocean to-ink"></div>
+  <!-- Grid backdrop -->
+  <div class="fixed inset-0 -z-10 bg-ink"></div>
+  <div class="fixed inset-0 -z-10 vercel-grid pointer-events-none"></div>
   <div class="fixed inset-0 -z-10 hero-glow pointer-events-none"></div>
 
   <!-- Navigation -->
-  <header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-deep/30 border-b border-white/5">
-    <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="#hero" class="text-xl font-bold tracking-tight">
-        <span class="text-white">ice</span><span class="text-electric">.</span>
+  <header class="fixed top-0 left-0 right-0 z-50 border-b border-cream/[0.06] bg-ink/80 backdrop-blur-xl">
+    <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="#hero" class="text-sm font-semibold tracking-tight text-cream">
+        ice<span class="text-electric">.</span>
       </a>
-      <ul class="hidden md:flex items-center gap-8 text-sm font-medium text-white/80">
-        <li><a href="#about" class="hover:text-white transition">About</a></li>
-        <li><a href="#skills" class="hover:text-white transition">Skills</a></li>
-        <li><a href="#projects" class="hover:text-white transition">Projects</a></li>
-        <li><a href="#education" class="hover:text-white transition">Education</a></li>
-        <li><a href="#blog" class="hover:text-white transition">Blog</a></li>
-        <li><a href="#contact" class="hover:text-white transition">Contact</a></li>
-        <li>
-          <div class="theme-switcher" role="group" aria-label="Color theme">
-            <button type="button" class="theme-dropdown-toggle" aria-label="Select theme" aria-expanded="false">
-              <svg class="theme-dropdown-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
-            <div class="theme-dropdown-menu">
-              <button type="button" class="theme-swatch" data-theme-target="helium" style="--swatch-color:#1BFFFF" aria-label="Helium blue" aria-pressed="true" title="Helium"></button>
-              <button type="button" class="theme-swatch" data-theme-target="vercel" style="--swatch-color:#000000" aria-label="Vercel black" aria-pressed="false" title="Vercel"></button>
-            </div>
-          </div>
-        </li>
+      <ul class="hidden md:flex items-center gap-8 text-sm font-medium text-cream/50">
+        <li><a href="#about" class="hover:text-cream transition-colors duration-200">About</a></li>
+        <li><a href="#skills" class="hover:text-cream transition-colors duration-200">Skills</a></li>
+        <li><a href="#projects" class="hover:text-cream transition-colors duration-200">Projects</a></li>
+        <li><a href="#education" class="hover:text-cream transition-colors duration-200">Education</a></li>
+        <li><a href="#blog" class="hover:text-cream transition-colors duration-200">Blog</a></li>
+        <li><a href="#contact" class="hover:text-cream transition-colors duration-200">Contact</a></li>
       </ul>
-      <a href="login.html" class="hidden md:inline-block text-xs uppercase tracking-widest text-white/50 hover:text-white transition">Admin</a>
-      <button id="navToggle" class="md:hidden text-white p-2" aria-label="Toggle menu">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      <a href="login.html" class="hidden md:inline-flex items-center gap-2 text-xs font-medium text-cream/50 hover:text-cream transition border border-cream/10 rounded-full px-4 py-1.5 hover:border-cream/20">
+        Admin
+      </a>
+      <button id="navToggle" class="md:hidden text-cream/70 p-2 hover:text-cream transition" aria-label="Toggle menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       </button>
     </nav>
-    <div id="mobileMenu" class="md:hidden hidden border-t border-white/5 bg-deep/80">
-      <ul class="flex flex-col px-6 py-4 gap-4 text-sm font-medium text-white/80">
-        <li><a href="#about" class="block py-1">About</a></li>
-        <li><a href="#skills" class="block py-1">Skills</a></li>
-        <li><a href="#projects" class="block py-1">Projects</a></li>
-        <li><a href="#education" class="block py-1">Education</a></li>
-        <li><a href="#blog" class="block py-1">Blog</a></li>
-        <li><a href="#contact" class="block py-1">Contact</a></li>
-        <li class="py-1">
-          <span class="text-xs uppercase tracking-widest text-white/50 mb-2 block">Theme</span>
-          <div class="flex items-center gap-3">
-            <button type="button" class="theme-swatch" data-theme-target="helium" style="--swatch-color:#1BFFFF" aria-label="Helium blue" aria-pressed="true" title="Helium"></button>
-            <button type="button" class="theme-swatch" data-theme-target="vercel" style="--swatch-color:#000000" aria-label="Vercel black" aria-pressed="false" title="Vercel"></button>
-          </div>
-        </li>
-        <li><a href="login.html" class="block py-1 text-electric">Admin</a></li>
+    <div id="mobileMenu" class="md:hidden hidden border-t border-cream/[0.06] bg-ink/95 backdrop-blur-xl">
+      <ul class="flex flex-col px-6 py-4 gap-1 text-sm font-medium text-cream/60">
+        <li><a href="#about" class="block py-2 hover:text-cream transition">About</a></li>
+        <li><a href="#skills" class="block py-2 hover:text-cream transition">Skills</a></li>
+        <li><a href="#projects" class="block py-2 hover:text-cream transition">Projects</a></li>
+        <li><a href="#education" class="block py-2 hover:text-cream transition">Education</a></li>
+        <li><a href="#blog" class="block py-2 hover:text-cream transition">Blog</a></li>
+        <li><a href="#contact" class="block py-2 hover:text-cream transition">Contact</a></li>
+        <li class="pt-2 border-t border-cream/[0.06] mt-2"><a href="login.html" class="block py-2 text-electric">Admin</a></li>
       </ul>
     </div>
   </header>
 
   <!-- HERO -->
-  <section id="hero" class="min-h-screen flex items-center justify-center px-6 pt-24 pb-16">
-    <div class="text-center max-w-3xl mx-auto">
-      <p data-aos="fade-down" data-aos-delay="100" class="text-xs md:text-sm uppercase tracking-[0.4em] text-white/50 mb-6">
-        <span class="inline-block w-2 h-2 rounded-full bg-electric mr-2 align-middle"></span>
+  <section id="hero" class="relative min-h-screen flex items-center justify-center px-6 pt-16">
+    <div class="max-w-5xl mx-auto text-center">
+      <p class="font-mono text-xs uppercase tracking-[0.2em] text-cream/40 mb-8 animate-fade-in">
+        <span class="inline-block w-1.5 h-1.5 rounded-full bg-electric mr-2 align-middle animate-pulse"></span>
         <span id="heroTagline">Web Developer & Graphic Designer</span>
       </p>
 
-      <h1 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[1.05] mb-8">
+      <h1 class="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-[0.95] mb-8 text-cream">
         <span id="heroName" class="block hero-name-reveal"></span>
       </h1>
 
-      <p data-aos="fade-up" data-aos-delay="900" class="text-base md:text-lg text-white/70 max-w-xl mx-auto mb-10 leading-relaxed">
+      <p class="text-base md:text-lg text-cream/50 max-w-lg mx-auto mb-10 leading-relaxed font-light animate-fade-in" style="animation-delay:0.6s">
         Building sleek, minimalist digital experiences. Based in Agadir, Morocco. Quiet code, loud results.
       </p>
 
-      <div data-aos="fade-up" data-aos-delay="1100" class="flex flex-wrap items-center justify-center gap-4">
-        <a href="#projects" class="project-button px-7 py-3 rounded-full bg-white text-ink font-semibold text-sm tracking-wide hover:bg-electric hover:text-ink transition">View My Work</a>
-        <a href="#contact" class="px-7 py-3 rounded-full border border-white/30 text-white font-semibold text-sm tracking-wide hover:bg-white/10 transition">Contact Me</a>
-      </div>
-
-      <div data-aos="fade-up" data-aos-delay="1400" class="mt-20 flex justify-center">
-        <a href="#about" class="text-white/40 hover:text-white animate-bounce inline-block" aria-label="Scroll to about">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 13l5 5 5-5M7 7l5 5 5-5"/></svg>
+      <div class="flex flex-wrap items-center justify-center gap-3 animate-fade-in" style="animation-delay:0.8s">
+        <a href="#projects" class="group inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-cream text-ink text-sm font-medium hover:bg-cream/90 transition-all duration-200">
+          View My Work
+          <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#contact" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-cream/15 text-cream/70 text-sm font-medium hover:border-cream/30 hover:text-cream transition-all duration-200">
+          Contact Me
         </a>
       </div>
+    </div>
+
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+      <a href="#about" class="text-cream/20 hover:text-cream/40 transition" aria-label="Scroll to about">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      </a>
     </div>
   </section>
 
   <!-- ABOUT -->
-  <section id="about" class="py-24 md:py-32 px-6">
+  <section id="about" class="py-32 md:py-40 px-6">
     <div class="max-w-6xl mx-auto">
-      <div class="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-        <div data-aos="fade-right" class="flex justify-center">
-          <div class="relative">
-            <div class="absolute -inset-4 bg-electric/10 rounded-full blur-3xl"></div>
-            <img id="avatarImg" src="./assets/images/avatar.svg" alt="Hamza Bari" class="relative w-56 h-56 md:w-72 md:h-72 rounded-full object-cover border-2 border-white/10" />
+      <div class="grid md:grid-cols-2 gap-16 md:gap-24 items-center">
+        <div class="flex justify-center md:justify-start">
+          <div class="relative group">
+            <div class="absolute -inset-1 bg-electric/20 rounded-2xl blur-2xl opacity-60 group-hover:opacity-80 transition duration-500"></div>
+            <img id="avatarImg" src="6cd56b2b0271028d90c310ba5338942d.jpg" alt="Hamza Bari" class="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl object-cover border border-cream/10 shadow-2xl" />
           </div>
         </div>
-        <div data-aos="fade-left">
-          <p class="text-xs uppercase tracking-[0.3em] text-electric mb-4">About Me</p>
-          <h2 class="text-3xl md:text-5xl font-bold mb-6 tracking-tight">A 19-year-old from the coast building for the web.</h2>
-          <p id="aboutBio" class="text-white/70 text-base md:text-lg leading-relaxed mb-8"></p>
+        <div>
+          <p class="font-mono text-xs uppercase tracking-[0.2em] text-electric mb-4">About Me</p>
+          <h2 class="text-3xl md:text-5xl font-bold mb-6 tracking-tight text-cream">A 19-year-old from the coast building for the web.</h2>
+          <p id="aboutBio" class="text-cream/50 text-base md:text-lg leading-relaxed mb-8 font-light"></p>
 
-          <div class="grid grid-cols-2 gap-3" id="funFactsGrid">
-            <!-- Fun facts injected via JS -->
+          <div class="grid grid-cols-2 gap-3" id="funFactsGrid"></div>
+        </div>
+      </div>
+
+      <!-- Cat photo accent -->
+      <div class="mt-24 max-w-3xl mx-auto">
+        <div class="relative rounded-2xl border border-cream/[0.06] overflow-hidden group">
+          <img src="Cat loves discord.jpg" alt="Coding companion" class="w-full h-64 md:h-80 object-cover opacity-80 group-hover:opacity-100 transition duration-700" />
+          <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/20 to-transparent"></div>
+          <div class="absolute bottom-6 left-6">
+            <p class="font-mono text-xs uppercase tracking-widest text-electric mb-1">Behind the scenes</p>
+            <p class="text-sm text-cream/60">My coding assistant. Not very productive, but excellent moral support.</p>
           </div>
         </div>
       </div>
@@ -161,128 +141,116 @@
   </section>
 
   <!-- SKILLS -->
-  <section id="skills" class="py-24 md:py-32 px-6">
+  <section id="skills" class="py-32 md:py-40 px-6 border-t border-cream/[0.06]">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16" data-aos="fade-up">
-        <p class="text-xs uppercase tracking-[0.3em] text-electric mb-4">Skills</p>
-        <h2 class="text-3xl md:text-5xl font-bold tracking-tight">What I work with</h2>
+      <div class="text-center mb-16">
+        <p class="font-mono text-xs uppercase tracking-[0.2em] text-electric mb-4">Skills</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-cream">What I work with</h2>
       </div>
 
-      <div class="grid md:grid-cols-2 gap-10">
-        <!-- Hard Skills -->
-        <div data-aos="fade-up" data-aos-delay="100" class="rounded-3xl bg-white/5 border border-white/10 p-8 md:p-10">
-          <h3 class="text-xl font-semibold mb-6 flex items-center gap-2">
-            <span class="w-1.5 h-6 bg-electric rounded-full"></span> Hard Skills
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="rounded-2xl border border-cream/[0.06] p-8 md:p-10 bg-surface/50">
+          <h3 class="text-sm font-semibold mb-8 flex items-center gap-3 font-mono uppercase tracking-wider text-cream/70">
+            <span class="w-2 h-2 rounded-full bg-electric"></span> Hard Skills
           </h3>
-          <div id="hardSkillsList" class="space-y-5">
-            <!-- Injected via JS -->
-          </div>
+          <div id="hardSkillsList" class="space-y-6"></div>
         </div>
-
-        <!-- Soft Skills -->
-        <div data-aos="fade-up" data-aos-delay="200" class="rounded-3xl bg-white/5 border border-white/10 p-8 md:p-10">
-          <h3 class="text-xl font-semibold mb-6 flex items-center gap-2">
-            <span class="w-1.5 h-6 bg-white rounded-full"></span> Soft Skills
+        <div class="rounded-2xl border border-cream/[0.06] p-8 md:p-10 bg-surface/50">
+          <h3 class="text-sm font-semibold mb-8 flex items-center gap-3 font-mono uppercase tracking-wider text-cream/70">
+            <span class="w-2 h-2 rounded-full bg-cream/40"></span> Soft Skills
           </h3>
-          <div id="softSkillsList" class="flex flex-wrap gap-2.5">
-            <!-- Injected via JS -->
-          </div>
+          <div id="softSkillsList" class="flex flex-wrap gap-2"></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- PROJECTS -->
-  <section id="projects" class="py-24 md:py-32 px-6">
+  <section id="projects" class="py-32 md:py-40 px-6 border-t border-cream/[0.06]">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16" data-aos="fade-up">
-        <p class="text-xs uppercase tracking-[0.3em] text-electric mb-4">Projects</p>
-        <h2 class="text-3xl md:text-5xl font-bold tracking-tight">Selected work</h2>
+      <div class="text-center mb-16">
+        <p class="font-mono text-xs uppercase tracking-[0.2em] text-electric mb-4">Projects</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-cream">Selected work</h2>
       </div>
-      <div id="projectsGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Injected via JS -->
-      </div>
+      <div id="projectsGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
     </div>
   </section>
 
   <!-- EDUCATION -->
-  <section id="education" class="py-24 md:py-32 px-6">
+  <section id="education" class="py-32 md:py-40 px-6 border-t border-cream/[0.06]">
     <div class="max-w-4xl mx-auto">
-      <div class="text-center mb-16" data-aos="fade-up">
-        <p class="text-xs uppercase tracking-[0.3em] text-electric mb-4">Education</p>
-        <h2 class="text-3xl md:text-5xl font-bold tracking-tight">Where I learned</h2>
+      <div class="text-center mb-16">
+        <p class="font-mono text-xs uppercase tracking-[0.2em] text-electric mb-4">Education</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-cream">Where I learned</h2>
       </div>
-      <div id="educationList" class="space-y-4">
-        <!-- Injected via JS -->
-      </div>
+      <div id="educationList" class="space-y-4"></div>
     </div>
   </section>
 
   <!-- BLOG -->
-  <section id="blog" class="py-24 md:py-32 px-6">
+  <section id="blog" class="py-32 md:py-40 px-6 border-t border-cream/[0.06]">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16" data-aos="fade-up">
-        <p class="text-xs uppercase tracking-[0.3em] text-electric mb-4">Blog</p>
-        <h2 class="text-3xl md:text-5xl font-bold tracking-tight">Recent writing</h2>
+      <div class="text-center mb-16">
+        <p class="font-mono text-xs uppercase tracking-[0.2em] text-electric mb-4">Blog</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight text-cream">Recent writing</h2>
       </div>
-      <div id="blogGrid" class="grid md:grid-cols-3 gap-6">
-        <!-- Injected via JS -->
-      </div>
+      <div id="blogGrid" class="grid md:grid-cols-3 gap-4"></div>
     </div>
   </section>
 
   <!-- CONTACT -->
-  <section id="contact" class="py-24 md:py-32 px-6">
-    <div class="max-w-2xl mx-auto">
-      <div class="text-center mb-12" data-aos="fade-up">
-        <p class="text-xs uppercase tracking-[0.3em] text-electric mb-4">Contact</p>
-        <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-4">Let's talk</h2>
-        <p class="text-white/60">Got a project, a question, or just want to say hi? Drop a message.</p>
+  <section id="contact" class="py-32 md:py-40 px-6 border-t border-cream/[0.06]">
+    <div class="max-w-xl mx-auto">
+      <div class="text-center mb-12">
+        <p class="font-mono text-xs uppercase tracking-[0.2em] text-electric mb-4">Contact</p>
+        <h2 class="text-3xl md:text-5xl font-bold tracking-tight mb-4 text-cream">Let's talk</h2>
+        <p class="text-cream/40 text-sm">Got a project, a question, or just want to say hi? Drop a message.</p>
       </div>
 
-      <form id="contactForm" data-aos="fade-up" data-aos-delay="100" class="space-y-5">
-        <div>
-          <label class="block text-xs uppercase tracking-widest text-white/50 mb-2" for="cName">Name</label>
+      <form id="contactForm" class="space-y-6">
+        <div class="group">
+          <label class="block font-mono text-[10px] uppercase tracking-[0.2em] text-cream/30 mb-2 group-focus-within:text-electric transition-colors" for="cName">Name</label>
           <input id="cName" name="name" type="text" required
-            class="w-full bg-transparent border-0 border-b border-white/20 focus:border-electric focus:ring-0 focus:outline-none px-0 py-3 text-white placeholder-white/30 transition"
+            class="w-full bg-transparent border-0 border-b border-cream/10 focus:border-electric focus:ring-0 focus:outline-none px-0 py-3 text-cream text-sm placeholder-cream/20 transition-colors"
             placeholder="Your name" />
         </div>
-        <div>
-          <label class="block text-xs uppercase tracking-widest text-white/50 mb-2" for="cEmail">Email</label>
+        <div class="group">
+          <label class="block font-mono text-[10px] uppercase tracking-[0.2em] text-cream/30 mb-2 group-focus-within:text-electric transition-colors" for="cEmail">Email</label>
           <input id="cEmail" name="email" type="email" required
-            class="w-full bg-transparent border-0 border-b border-white/20 focus:border-electric focus:ring-0 focus:outline-none px-0 py-3 text-white placeholder-white/30 transition"
+            class="w-full bg-transparent border-0 border-b border-cream/10 focus:border-electric focus:ring-0 focus:outline-none px-0 py-3 text-cream text-sm placeholder-cream/20 transition-colors"
             placeholder="you@example.com" />
         </div>
-        <div>
-          <label class="block text-xs uppercase tracking-widest text-white/50 mb-2" for="cMessage">Message</label>
+        <div class="group">
+          <label class="block font-mono text-[10px] uppercase tracking-[0.2em] text-cream/30 mb-2 group-focus-within:text-electric transition-colors" for="cMessage">Message</label>
           <textarea id="cMessage" name="message" rows="4" required
-            class="w-full bg-transparent border-0 border-b border-white/20 focus:border-electric focus:ring-0 focus:outline-none px-0 py-3 text-white placeholder-white/30 transition resize-none"
+            class="w-full bg-transparent border-0 border-b border-cream/10 focus:border-electric focus:ring-0 focus:outline-none px-0 py-3 text-cream text-sm placeholder-cream/20 transition-colors resize-none"
             placeholder="Tell me what's on your mind..."></textarea>
         </div>
         <div class="pt-4 flex flex-col sm:flex-row items-center gap-4">
-          <button type="submit" class="px-7 py-3 rounded-full bg-white text-ink font-semibold text-sm tracking-wide hover:bg-electric transition w-full sm:w-auto">Send Message</button>
-          <p id="formStatus" class="text-sm text-white/60"></p>
+          <button type="submit" class="px-7 py-2.5 rounded-full bg-cream text-ink font-medium text-sm hover:bg-cream/90 transition w-full sm:w-auto">
+            Send Message
+          </button>
+          <p id="formStatus" class="text-sm text-cream/40"></p>
         </div>
       </form>
 
-      <div class="mt-16 flex items-center justify-center gap-6 text-sm text-white/60">
-        <a id="emailLink" href="#" class="hover:text-white transition">Email</a>
-        <span class="w-1 h-1 rounded-full bg-white/30"></span>
-        <a id="linkedinLink" href="#" target="_blank" rel="noopener" class="hover:text-white transition">LinkedIn</a>
-        <span class="w-1 h-1 rounded-full bg-white/30"></span>
-        <a id="githubLink" href="#" target="_blank" rel="noopener" class="hover:text-white transition">GitHub</a>
+      <div class="mt-16 flex items-center justify-center gap-6 text-sm text-cream/30">
+        <a id="emailLink" href="#" class="hover:text-cream transition-colors">Email</a>
+        <span class="w-px h-3 bg-cream/10"></span>
+        <a id="linkedinLink" href="#" target="_blank" rel="noopener" class="hover:text-cream transition-colors">LinkedIn</a>
+        <span class="w-px h-3 bg-cream/10"></span>
+        <a id="githubLink" href="#" target="_blank" rel="noopener" class="hover:text-cream transition-colors">GitHub</a>
       </div>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="py-10 px-6 border-t border-white/5 text-center text-sm text-white/40">
-    <p>© <span id="year"></span> <span id="footerName">Hamza Bari</span>. Crafted with care in Agadir.</p>
+  <footer class="py-10 px-6 border-t border-cream/[0.06] text-center">
+    <p class="text-xs text-cream/25 font-mono">
+      © <span id="year"></span> <span id="footerName">Hamza Bari</span>. Crafted with care in Agadir.
+    </p>
   </footer>
 
-  <!-- AOS -->
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <!-- App JS -->
   <script src="js/main.js"></script>
 </body>
 </html>

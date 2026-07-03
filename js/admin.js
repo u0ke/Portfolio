@@ -1,6 +1,7 @@
 /* ===========================================
    Hamza Bari (ice) — admin.js
    Full admin dashboard logic
+   Vercel-inspired redesign
    =========================================== */
 
 (function () {
@@ -19,7 +20,7 @@
       name: 'Hamza Bari', nickname: 'ice', tagline: 'Web Developer & Graphic Designer',
       age: 19, location: 'Agadir, Morocco',
       bio: "I'm a 19-year-old creative developer from Morocco. I specialize in building sleek, minimalist digital experiences that feel calm, fast, and intentional. When I'm not coding, I'm usually hitting the gym or optimizing my gaming setup.",
-      avatar: 'assets/images/avatar.svg',
+      avatar: '6cd56b2b0271028d90c310ba5338942d.jpg',
       funFacts: [
         { icon: 'dumbbell', label: 'Gym Lover' },
         { icon: 'cpu', label: 'PC Enthusiast' },
@@ -30,15 +31,15 @@
     },
     skills: {
       hard: [
-        { "name": "Html", "level": 96 },
-        { "name": "CSS", "level": 95 },
-        { "name": "Tailwind CSS", "level": 95 },
-        { "name": "JavaScript", "level": 62 },
-        { "name": "Node.js", "level": 60 },
-        { "name": "Python", "level": 55 },
-        { "name": "Git", "level": 93 },
-        { "name": "Figma", "level": 70 },
-        { "name": "VS Code", "level": 90 }
+        { name: 'HTML', level: 96 },
+        { name: 'CSS', level: 95 },
+        { name: 'Tailwind CSS', level: 95 },
+        { name: 'JavaScript', level: 62 },
+        { name: 'Node.js', level: 60 },
+        { name: 'Python', level: 55 },
+        { name: 'Git', level: 93 },
+        { name: 'Figma', level: 70 },
+        { name: 'VS Code', level: 90 }
       ],
       soft: [
         { name: 'Problem-solving' },
@@ -53,7 +54,7 @@
     education: [{ school: 'Ecole du Web Avancé (EWA)', location: 'Agadir, Morocco', program: 'Web Development Program', status: 'Currently Studying' }],
     blog: [{ id: 'b-001', title: 'Tailwind CSS Tips for Minimalist Design', excerpt: 'A few opinionated tricks to keep your Tailwind output clean and your UI calm.', date: '2026-04-12' }],
     messages: [],
-    settings: { siteTitle: 'Hamza Bari — ice', theme: 'helium-dark', accent: '#1BFFFF' }
+    settings: { siteTitle: 'Hamza Bari — Ice', theme: 'vercel', accent: '#3590ae' }
   };
 
   const ICONS = {
@@ -101,8 +102,8 @@
     t.textContent = msg;
     t.classList.remove('hidden');
     t.classList.add('show');
-    t.style.background = isError ? 'rgba(239, 68, 68, 0.95)' : '#1BFFFF';
-    t.style.color = isError ? '#fff' : '#0A0F2C';
+    t.style.background = isError ? 'rgba(239, 68, 68, 0.95)' : '#3590ae';
+    t.style.color = isError ? '#fff' : '#000';
     clearTimeout(toastTimer);
     toastTimer = setTimeout(() => {
       t.classList.remove('show');
@@ -137,7 +138,6 @@
     if (section === 'messages') renderMessagesAdmin();
     if (section === 'settings') renderSettingsForm();
 
-    // Close mobile nav
     const mob = $('#mobileNav');
     if (mob) mob.classList.add('hidden');
   }
@@ -160,14 +160,14 @@
     const recent = (state.data.messages || []).slice().reverse().slice(0, 5);
     const recEl = $('#recentMessages');
     if (!recent.length) {
-      recEl.innerHTML = '<p class="text-white/40">No messages yet.</p>';
+      recEl.innerHTML = '<p class="text-cream/20 text-sm">No messages yet.</p>';
     } else {
       recEl.innerHTML = recent.map(m => `
         <div class="flex items-start gap-2 ${m.read ? '' : 'font-semibold'}">
           <span class="${m.read ? '' : 'unread-dot'} mt-1.5"></span>
           <div class="min-w-0 flex-1">
-            <p class="text-white truncate">${esc(m.name)} <span class="text-white/40 font-normal">— ${esc(m.email)}</span></p>
-            <p class="text-white/50 text-xs truncate">${esc(m.message)}</p>
+            <p class="text-cream/70 text-sm truncate">${esc(m.name)} <span class="text-cream/25 font-normal">— ${esc(m.email)}</span></p>
+            <p class="text-cream/20 text-xs truncate">${esc(m.message)}</p>
           </div>
         </div>
       `).join('');
@@ -190,11 +190,9 @@
     f.linkedin.value = (p.contact || {}).linkedin || '';
     f.github.value = (p.contact || {}).github || '';
 
-    // Fun facts
     const factsList = $('#funFactsList');
     factsList.innerHTML = (p.funFacts || []).map((f, i) => funFactRow(f, i)).join('');
 
-    // Education
     const eduList = $('#educationList');
     eduList.innerHTML = (state.data.education || []).map((e, i) => eduRow(e, i)).join('');
   }
@@ -214,7 +212,7 @@
 
   function eduRow(e, i) {
     return `
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-2 p-3 bg-white/4 rounded-xl border border-white/8" data-row="edu" data-i="${i}">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-2 p-3 bg-cream/[0.02] rounded-lg border border-cream/[0.06]" data-row="edu" data-i="${i}">
         <input data-key="school" type="text" value="${escAttr(e.school || '')}" placeholder="School" class="md:col-span-2" />
         <input data-key="location" type="text" value="${escAttr(e.location || '')}" placeholder="Location" />
         <input data-key="program" type="text" value="${escAttr(e.program || '')}" placeholder="Program" />
@@ -258,17 +256,17 @@
     const list = state.data.projects || [];
     const el = $('#projectsAdminList');
     if (!list.length) {
-      el.innerHTML = '<p class="text-white/40 text-center py-12">No projects yet. Click "New Project" to add one.</p>';
+      el.innerHTML = '<p class="text-cream/20 text-sm text-center py-12">No projects yet. Click "New Project" to add one.</p>';
       return;
     }
     el.innerHTML = list.map(p => `
       <div class="admin-card">
-        <img class="card-thumb" src="${escAttr(p.image || 'assets/images/project-1.svg')}" alt="" onerror="this.style.background='linear-gradient(135deg,#1E1B4B,#1E3A8A)';this.removeAttribute('src');" />
+        <img class="card-thumb" src="${escAttr(p.image || 'assets/images/project-1.svg')}" alt="" onerror="this.style.background='linear-gradient(135deg,#0a0a0a,#111111)';this.removeAttribute('src');" />
         <div class="card-body">
           <p class="card-title">${esc(p.title || 'Untitled')}</p>
           <p class="card-sub">${esc(p.description || '')}</p>
           <div class="flex flex-wrap gap-1.5 mt-2">
-            ${(p.stack || []).map(t => `<span class="text-[10px] px-2 py-0.5 rounded-full bg-electric/10 text-electric border border-electric/20">${esc(t)}</span>`).join('')}
+            ${(p.stack || []).map(t => `<span class="text-[10px] font-mono px-2 py-0.5 rounded bg-electric/10 text-electric border border-electric/15">${esc(t)}</span>`).join('')}
           </div>
         </div>
         <div class="card-actions">
@@ -317,12 +315,12 @@
         <div class="form-group">
           <label class="flex items-center gap-2 cursor-pointer">
             <input name="featured" type="checkbox" ${p.featured ? 'checked' : ''} class="w-4 h-4 accent-electric" />
-            <span class="text-sm text-white/80 normal-case tracking-normal">Featured project</span>
+            <span class="text-sm text-cream/60 normal-case tracking-normal">Featured project</span>
           </label>
         </div>
         <div class="flex justify-end gap-2 pt-2">
-          <button type="button" data-modal-close class="px-5 py-2.5 rounded-full border border-white/20 text-white text-sm font-semibold hover:bg-white/5 transition">Cancel</button>
-          <button type="submit" class="px-5 py-2.5 rounded-full bg-white text-ink text-sm font-semibold hover:bg-electric transition">${isNew ? 'Create' : 'Save'}</button>
+          <button type="button" data-modal-close class="px-5 py-2 rounded-full border border-cream/15 text-cream/60 text-sm font-medium hover:bg-cream/5 transition">Cancel</button>
+          <button type="submit" class="px-5 py-2 rounded-full bg-cream text-ink text-sm font-medium hover:bg-cream/90 transition">${isNew ? 'Create' : 'Save'}</button>
         </div>
       </form>
     `);
@@ -357,16 +355,16 @@
     const list = state.data.blog || [];
     const el = $('#blogAdminList');
     if (!list.length) {
-      el.innerHTML = '<p class="text-white/40 text-center py-12">No posts yet. Click "New Post" to add one.</p>';
+      el.innerHTML = '<p class="text-cream/20 text-sm text-center py-12">No posts yet. Click "New Post" to add one.</p>';
       return;
     }
     el.innerHTML = list.map(b => `
       <div class="admin-card">
-        <div class="card-thumb flex items-center justify-center text-3xl">📝</div>
+        <div class="card-thumb flex items-center justify-center text-2xl bg-cream/[0.02]">📝</div>
         <div class="card-body">
           <p class="card-title">${esc(b.title || 'Untitled')}</p>
           <p class="card-sub">${esc(b.excerpt || '')}</p>
-          <p class="text-xs text-white/40 mt-2">${esc(b.date || '')}</p>
+          <p class="text-xs text-cream/20 mt-2 font-mono">${esc(b.date || '')}</p>
         </div>
         <div class="card-actions">
           <button class="btn-icon" data-edit="blog" data-id="${escAttr(b.id)}" aria-label="Edit">
@@ -398,8 +396,8 @@
           <input name="date" type="date" value="${escAttr(b.date)}" />
         </div>
         <div class="flex justify-end gap-2 pt-2">
-          <button type="button" data-modal-close class="px-5 py-2.5 rounded-full border border-white/20 text-white text-sm font-semibold hover:bg-white/5 transition">Cancel</button>
-          <button type="submit" class="px-5 py-2.5 rounded-full bg-white text-ink text-sm font-semibold hover:bg-electric transition">${isNew ? 'Create' : 'Save'}</button>
+          <button type="button" data-modal-close class="px-5 py-2 rounded-full border border-cream/15 text-cream/60 text-sm font-medium hover:bg-cream/5 transition">Cancel</button>
+          <button type="submit" class="px-5 py-2 rounded-full bg-cream text-ink text-sm font-medium hover:bg-cream/90 transition">${isNew ? 'Create' : 'Save'}</button>
         </div>
       </form>
     `);
@@ -430,7 +428,7 @@
     const list = (state.data.messages || []).slice().reverse();
     const el = $('#messagesList');
     if (!list.length) {
-      el.innerHTML = '<p class="text-white/40 text-center py-12">No messages yet.</p>';
+      el.innerHTML = '<p class="text-cream/20 text-sm text-center py-12">No messages yet.</p>';
       return;
     }
     el.innerHTML = list.map(m => `
@@ -463,8 +461,8 @@
     const s = state.data.settings || {};
     const f = $('#settingsForm');
     f.siteTitle.value = s.siteTitle || '';
-    f.accent.value = s.accent || '#1BFFFF';
-    f.theme.value = s.theme || 'helium-dark';
+    f.accent.value = s.accent || '#3590ae';
+    f.theme.value = s.theme || 'vercel';
 
     const creds = window.IceAuth.getCreds() || {};
     const cf = $('#credsForm');
@@ -485,11 +483,9 @@
 
   // -------- Form Handlers --------
   function attachHandlers() {
-    // Nav
     $$('.nav-btn').forEach(btn => btn.addEventListener('click', () => navigate(btn.dataset.nav)));
     $$('.quick-btn').forEach(btn => btn.addEventListener('click', () => navigate(btn.dataset.nav)));
 
-    // Logout
     function doLogout() {
       window.IceAuth.logout();
       window.location.href = 'login.html';
@@ -498,10 +494,8 @@
     const mobLogout = $('#logoutBtnMobile');
     if (mobLogout) mobLogout.addEventListener('click', doLogout);
 
-    // Mobile nav
     $('#mobileNavToggle').addEventListener('click', () => $('#mobileNav').classList.toggle('hidden'));
 
-    // Modal close
     $('#modalClose').addEventListener('click', closeModal);
     $('#modal').addEventListener('click', (ev) => {
       if (ev.target === $('#modal')) closeModal();
@@ -511,7 +505,6 @@
       if (ev.key === 'Escape') closeModal();
     });
 
-    // Profile form submit
     $('#profileForm').addEventListener('submit', function (ev) {
       ev.preventDefault();
       const f = this;
@@ -521,7 +514,7 @@
         tagline: f.tagline.value.trim(),
         age: parseInt(f.age.value, 10) || '',
         location: f.location.value.trim(),
-        avatar: f.avatar.value.trim() || 'assets/images/avatar.svg',
+        avatar: f.avatar.value.trim() || '6cd56b2b0271028d90c310ba5338942d.jpg',
         bio: f.bio.value.trim(),
         funFacts: state.data.profile.funFacts || [],
         contact: {
@@ -534,7 +527,6 @@
       showToast('Profile saved');
     });
 
-    // Fun fact & education input sync (live)
     $('#funFactsList').addEventListener('input', function (ev) {
       const row = ev.target.closest('[data-row="funFact"]');
       if (!row) return;
@@ -554,7 +546,6 @@
       saveData();
     });
 
-    // Add fun fact / education
     document.addEventListener('click', function (ev) {
       const addBtn = ev.target.closest('[data-add]');
       if (addBtn) {
@@ -581,7 +572,6 @@
       }
     });
 
-    // Remove fun fact / education / skill
     document.addEventListener('click', function (ev) {
       const rm = ev.target.closest('[data-remove]');
       if (!rm) return;
@@ -602,7 +592,6 @@
       }
     });
 
-    // Skills input sync
     $('#hardSkillsAdmin').addEventListener('input', function (ev) {
       const row = ev.target.closest('[data-row="hard"]');
       if (!row) return;
@@ -626,7 +615,6 @@
       saveData();
     });
 
-    // Project edit / delete
     $('#projectsAdminList').addEventListener('click', function (ev) {
       const ed = ev.target.closest('[data-edit="project"]');
       const del = ev.target.closest('[data-delete="project"]');
@@ -639,7 +627,6 @@
       }
     });
 
-    // Blog edit / delete
     $('#blogAdminList').addEventListener('click', function (ev) {
       const ed = ev.target.closest('[data-edit="blog"]');
       const del = ev.target.closest('[data-delete="blog"]');
@@ -652,7 +639,6 @@
       }
     });
 
-    // Messages: click to mark read, button to delete
     $('#messagesList').addEventListener('click', function (ev) {
       const del = ev.target.closest('[data-delete-msg]');
       if (del) {
@@ -672,7 +658,6 @@
       }
     });
 
-    // Clear all messages
     $('#clearMessagesBtn').addEventListener('click', function () {
       if (!(state.data.messages || []).length) { showToast('No messages to clear'); return; }
       if (confirm('Delete all messages? This cannot be undone.')) {
@@ -681,26 +666,23 @@
       }
     });
 
-    // Settings form
     $('#settingsForm').addEventListener('submit', function (ev) {
       ev.preventDefault();
       state.data.settings = {
         siteTitle: this.siteTitle.value.trim() || 'Hamza Bari — Ice',
-        accent: this.accent.value || '#1BFFFF',
-        theme: this.theme.value || 'helium-dark'
+        accent: this.accent.value || '#3590ae',
+        theme: this.theme.value || 'vercel'
       };
       saveData();
       showToast('Settings saved');
     });
 
-    // Credentials form
     $('#credsForm').addEventListener('submit', function (ev) {
       ev.preventDefault();
-      const cur = window.IceAuth.getCreds() || { username: 'ice', password: 'ice123' };
+      const cur = window.IceAuth.getCreds() || { username: 'ice', password: 'admin123' };
       const newUser = this.username.value.trim() || cur.username;
       const newPwd = this.password.value;
       if (!newPwd) {
-        // username only
         window.IceAuth.setCreds(newUser, cur.password);
         showToast('Username updated');
         return;
@@ -714,7 +696,6 @@
       }, 1200);
     });
 
-    // Data management
     $('#exportBtn').addEventListener('click', function () {
       const blob = new Blob([JSON.stringify(state.data, null, 2)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
