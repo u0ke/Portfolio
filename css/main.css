@@ -1,7 +1,8 @@
 /* ===========================================
    Hamza Bari (Ice) — Portfolio main.css
-   Vercel-inspired ultra-minimalism
-   Colors: Black #000, Cream #FFFFF7, Blue #3590ae
+   Layered Blacks — luxury editorial aesthetic
+   Palette: #000 / #0a0a0a / #111111 / #1a1a1a
+            #ffffff / #b3b3b3 / #a3a3a3 / #e8e8e8
    =========================================== */
 
 * {
@@ -13,18 +14,17 @@
   --bg-base:        #000000;
   --bg-surface:     #0a0a0a;
   --bg-elevated:    #111111;
-  --border:         rgba(255, 255, 247, 0.06);
-  --border-hover:   rgba(255, 255, 247, 0.12);
-  --text:           #FFFFF7;
-  --text-muted:     rgba(255, 255, 247, 0.50);
-  --text-faint:     rgba(255, 255, 247, 0.30);
-  --accent:         #3590ae;
-  --accent-soft:    rgba(53, 144, 174, 0.10);
-  --accent-border:  rgba(53, 144, 174, 0.25);
-  --selection:      rgba(53, 144, 174, 0.25);
-  --focus-ring:     #3590ae;
+  --bg-card:        #111111;
+  --edge:           #1a1a1a;
+  --edge-hover:     #222222;
+  --text:           #ffffff;
+  --text-mute:      #b3b3b3;
+  --text-mist:      #a3a3a3;
+  --text-faint:     rgba(255, 255, 255, 0.30);
+  --paper:          #e8e8e8;
+  --bone:           #ffffff;
   --error:          #ff6b6b;
-  --skill-fill:     linear-gradient(90deg, #3590ae 0%, #4db8d4 100%);
+  --skill-fill:     linear-gradient(90deg, #e8e8e8 0%, #b3b3b3 100%);
   --thumb-grad:     linear-gradient(135deg, #0a0a0a 0%, #111111 100%);
   --scrollbar-track:#000000;
 }
@@ -36,28 +36,34 @@ html {
 
 body {
   min-height: 100vh;
-  line-height: 1.6;
-  background: var(--bg-base);
+  line-height: 1.65;
+  background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
+  background-attachment: fixed;
   color: var(--text);
 }
 
-/* Vercel grid pattern */
-.vercel-grid {
-  background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size: 64px 64px;
-  background-position: center top;
-  mask-image: radial-gradient(ellipse 70% 50% at 50% 0%, #000 30%, transparent 80%);
-  -webkit-mask-image: radial-gradient(ellipse 70% 50% at 50% 0%, #000 30%, transparent 80%);
-  opacity: 0.6;
+/* Subtle film-grain noise overlay (5% white) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  opacity: 0.05;
+  mix-blend-mode: screen;
 }
 
-/* Subtle radial glow */
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Subtle monochrome radial glow behind hero */
 .hero-glow {
   background:
-    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(53, 144, 174, 0.06), transparent 60%),
-    radial-gradient(ellipse 60% 40% at 80% 10%, rgba(53, 144, 174, 0.03), transparent 60%);
+    radial-gradient(ellipse 80% 50% at 50% 0%, #1a1a1a 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 10%, rgba(255, 255, 255, 0.015) 0%, transparent 60%);
 }
 
 /* Hero name letter reveal */
@@ -96,7 +102,7 @@ body {
 .skill-bar {
   position: relative;
   height: 4px;
-  background: var(--border);
+  background: var(--edge);
   border-radius: 999px;
   overflow: hidden;
   margin-top: 0.5rem;
@@ -119,17 +125,17 @@ body {
   padding: 0.5rem 0.875rem;
   border-radius: 999px;
   background: transparent;
-  border: 1px solid var(--border);
-  color: var(--text-muted);
+  border: 1px solid var(--edge);
+  color: var(--text-mist);
   font-size: 0.8rem;
   font-weight: 500;
   transition: all 0.2s ease;
 }
 
 .skill-chip:hover {
-  border-color: var(--accent-border);
+  border-color: var(--edge-hover);
   color: var(--text);
-  background: var(--accent-soft);
+  background: rgba(255, 255, 255, 0.02);
 }
 
 /* Fun fact card */
@@ -140,40 +146,40 @@ body {
   padding: 0.75rem 1rem;
   border-radius: 0.75rem;
   background: transparent;
-  border: 1px solid var(--border);
+  border: 1px solid var(--edge);
   transition: all 0.25s ease;
 }
 
 .fun-fact:hover {
-  border-color: var(--border-hover);
-  background: rgba(255,255,247,0.02);
+  border-color: var(--edge-hover);
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .fun-fact-icon {
   width: 32px;
   height: 32px;
   border-radius: 8px;
-  background: var(--accent-soft);
-  border: 1px solid var(--accent-border);
+  background: transparent;
+  border: 1px solid var(--edge);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  color: var(--accent);
+  color: var(--text-mist);
 }
 
 .fun-fact-label {
   font-size: 0.8rem;
   font-weight: 500;
-  color: var(--text-muted);
+  color: var(--text-mist);
 }
 
-/* Project card — Vercel style */
+/* Project card — Layered Blacks */
 .project-card {
   display: flex;
   flex-direction: column;
-  background: transparent;
-  border: 1px solid var(--border);
+  background: var(--bg-card);
+  border: 1px solid var(--edge);
   border-radius: 0.75rem;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -181,8 +187,8 @@ body {
 
 .project-card:hover {
   transform: translateY(-2px);
-  border-color: var(--border-hover);
-  background: rgba(255,255,247,0.01);
+  border-color: var(--edge-hover);
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .project-thumb {
@@ -191,7 +197,7 @@ body {
   object-fit: cover;
   background: var(--thumb-grad);
   display: block;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--edge);
 }
 
 .project-body {
@@ -211,8 +217,8 @@ body {
 
 .project-desc {
   font-size: 0.8rem;
-  color: var(--text-muted);
-  line-height: 1.5;
+  color: var(--text-mist);
+  line-height: 1.6;
   flex: 1;
 }
 
@@ -229,9 +235,9 @@ body {
   letter-spacing: 0.02em;
   padding: 0.2rem 0.55rem;
   border-radius: 0.25rem;
-  background: var(--accent-soft);
-  color: var(--accent);
-  border: 1px solid var(--accent-border);
+  background: transparent;
+  color: var(--text-mist);
+  border: 1px solid var(--edge);
   font-family: 'Geist Mono', monospace;
 }
 
@@ -240,14 +246,14 @@ body {
   gap: 0.5rem;
   margin-top: 0.75rem;
   padding-top: 0.75rem;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--edge);
 }
 
 .project-actions a {
   font-size: 0.75rem;
   font-weight: 500;
   padding: 0.4rem 0.875rem;
-  border-radius: 0.5rem;
+  border-radius: 999px;
   transition: all 0.2s ease;
 }
 
@@ -258,14 +264,14 @@ body {
   gap: 1.25rem;
   padding: 1.25rem 1.5rem;
   border-radius: 0.75rem;
-  background: transparent;
-  border: 1px solid var(--border);
+  background: var(--bg-card);
+  border: 1px solid var(--edge);
   transition: all 0.2s ease;
 }
 
 .edu-card:hover {
-  border-color: var(--border-hover);
-  background: rgba(255,255,247,0.01);
+  border-color: var(--edge-hover);
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .edu-info {
@@ -277,13 +283,13 @@ body {
   width: 40px;
   height: 40px;
   border-radius: 0.6rem;
-  background: var(--accent-soft);
-  border: 1px solid var(--accent-border);
+  background: transparent;
+  border: 1px solid var(--edge);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  color: var(--accent);
+  color: var(--text-mist);
 }
 
 .edu-school {
@@ -305,11 +311,12 @@ body {
   font-weight: 500;
   padding: .3rem .75rem;
   border-radius: 999px;
-  background: var(--accent-soft);
-  color: var(--accent);
-  border: 1px solid var(--accent-border);
+  background: transparent;
+  color: var(--text-mist);
+  border: 1px solid var(--edge);
   white-space: nowrap;
   font-family: 'Geist Mono', monospace;
+  letter-spacing: 0.05em;
 }
 
 @media (max-width: 640px) {
@@ -330,23 +337,23 @@ body {
   flex-direction: column;
   padding: 1.5rem;
   border-radius: 0.75rem;
-  background: transparent;
-  border: 1px solid var(--border);
+  background: var(--bg-card);
+  border: 1px solid var(--edge);
   transition: all 0.3s ease;
   height: 100%;
 }
 
 .blog-card:hover {
-  border-color: var(--border-hover);
-  background: rgba(255,255,247,0.01);
+  border-color: var(--edge-hover);
+  background: rgba(255, 255, 255, 0.02);
   transform: translateY(-2px);
 }
 
 .blog-date {
   font-size: 0.65rem;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--text-faint);
+  letter-spacing: 0.05em;
+  color: var(--text-mist);
   margin-bottom: 0.75rem;
   font-family: 'Geist Mono', monospace;
 }
@@ -362,8 +369,8 @@ body {
 
 .blog-excerpt {
   font-size: 0.8rem;
-  color: var(--text-muted);
-  line-height: 1.5;
+  color: var(--text-mist);
+  line-height: 1.6;
 }
 
 /* Custom scrollbar */
@@ -377,30 +384,30 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border);
+  background: var(--edge);
   border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--border-hover);
+  background: var(--edge-hover);
 }
 
 /* Selection */
 ::selection {
-  background: var(--selection);
+  background: rgba(255, 255, 255, 0.20);
   color: var(--text);
 }
 
 /* Focus visible */
 *:focus-visible {
-  outline: 1px solid var(--focus-ring);
+  outline: 1px solid var(--paper);
   outline-offset: 2px;
   border-radius: 4px;
 }
 
 /* Form status states */
 .form-status-success {
-  color: var(--accent) !important;
+  color: var(--text-mist) !important;
 }
 
 .form-status-error {
@@ -435,14 +442,14 @@ body {
   width: 36px;
   height: 56px;
   border-radius: 12px 0 0 12px;
-  background: rgba(255,255,247,0.04);
+  background: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,247,0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-right: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(255,255,247,0.40);
+  color: rgba(255, 255, 255, 0.40);
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -450,7 +457,7 @@ body {
 .admin-arrow:hover,
 #adminAccess:hover .admin-arrow,
 #adminAccess:focus-within .admin-arrow {
-  background: rgba(255,255,247,0.08);
+  background: rgba(255, 255, 255, 0.08);
   color: var(--text);
 }
 
@@ -481,9 +488,9 @@ body {
   gap: 0.5rem;
   padding: 0.6rem 1rem;
   border-radius: 0.6rem;
-  background: rgba(255,255,247,0.04);
-  border: 1px solid rgba(255,255,247,0.08);
-  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-mist);
   font-size: 0.8rem;
   font-weight: 500;
   transition: all 0.2s ease;

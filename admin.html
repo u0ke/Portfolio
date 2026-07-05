@@ -17,8 +17,12 @@
           colors: {
             ink: '#000000',
             surface: '#0a0a0a',
-            electric: '#3590ae',
-            cream: '#FFFFF7',
+            bone: '#ffffff',
+            paper: '#e8e8e8',
+            mute: '#b3b3b3',
+            mist: '#a3a3a3',
+            edge: '#1a1a1a',
+            'edge-hover': '#222222',
           }
         }
       }
@@ -29,67 +33,58 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%9B%BA%3C/text%3E%3C/svg%3E" />
   <style>
-    html, body { background: #000; color: #FFFFF7; }
-    .vercel-grid {
-      background-image: linear-gradient(rgba(255,255,247,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,247,0.03) 1px, transparent 1px);
-      background-size: 64px 64px;
-      mask-image: radial-gradient(ellipse 70% 50% at 50% 0%, #000 30%, transparent 80%);
-      -webkit-mask-image: radial-gradient(ellipse 70% 50% at 50% 0%, #000 30%, transparent 80%);
-    }
-    ::selection { background: rgba(53, 144, 174, 0.25); }
+    html, body { background: linear-gradient(180deg, #0a0a0a 0%, #000000 100%); color: #ffffff; }
+    ::selection { background: rgba(255, 255, 255, 0.20); }
   </style>
   <link rel="stylesheet" href="css/admin.css" />
 <base target="_blank">
 </head>
-<body class="bg-ink text-cream font-sans antialiased min-h-screen relative overflow-x-hidden">
-
-  <div id="adminBackdrop" class="fixed inset-0 -z-10 bg-ink"></div>
-  <div class="fixed inset-0 -z-10 vercel-grid pointer-events-none opacity-40"></div>
+<body class="text-mute font-sans antialiased min-h-screen relative overflow-x-hidden">
 
   <div class="flex min-h-screen">
 
     <!-- Sidebar -->
-    <aside id="sidebar" class="hidden md:flex flex-col w-60 bg-surface/50 border-r border-cream/[0.06] backdrop-blur-xl p-5 sticky top-0 h-screen">
+    <aside id="sidebar" class="hidden md:flex flex-col w-60 bg-[#0a0a0a] border-r border-edge backdrop-blur-xl p-5 sticky top-0 h-screen">
       <a href="index.html" class="text-sm font-bold tracking-tight mb-8 flex items-center gap-1">
-        <span class="text-cream">ice</span><span class="text-electric">.</span> <span class="text-cream/30 text-xs font-normal font-mono ml-1">admin</span>
+        <span class="text-bone">ice</span><span class="text-mist">.</span> <span class="text-mist text-xs font-normal font-mono ml-1">admin</span>
       </a>
       <nav class="flex-1 space-y-0.5">
-        <button data-nav="dashboard" class="nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-cream/50 hover:bg-cream/5 hover:text-cream transition">
+        <button data-nav="dashboard" class="nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-mist hover:bg-white/5 hover:text-bone transition">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
           Dashboard
         </button>
-        <button data-nav="profile" class="nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-cream/50 hover:bg-cream/5 hover:text-cream transition">
+        <button data-nav="profile" class="nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-mist hover:bg-white/5 hover:text-bone transition">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
           Profile
         </button>
-        <button data-nav="skills" class="nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-cream/50 hover:bg-cream/5 hover:text-cream transition">
+        <button data-nav="skills" class="nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-mist hover:bg-white/5 hover:text-bone transition">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
           Skills
         </button>
-        <button data-nav="projects" class="nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-cream/50 hover:bg-cream/5 hover:text-cream transition">
+        <button data-nav="projects" class="nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-mist hover:bg-white/5 hover:text-bone transition">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
           Projects
         </button>
-        <button data-nav="blog" class="nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-cream/50 hover:bg-cream/5 hover:text-cream transition">
+        <button data-nav="blog" class="nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-mist hover:bg-white/5 hover:text-bone transition">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
           Blog
         </button>
-        <button data-nav="messages" class="nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-cream/50 hover:bg-cream/5 hover:text-cream transition">
+        <button data-nav="messages" class="nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-mist hover:bg-white/5 hover:text-bone transition">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           Messages
-          <span id="unreadBadge" class="ml-auto text-[10px] px-1.5 py-0.5 rounded-full bg-electric/10 text-electric border border-electric/20 hidden font-mono">0</span>
+          <span id="unreadBadge" class="ml-auto text-[10px] px-1.5 py-0.5 rounded-full bg-transparent text-mist border border-edge hidden font-mono">0</span>
         </button>
-        <button data-nav="settings" class="nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-cream/50 hover:bg-cream/5 hover:text-cream transition">
+        <button data-nav="settings" class="nav-btn w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-mist hover:bg-white/5 hover:text-bone transition">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
           Settings
         </button>
       </nav>
-      <div class="pt-4 border-t border-cream/[0.06] space-y-1">
-        <a href="index.html" target="_blank" class="flex items-center gap-2 text-sm text-cream/30 hover:text-cream transition px-2 py-1.5 rounded-lg hover:bg-cream/5">
+      <div class="pt-4 border-t border-edge space-y-1">
+        <a href="index.html" target="_blank" class="flex items-center gap-2 text-sm text-mist hover:text-bone transition px-2 py-1.5 rounded-lg hover:bg-white/5">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           View site
         </a>
-        <button id="logoutBtn" class="w-full flex items-center gap-2 text-sm text-cream/30 hover:text-red-300 transition px-2 py-1.5 rounded-lg hover:bg-red-500/5">
+        <button id="logoutBtn" class="w-full flex items-center gap-2 text-sm text-mist hover:text-red-300 transition px-2 py-1.5 rounded-lg hover:bg-red-500/5">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
           Logout
         </button>
@@ -97,21 +92,21 @@
     </aside>
 
     <!-- Mobile top bar -->
-    <div class="md:hidden fixed top-0 left-0 right-0 z-40 bg-surface/80 backdrop-blur-xl border-b border-cream/[0.06] px-4 h-14 flex items-center justify-between">
-      <a href="index.html" class="text-sm font-bold"><span class="text-cream">ice</span><span class="text-electric">.</span></a>
-      <button id="mobileNavToggle" class="text-cream/70 p-2" aria-label="Toggle nav">
+    <div class="md:hidden fixed top-0 left-0 right-0 z-40 bg-[#0a0a0a]/80 backdrop-blur-xl border-b border-edge px-4 h-14 flex items-center justify-between">
+      <a href="index.html" class="text-sm font-bold"><span class="text-bone">ice</span><span class="text-mist">.</span></a>
+      <button id="mobileNavToggle" class="text-mist p-2" aria-label="Toggle nav">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
       </button>
     </div>
     <div id="mobileNav" class="md:hidden fixed inset-0 z-30 bg-ink/95 backdrop-blur-xl hidden pt-16">
       <div class="flex flex-col gap-0.5 p-4">
-        <button data-nav="dashboard" class="nav-btn text-left px-4 py-2.5 rounded-lg text-cream/60 hover:bg-cream/5 hover:text-cream transition">Dashboard</button>
-        <button data-nav="profile" class="nav-btn text-left px-4 py-2.5 rounded-lg text-cream/60 hover:bg-cream/5 hover:text-cream transition">Profile</button>
-        <button data-nav="skills" class="nav-btn text-left px-4 py-2.5 rounded-lg text-cream/60 hover:bg-cream/5 hover:text-cream transition">Skills</button>
-        <button data-nav="projects" class="nav-btn text-left px-4 py-2.5 rounded-lg text-cream/60 hover:bg-cream/5 hover:text-cream transition">Projects</button>
-        <button data-nav="blog" class="nav-btn text-left px-4 py-2.5 rounded-lg text-cream/60 hover:bg-cream/5 hover:text-cream transition">Blog</button>
-        <button data-nav="messages" class="nav-btn text-left px-4 py-2.5 rounded-lg text-cream/60 hover:bg-cream/5 hover:text-cream transition">Messages</button>
-        <button data-nav="settings" class="nav-btn text-left px-4 py-2.5 rounded-lg text-cream/60 hover:bg-cream/5 hover:text-cream transition">Settings</button>
+        <button data-nav="dashboard" class="nav-btn text-left px-4 py-2.5 rounded-lg text-mist hover:bg-white/5 hover:text-bone transition">Dashboard</button>
+        <button data-nav="profile" class="nav-btn text-left px-4 py-2.5 rounded-lg text-mist hover:bg-white/5 hover:text-bone transition">Profile</button>
+        <button data-nav="skills" class="nav-btn text-left px-4 py-2.5 rounded-lg text-mist hover:bg-white/5 hover:text-bone transition">Skills</button>
+        <button data-nav="projects" class="nav-btn text-left px-4 py-2.5 rounded-lg text-mist hover:bg-white/5 hover:text-bone transition">Projects</button>
+        <button data-nav="blog" class="nav-btn text-left px-4 py-2.5 rounded-lg text-mist hover:bg-white/5 hover:text-bone transition">Blog</button>
+        <button data-nav="messages" class="nav-btn text-left px-4 py-2.5 rounded-lg text-mist hover:bg-white/5 hover:text-bone transition">Messages</button>
+        <button data-nav="settings" class="nav-btn text-left px-4 py-2.5 rounded-lg text-mist hover:bg-white/5 hover:text-bone transition">Settings</button>
         <button id="logoutBtnMobile" class="text-left px-4 py-2.5 rounded-lg text-red-300 hover:bg-red-500/10 mt-2 transition">Logout</button>
       </div>
     </div>
@@ -121,42 +116,42 @@
 
       <div class="flex items-end justify-between mb-8 flex-wrap gap-4">
         <div>
-          <p id="sectionKicker" class="font-mono text-[10px] uppercase tracking-[0.2em] text-electric mb-2">Dashboard</p>
-          <h1 id="sectionTitle" class="text-2xl md:text-3xl font-bold tracking-tight text-cream">Welcome back, Ice</h1>
+          <p id="sectionKicker" class="font-mono text-[10px] uppercase tracking-[0.05em] text-mist mb-2">Dashboard</p>
+          <h1 id="sectionTitle" class="text-2xl md:text-3xl font-bold tracking-tight text-bone">Welcome back, Ice</h1>
         </div>
         <div class="text-right">
-          <p class="text-[10px] font-mono text-cream/25 uppercase tracking-widest">Logged in as</p>
-          <p id="adminUser" class="text-xs font-medium text-cream/50 mt-0.5">admin</p>
+          <p class="text-[10px] font-mono text-mist uppercase tracking-[0.05em]">Logged in as</p>
+          <p id="adminUser" class="text-xs font-medium text-mist mt-0.5">admin</p>
         </div>
       </div>
 
       <!-- Toast -->
-      <div id="toast" class="hidden fixed top-6 right-6 z-50 px-5 py-3 rounded-xl bg-electric text-ink font-medium text-sm shadow-2xl"></div>
+      <div id="toast" class="hidden fixed top-6 right-6 z-50 px-5 py-3 rounded-xl bg-paper text-ink font-medium text-sm"></div>
 
       <!-- Section: Dashboard -->
       <section data-section="dashboard" class="admin-section">
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
           <div class="stat-card">
-            <p class="text-[10px] font-mono text-cream/30 uppercase tracking-widest">Projects</p>
-            <p class="text-3xl font-bold mt-2 text-cream" id="statProjects">0</p>
+            <p class="text-[10px] font-mono text-mist uppercase tracking-[0.05em]">Projects</p>
+            <p class="text-3xl font-bold mt-2 text-bone" id="statProjects">0</p>
           </div>
           <div class="stat-card">
-            <p class="text-[10px] font-mono text-cream/30 uppercase tracking-widest">Hard Skills</p>
-            <p class="text-3xl font-bold mt-2 text-cream" id="statHardSkills">0</p>
+            <p class="text-[10px] font-mono text-mist uppercase tracking-[0.05em]">Hard Skills</p>
+            <p class="text-3xl font-bold mt-2 text-bone" id="statHardSkills">0</p>
           </div>
           <div class="stat-card">
-            <p class="text-[10px] font-mono text-cream/30 uppercase tracking-widest">Blog Posts</p>
-            <p class="text-3xl font-bold mt-2 text-cream" id="statBlog">0</p>
+            <p class="text-[10px] font-mono text-mist uppercase tracking-[0.05em]">Blog Posts</p>
+            <p class="text-3xl font-bold mt-2 text-bone" id="statBlog">0</p>
           </div>
           <div class="stat-card">
-            <p class="text-[10px] font-mono text-cream/30 uppercase tracking-widest">Unread Messages</p>
-            <p class="text-3xl font-bold mt-2 text-electric" id="statMessages">0</p>
+            <p class="text-[10px] font-mono text-mist uppercase tracking-[0.05em]">Unread Messages</p>
+            <p class="text-3xl font-bold mt-2 text-bone" id="statMessages">0</p>
           </div>
         </div>
 
         <div class="grid lg:grid-cols-2 gap-4">
-          <div class="rounded-xl border border-cream/[0.06] bg-cream/[0.02] p-6">
-            <h3 class="text-sm font-semibold mb-4 text-cream">Quick Actions</h3>
+          <div class="rounded-xl border border-edge bg-[#111111] p-6">
+            <h3 class="text-sm font-semibold mb-4 text-bone">Quick Actions</h3>
             <div class="grid grid-cols-2 gap-2">
               <button data-nav="projects" class="quick-btn">+ New Project</button>
               <button data-nav="blog" class="quick-btn">+ New Blog Post</button>
@@ -164,10 +159,10 @@
               <button data-nav="profile" class="quick-btn">Edit Profile</button>
             </div>
           </div>
-          <div class="rounded-xl border border-cream/[0.06] bg-cream/[0.02] p-6">
-            <h3 class="text-sm font-semibold mb-4 text-cream">Recent Messages</h3>
-            <div id="recentMessages" class="space-y-3 text-sm text-cream/40">
-              <p class="text-cream/20">No messages yet.</p>
+          <div class="rounded-xl border border-edge bg-[#111111] p-6">
+            <h3 class="text-sm font-semibold mb-4 text-bone">Recent Messages</h3>
+            <div id="recentMessages" class="space-y-3 text-sm text-mute">
+              <p class="text-mist">No messages yet.</p>
             </div>
           </div>
         </div>
@@ -219,24 +214,24 @@
             </div>
           </div>
 
-          <div class="rounded-xl border border-cream/[0.06] bg-cream/[0.02] p-6">
+          <div class="rounded-xl border border-edge bg-[#111111] p-6">
             <div class="flex items-center justify-between mb-4">
-              <h3 class="text-sm font-semibold text-cream">Fun Facts</h3>
-              <button type="button" data-add="funFacts" class="text-[10px] font-mono uppercase tracking-wider px-3 py-1.5 rounded-full bg-cream text-ink font-semibold hover:bg-cream/90 transition">+ Add Fact</button>
+              <h3 class="text-sm font-semibold text-bone">Fun Facts</h3>
+              <button type="button" data-add="funFacts" class="text-[10px] font-mono uppercase tracking-wider px-3 py-1.5 rounded-full bg-paper text-ink font-semibold hover:bg-bone transition">+ Add Fact</button>
             </div>
             <div id="funFactsList" class="space-y-2"></div>
           </div>
 
-          <div class="rounded-xl border border-cream/[0.06] bg-cream/[0.02] p-6">
+          <div class="rounded-xl border border-edge bg-[#111111] p-6">
             <div class="flex items-center justify-between mb-4">
-              <h3 class="text-sm font-semibold text-cream">Education</h3>
-              <button type="button" data-add="education" class="text-[10px] font-mono uppercase tracking-wider px-3 py-1.5 rounded-full bg-cream text-ink font-semibold hover:bg-cream/90 transition">+ Add</button>
+              <h3 class="text-sm font-semibold text-bone">Education</h3>
+              <button type="button" data-add="education" class="text-[10px] font-mono uppercase tracking-wider px-3 py-1.5 rounded-full bg-paper text-ink font-semibold hover:bg-bone transition">+ Add</button>
             </div>
             <div id="educationList" class="space-y-2"></div>
           </div>
 
           <div class="flex justify-end">
-            <button type="submit" class="px-6 py-2.5 rounded-full bg-cream text-ink font-medium text-sm hover:bg-cream/90 transition">Save Profile</button>
+            <button type="submit" class="px-6 py-2.5 rounded-full bg-paper text-ink font-medium text-sm hover:bg-bone transition">Save Profile</button>
           </div>
         </form>
       </section>
@@ -244,17 +239,17 @@
       <!-- Section: Skills -->
       <section data-section="skills" class="admin-section hidden">
         <div class="grid md:grid-cols-2 gap-4">
-          <div class="rounded-xl border border-cream/[0.06] bg-cream/[0.02] p-6">
+          <div class="rounded-xl border border-edge bg-[#111111] p-6">
             <div class="flex items-center justify-between mb-4">
-              <h3 class="text-sm font-semibold text-cream">Hard Skills</h3>
-              <button type="button" data-add="hard" class="text-[10px] font-mono uppercase tracking-wider px-3 py-1.5 rounded-full bg-cream text-ink font-semibold hover:bg-cream/90 transition">+ Add Skill</button>
+              <h3 class="text-sm font-semibold text-bone">Hard Skills</h3>
+              <button type="button" data-add="hard" class="text-[10px] font-mono uppercase tracking-wider px-3 py-1.5 rounded-full bg-paper text-ink font-semibold hover:bg-bone transition">+ Add Skill</button>
             </div>
             <div id="hardSkillsAdmin" class="space-y-2"></div>
           </div>
-          <div class="rounded-xl border border-cream/[0.06] bg-cream/[0.02] p-6">
+          <div class="rounded-xl border border-edge bg-[#111111] p-6">
             <div class="flex items-center justify-between mb-4">
-              <h3 class="text-sm font-semibold text-cream">Soft Skills</h3>
-              <button type="button" data-add="soft" class="text-[10px] font-mono uppercase tracking-wider px-3 py-1.5 rounded-full bg-cream text-ink font-semibold hover:bg-cream/90 transition">+ Add Skill</button>
+              <h3 class="text-sm font-semibold text-bone">Soft Skills</h3>
+              <button type="button" data-add="soft" class="text-[10px] font-mono uppercase tracking-wider px-3 py-1.5 rounded-full bg-paper text-ink font-semibold hover:bg-bone transition">+ Add Skill</button>
             </div>
             <div id="softSkillsAdmin" class="space-y-2"></div>
           </div>
@@ -264,8 +259,8 @@
       <!-- Section: Projects -->
       <section data-section="projects" class="admin-section hidden">
         <div class="flex items-center justify-between mb-6">
-          <h2 class="text-lg font-semibold text-cream">Manage Projects</h2>
-          <button type="button" data-add="project" class="text-[10px] font-mono uppercase tracking-wider px-4 py-2 rounded-full bg-cream text-ink font-semibold hover:bg-cream/90 transition">+ New Project</button>
+          <h2 class="text-lg font-semibold text-bone">Manage Projects</h2>
+          <button type="button" data-add="project" class="text-[10px] font-mono uppercase tracking-wider px-4 py-2 rounded-full bg-paper text-ink font-semibold hover:bg-bone transition">+ New Project</button>
         </div>
         <div id="projectsAdminList" class="space-y-3"></div>
       </section>
@@ -273,8 +268,8 @@
       <!-- Section: Blog -->
       <section data-section="blog" class="admin-section hidden">
         <div class="flex items-center justify-between mb-6">
-          <h2 class="text-lg font-semibold text-cream">Manage Blog Posts</h2>
-          <button type="button" data-add="blog" class="text-[10px] font-mono uppercase tracking-wider px-4 py-2 rounded-full bg-cream text-ink font-semibold hover:bg-cream/90 transition">+ New Post</button>
+          <h2 class="text-lg font-semibold text-bone">Manage Blog Posts</h2>
+          <button type="button" data-add="blog" class="text-[10px] font-mono uppercase tracking-wider px-4 py-2 rounded-full bg-paper text-ink font-semibold hover:bg-bone transition">+ New Post</button>
         </div>
         <div id="blogAdminList" class="space-y-3"></div>
       </section>
@@ -282,7 +277,7 @@
       <!-- Section: Messages -->
       <section data-section="messages" class="admin-section hidden">
         <div class="flex items-center justify-between mb-6">
-          <h2 class="text-lg font-semibold text-cream">Inbox</h2>
+          <h2 class="text-lg font-semibold text-bone">Inbox</h2>
           <button type="button" id="clearMessagesBtn" class="text-[10px] font-mono uppercase tracking-wider px-4 py-2 rounded-full border border-red-400/20 text-red-300 hover:bg-red-500/10 transition">Clear All</button>
         </div>
         <div id="messagesList" class="space-y-2"></div>
@@ -291,31 +286,27 @@
       <!-- Section: Settings -->
       <section data-section="settings" class="admin-section hidden">
         <div class="grid md:grid-cols-2 gap-4">
-          <div class="rounded-xl border border-cream/[0.06] bg-cream/[0.02] p-6">
-            <h3 class="text-sm font-semibold mb-4 text-cream">Site Settings</h3>
+          <div class="rounded-xl border border-edge bg-[#111111] p-6">
+            <h3 class="text-sm font-semibold mb-4 text-bone">Site Settings</h3>
             <form id="settingsForm" class="space-y-4">
               <div class="form-group">
                 <label>Site Title</label>
                 <input name="siteTitle" type="text" />
               </div>
               <div class="form-group">
-                <label>Accent Color</label>
-                <input name="accent" type="color" />
-              </div>
-              <div class="form-group">
                 <label>Theme</label>
                 <select name="theme">
-                  <option value="vercel">Vercel Dark</option>
+                  <option value="layered">Layered Black</option>
                 </select>
               </div>
               <div class="flex justify-end">
-                <button type="submit" class="px-5 py-2 rounded-full bg-cream text-ink text-sm font-medium hover:bg-cream/90 transition">Save Settings</button>
+                <button type="submit" class="px-5 py-2 rounded-full bg-paper text-ink text-sm font-medium hover:bg-bone transition">Save Settings</button>
               </div>
             </form>
           </div>
 
-          <div class="rounded-xl border border-cream/[0.06] bg-cream/[0.02] p-6">
-            <h3 class="text-sm font-semibold mb-4 text-cream">Admin Credentials</h3>
+          <div class="rounded-xl border border-edge bg-[#111111] p-6">
+            <h3 class="text-sm font-semibold mb-4 text-bone">Admin Credentials</h3>
             <form id="credsForm" class="space-y-4">
               <div class="form-group">
                 <label>Username</label>
@@ -325,19 +316,19 @@
                 <label>New Password</label>
                 <input name="password" type="password" placeholder="Leave blank to keep current" />
               </div>
-              <p class="text-xs text-cream/25 font-mono">You'll be logged out after changing credentials.</p>
+              <p class="text-xs text-mist font-mono">You'll be logged out after changing credentials.</p>
               <div class="flex justify-end">
-                <button type="submit" class="px-5 py-2 rounded-full bg-cream text-ink text-sm font-medium hover:bg-cream/90 transition">Update</button>
+                <button type="submit" class="px-5 py-2 rounded-full bg-paper text-ink text-sm font-medium hover:bg-bone transition">Update</button>
               </div>
             </form>
           </div>
 
-          <div class="rounded-xl border border-cream/[0.06] bg-cream/[0.02] p-6 md:col-span-2">
-            <h3 class="text-sm font-semibold mb-4 text-cream">Data Management</h3>
-            <p class="text-sm text-cream/30 mb-4">Export your portfolio data as JSON, or import a backup. Useful for syncing across devices.</p>
+          <div class="rounded-xl border border-edge bg-[#111111] p-6 md:col-span-2">
+            <h3 class="text-sm font-semibold mb-4 text-bone">Data Management</h3>
+            <p class="text-sm text-mist mb-4">Export your portfolio data as JSON, or import a backup. Useful for syncing across devices.</p>
             <div class="flex flex-wrap gap-2">
-              <button id="exportBtn" class="px-5 py-2 rounded-full bg-cream text-ink text-sm font-medium hover:bg-cream/90 transition">Export JSON</button>
-              <label class="px-5 py-2 rounded-full border border-cream/15 text-cream/60 text-sm font-medium hover:bg-cream/5 transition cursor-pointer">
+              <button id="exportBtn" class="px-5 py-2 rounded-full bg-paper text-ink text-sm font-medium hover:bg-bone transition">Export JSON</button>
+              <label class="px-5 py-2 rounded-full border border-edge text-mist text-sm font-medium hover:bg-white/5 transition cursor-pointer">
                 Import JSON
                 <input id="importFile" type="file" accept="application/json" class="hidden" />
               </label>
@@ -352,10 +343,10 @@
 
   <!-- Modal -->
   <div id="modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/70 backdrop-blur-sm">
-    <div class="bg-surface border border-cream/[0.08] rounded-2xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+    <div class="bg-[#111111] border border-edge rounded-2xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
       <div class="flex items-center justify-between mb-6">
-        <h3 id="modalTitle" class="text-lg font-bold text-cream">Modal</h3>
-        <button id="modalClose" class="text-cream/30 hover:text-cream p-1 transition" aria-label="Close">
+        <h3 id="modalTitle" class="text-lg font-bold text-bone">Modal</h3>
+        <button id="modalClose" class="text-mist hover:text-bone p-1 transition" aria-label="Close">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
         </button>
       </div>
