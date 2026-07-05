@@ -253,10 +253,50 @@ body > * {
 
 .project-actions {
   display: flex;
-  gap: 0.5rem;
+  gap: 0.6rem;
   margin-top: 0.75rem;
   padding-top: 0.75rem;
   border-top: 1px solid var(--edge);
+  align-items: center;
+}
+
+.project-actions a {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  text-decoration: none;
+}
+
+/* Live Demo button — ghost style */
+.project-actions a:first-child {
+  border: 1px solid var(--edge);
+  color: var(--text-mist);
+  background: transparent;
+}
+
+.project-actions a:first-child:hover {
+  border-color: var(--edge-hover);
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* GitHub button — solid accent */
+.project-actions a:last-child,
+.project-actions a[href*="github"] {
+  background: var(--paper);
+  color: var(--bg-base);
+  border: 1px solid var(--paper);
+}
+
+.project-actions a:last-child:hover,
+.project-actions a[href*="github"]:hover {
+  background: var(--bone);
+  border-color: var(--bone);
 }
 
 .project-actions a {
