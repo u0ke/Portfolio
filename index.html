@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hamza Bari — Web Developer from Agadir, Morocco.">
+  <title>Hamza Bari — Web Developer</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header" id="site-header">
+    <nav class="nav container">
+      <a class="brand" href="#top">ice</a>
+
+      <div class="desktop-nav" id="desktop-nav">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme"></button>
+      </div>
+
+      <div class="mobile-actions">
+        <button class="theme-toggle" id="theme-toggle-mobile" aria-label="Toggle theme"></button>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Open menu">☰</button>
+      </div>
+    </nav>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-head">
+      <span class="brand">ice</span>
+      <button id="menu-close" aria-label="Close menu">×</button>
+    </div>
+    <div class="mobile-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="container">
+        <div class="reading hero-content reveal visible">
+          <p class="eyebrow">Hi, I'm Hamza</p>
+          <h1>Web Developer</h1>
+          <p class="hero-description">
+            Creative developer from Agadir, Morocco, focused on building clean,
+            fast and thoughtful digital experiences.
+          </p>
+
+          <div class="hero-meta">
+            <span>⌖ Agadir, Morocco</span>
+            <span>/</span>
+            <span>Web Development Student</span>
+            <span>/</span>
+            <span>Open to opportunities</span>
+          </div>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="#projects">View my work <span>→</span></a>
+            <a class="button button-secondary" href="#contact">Get in touch</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-label"><span>01</span><i></i><h2>About</h2></div>
+        <div class="reading">
+          <p class="lead reveal">
+            I'm a 19-year-old creative developer from Morocco, currently based in
+            Agadir. I specialize in building sleek, minimalist digital experiences
+            that feel calm, fast, and intentional. When I'm not coding, I'm usually
+            hitting the gym or optimizing my gaming setup.
+          </p>
+          <div class="facts reveal">
+            <span>♢ Gym Lover</span>
+            <span>▣ PC Enthusiast</span>
+            <span>&lt;/&gt; Code Junkie</span>
+            <span>☕ Coffee Powered</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bordered" id="skills">
+      <div class="container">
+        <div class="section-label"><span>02</span><i></i><h2>Skills</h2></div>
+        <div class="skills-grid">
+          <div class="reveal">
+            <h3>Core</h3>
+            <ol class="skill-list">
+              <li><b>01</b>HTML</li>
+              <li><b>02</b>CSS</li>
+              <li><b>03</b>Tailwind CSS</li>
+              <li><b>04</b>JavaScript</li>
+              <li><b>05</b>Node.js</li>
+              <li><b>06</b>Python</li>
+              <li><b>07</b>Git</li>
+              <li><b>08</b>Figma</li>
+              <li><b>09</b>VS Code</li>
+            </ol>
+          </div>
+          <div class="reveal">
+            <h3>Supporting</h3>
+            <div class="skill-tags">
+              <span>Problem-solving</span><span>Teamwork</span><span>Communication</span>
+              <span>Time management</span><span>Adaptability</span><span>Creativity</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bordered" id="projects">
+      <div class="container">
+        <div class="section-label"><span>03</span><i></i><h2>Selected Work</h2></div>
+
+        <div class="filters reveal">
+          <button class="filter active" data-filter="All">All</button>
+          <button class="filter" data-filter="2025">2025</button>
+        </div>
+
+        <div id="project-list"></div>
+      </div>
+    </section>
+
+    <section class="section bordered" id="education">
+      <div class="container">
+        <div class="section-label"><span>04</span><i></i><h2>Education</h2></div>
+        <div class="reading reveal">
+          <div class="education-row">
+            <div class="education-icon">⌘</div>
+            <div>
+              <div class="education-meta">
+                <span>2024 — Present</span>
+                <span class="status"><em></em> Currently Studying</span>
+              </div>
+              <h3 class="education-title">Ecole du Web Avancé (EWA)</h3>
+              <p class="education-program">Web Development Program</p>
+              <p class="muted">⌖ Agadir, Morocco</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bordered" id="github">
+      <div class="container">
+        <div class="section-label"><span>05</span><i></i><h2>GitHub</h2></div>
+        <a class="github-card reveal" href="https://github.com/u0ke" target="_blank" rel="noopener noreferrer">
+          <div class="github-top"><span>◉ &nbsp;@u0ke</span><span>↗</span></div>
+          <p>GitHub is a core part of my development journey — where I experiment, build,
+            and iterate on projects. Follow along to see what I'm working on.</p>
+          <div class="github-link">View profile <i></i> https://github.com/u0ke</div>
+        </a>
+      </div>
+    </section>
+
+    <section class="section bordered" id="contact">
+      <div class="container">
+        <div class="section-label"><span>06</span><i></i><h2>Contact</h2></div>
+        <div class="reading">
+          <h2 class="contact-title reveal">Get in Touch</h2>
+          <p class="contact-description reveal">Have a project, idea, or opportunity? Let's talk.</p>
+
+          <div class="email-wrap reveal">
+            <button class="email-button" id="copy-email" aria-label="Copy email">
+              <span class="mail-icon">✉</span>
+              <span>barihamza73@gmail.com</span>
+              <span id="copy-icon">□</span>
+            </button>
+            <p class="copied" id="copied">Copied to clipboard</p>
+          </div>
+
+          <div class="socials reveal">
+            <a href="https://github.com/u0ke" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+            <a href="https://linkedin.com/u0ke" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <p>© 2026 Hamza Bari — ice</p>
+        <small>Agadir, Morocco</small>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/u0ke" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://linkedin.com/u0ke" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="mailto:barihamza73@gmail.com">Email</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
