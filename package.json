@@ -1,21 +1,9 @@
 {
   "name": "portfolio",
   "version": "1.0.0",
-  "description": "This is the React portfolio converted to plain HTML, CSS and JavaScript.",
-  "main": "index.js",
+  "description": "Hamza Bari Portfolio",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/u0ke/Portfolio.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/u0ke/Portfolio/issues"
-  },
-  "homepage": "https://github.com/u0ke/Portfolio#readme"
+    "start": "node server.js"
+  }
 }
